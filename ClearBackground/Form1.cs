@@ -15,8 +15,9 @@ namespace ClearBackground
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string path = @"C:\Users\d1mon\Desktop\testCoordinates.txt"; //Файл с которого считываютья данные.
-            string showResult = @"C:\Users\d1mon\Desktop\TestClearBackground.txt"; //Файл в который записывается точка находиться внутри прямоугольника или нет.
+            DirectoryInfo personalPath = new DirectoryInfo(Path.Text);
+            string path = Convert.ToString(personalPath); 
+            string showResult = @"C:\Users\d1mon\Desktop\TestClearBackground.txt";
             PointF[] polygons = new PointF[4];
            
             using (StreamReader read = new StreamReader(path))
@@ -44,7 +45,6 @@ namespace ClearBackground
                         polygons[i].X = coordinatesX;
                         polygons[i].Y = coordinatesY;
                     }   
-                    i++;
                 }
                 Close();
             }
