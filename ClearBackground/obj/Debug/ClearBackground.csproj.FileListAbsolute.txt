@@ -8,13 +8,3 @@ E:\UnityProject\ClearBackground\ClearBackground\obj\Debug\ClearBackground.csproj
 E:\UnityProject\ClearBackground\ClearBackground\obj\Debug\ClearBackground.csproj.CoreCompileInputs.cache
 E:\UnityProject\ClearBackground\ClearBackground\obj\Debug\ClearBackground.exe
 E:\UnityProject\ClearBackground\ClearBackground\obj\Debug\ClearBackground.pdb
-E:\UnityProject\ClearPoint\ClearPoint\ClearBackground\bin\Debug\ClearBackground.exe.config
-E:\UnityProject\ClearPoint\ClearPoint\ClearBackground\bin\Debug\ClearBackground.exe
-E:\UnityProject\ClearPoint\ClearPoint\ClearBackground\bin\Debug\ClearBackground.pdb
-E:\UnityProject\ClearPoint\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.AssemblyReference.cache
-E:\UnityProject\ClearPoint\ClearPoint\ClearBackground\obj\Debug\ClearBackground.Form1.resources
-E:\UnityProject\ClearPoint\ClearPoint\ClearBackground\obj\Debug\ClearBackground.Properties.Resources.resources
-E:\UnityProject\ClearPoint\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.GenerateResource.cache
-E:\UnityProject\ClearPoint\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.CoreCompileInputs.cache
-E:\UnityProject\ClearPoint\ClearPoint\ClearBackground\obj\Debug\ClearBackground.exe
-E:\UnityProject\ClearPoint\ClearPoint\ClearBackground\obj\Debug\ClearBackground.pdb
