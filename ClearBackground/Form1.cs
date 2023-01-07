@@ -18,8 +18,8 @@ namespace ClearBackground
             bool result = false;
             string path = @"C:\Users\d1mon\Desktop\testCoordinates.txt"; //Файл с которого считываютья данные.
             string showResult = @"C:\Users\d1mon\Desktop\TestClearBackground.txt"; //Файл в который записывается точка находиться внутри прямоугольника или нет.
-            PointF point = new PointF(101.5f, 200.0f);
-            PointF[] pointPolygon = new PointF[4];
+            PointF points = new PointF(101.5f, 200.0f);
+            PointF[] polygons = new PointF[4];
            
             using (StreamReader read = new StreamReader(path))
             {
@@ -38,17 +38,18 @@ namespace ClearBackground
 
                     if (index > 3)
                     {
-                        point.X = Convert.ToUInt64(coordinatesX[index]);
-                        point.Y = Convert.ToUInt64(coordinatesY[index]);
-                        IsPointInPolygon4(pointPolygon, point);
+                        points.X = Convert.ToUInt64(coordinatesX[index]);
+                        points.Y = Convert.ToUInt64(coordinatesY[index]);
+                        IsPointInPolygon4(polygons, points);
 
-                        using (StreamWriter writer = new StreamWriter(showResult))
-                            writer.Write(result);
+                        using (FileStream file = new FileStream(showResult, FileMode.Append))
+                        using (StreamWriter writer = new StreamWriter(file))
+                            writer.WriteLine(result);
                     }
                     else
                     {
-                        pointPolygon[index].X = Convert.ToUInt64(coordinatesX[index]);
-                        pointPolygon[index].Y = Convert.ToUInt64(coordinatesY[index]);
+                        polygons[index].X = Convert.ToUInt64(coordinatesX[index]);
+                        polygons[index].Y = Convert.ToUInt64(coordinatesY[index]);
                     }
                     
                     index++;
@@ -57,14 +58,14 @@ namespace ClearBackground
                 Close();
             }
 
-            bool IsPointInPolygon4(PointF[] polygon, PointF testPoint)
+            bool IsPointInPolygon4(PointF[] currentPolygon, PointF currentPoint)
             {
-                int j = polygon.Count() - 1;
-                for (int i = 0; i < polygon.Count(); i++)
+                int j = currentPolygon.Count() - 1;
+                for (int i = 0; i < currentPolygon.Count(); i++)
                 {
-                    if (polygon[i].Y < testPoint.Y && polygon[j].Y >= testPoint.Y || polygon[j].Y < testPoint.Y && polygon[i].Y >= testPoint.Y)
+                    if (currentPolygon[i].Y < currentPoint.Y && currentPolygon[j].Y >= currentPoint.Y || currentPolygon[j].Y < currentPoint.Y && currentPolygon[i].Y >= currentPoint.Y)
                     {
-                        if (polygon[i].X + (testPoint.Y - polygon[i].Y) / (polygon[j].Y - polygon[i].Y) * (polygon[j].X - polygon[i].X) < testPoint.X)
+                        if (currentPolygon[i].X + (currentPoint.Y - currentPolygon[i].Y) / (currentPolygon[j].Y - currentPolygon[i].Y) * (currentPolygon[j].X - currentPolygon[i].X) < currentPoint.X)
                         {
                             result = !result;
                         }
