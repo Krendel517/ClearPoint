@@ -16,8 +16,8 @@ namespace ClearBackground
         private void button1_Click(object sender, EventArgs e)
         {
             bool result = false;
-            string path = @"C:\Users\d1mon\Desktop\testCoordinates.txt";
-            string showResult = @"C:\Users\d1mon\Desktop\TestClearBackground.txt";
+            string path = @"C:\Users\d1mon\Desktop\testCoordinates.txt"; //Файл с которого считываютья данные.
+            string showResult = @"C:\Users\d1mon\Desktop\TestClearBackground.txt"; //Файл в который записывается точка находиться внутри прямоугольника или нет.
             PointF point = new PointF(101.5f, 200.0f);
             PointF[] pointPolygon = new PointF[4];
            
