@@ -15,32 +15,25 @@ namespace ClearBackground
 
         private void button1_Click(object sender, EventArgs e)
         {
-            bool result = false;
             string path = @"C:\Users\d1mon\Desktop\testCoordinates.txt"; //Файл с которого считываютья данные.
             string showResult = @"C:\Users\d1mon\Desktop\TestClearBackground.txt"; //Файл в который записывается точка находиться внутри прямоугольника или нет.
-            PointF points = new PointF(101.5f, 200.0f);
             PointF[] polygons = new PointF[4];
            
             using (StreamReader read = new StreamReader(path))
             {
                 string[] allLine;
-                int index = 0;
                 allLine = File.ReadAllLines(path);
 
-                foreach (string currentLine in allLine)
+                for (int i = 0; i < allLine.Length; i++)
                 {
-                    string[] coordinatesX = new string[12];
-                    string[] coordinatesY = new string[12];
+                    string[] splitCoordinates = allLine[i].Split(',');
+                    float coordinatesX = Convert.ToUInt64(splitCoordinates[0]);
+                    float coordinatesY = Convert.ToUInt64(splitCoordinates[1]);
 
-                    string[] splitCoordinates = currentLine.Split(',');
-                    coordinatesX[index] = splitCoordinates[0];
-                    coordinatesY[index] = splitCoordinates[1];
-
-                    if (index > 3)
+                    if (i > 3)
                     {
-                        points.X = Convert.ToUInt64(coordinatesX[index]);
-                        points.Y = Convert.ToUInt64(coordinatesY[index]);
-                        IsPointInPolygon4(polygons, points);
+                        PointF point = new PointF(coordinatesX, coordinatesY);
+                        bool result = IsPointInPolygon4(polygons, point);
 
                         using (FileStream file = new FileStream(showResult, FileMode.Append))
                         using (StreamWriter writer = new StreamWriter(file))
@@ -48,32 +41,31 @@ namespace ClearBackground
                     }
                     else
                     {
-                        polygons[index].X = Convert.ToUInt64(coordinatesX[index]);
-                        polygons[index].Y = Convert.ToUInt64(coordinatesY[index]);
-                    }
-                    
-                    index++;
+                        polygons[i].X = coordinatesX;
+                        polygons[i].Y = coordinatesY;
+                    }   
+                    i++;
                 }
-
                 Close();
             }
+        }
 
-            bool IsPointInPolygon4(PointF[] currentPolygon, PointF currentPoint)
+        private bool IsPointInPolygon4(PointF[] currentPolygon, PointF currentPoint)
+        {
+            bool result = false;
+            int j = currentPolygon.Count() - 1;
+            for (int i = 0; i < currentPolygon.Count(); i++)
             {
-                int j = currentPolygon.Count() - 1;
-                for (int i = 0; i < currentPolygon.Count(); i++)
+                if (currentPolygon[i].Y < currentPoint.Y && currentPolygon[j].Y >= currentPoint.Y || currentPolygon[j].Y < currentPoint.Y && currentPolygon[i].Y >= currentPoint.Y)
                 {
-                    if (currentPolygon[i].Y < currentPoint.Y && currentPolygon[j].Y >= currentPoint.Y || currentPolygon[j].Y < currentPoint.Y && currentPolygon[i].Y >= currentPoint.Y)
+                    if (currentPolygon[i].X + (currentPoint.Y - currentPolygon[i].Y) / (currentPolygon[j].Y - currentPolygon[i].Y) * (currentPolygon[j].X - currentPolygon[i].X) < currentPoint.X)
                     {
-                        if (currentPolygon[i].X + (currentPoint.Y - currentPolygon[i].Y) / (currentPolygon[j].Y - currentPolygon[i].Y) * (currentPolygon[j].X - currentPolygon[i].X) < currentPoint.X)
-                        {
-                            result = !result;
-                        }
+                        result = !result;
                     }
-                    j = i;
                 }
-                return result;
+                j = i;
             }
+            return result;
         }
     }
 }
