@@ -35,9 +35,9 @@ namespace ClearBackground
             // ReadFile
             // 
             this.ReadFile.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ReadFile.Location = new System.Drawing.Point(170, 94);
+            this.ReadFile.Location = new System.Drawing.Point(422, 3);
             this.ReadFile.Name = "ReadFile";
-            this.ReadFile.Size = new System.Drawing.Size(112, 41);
+            this.ReadFile.Size = new System.Drawing.Size(125, 50);
             this.ReadFile.TabIndex = 0;
             this.ReadFile.Text = "ReadFile";
             this.ReadFile.UseVisualStyleBackColor = true;
@@ -48,7 +48,7 @@ namespace ClearBackground
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(435, 226);
+            this.ClientSize = new System.Drawing.Size(559, 153);
             this.Controls.Add(this.ReadFile);
             this.Name = "Form1";
             this.Text = "Form1";
