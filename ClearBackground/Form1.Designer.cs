@@ -30,7 +30,6 @@ namespace ClearBackground
         private void InitializeComponent()
         {
             this.ReadFile = new System.Windows.Forms.Button();
-            this.Path = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // ReadFile
@@ -44,32 +43,22 @@ namespace ClearBackground
             this.ReadFile.UseVisualStyleBackColor = true;
             this.ReadFile.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Path
-            // 
-            this.Path.Location = new System.Drawing.Point(7, 19);
-            this.Path.Name = "Path";
-            this.Path.Size = new System.Drawing.Size(409, 20);
-            this.Path.TabIndex = 2;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(559, 153);
-            this.Controls.Add(this.Path);
             this.Controls.Add(this.ReadFile);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button ReadFile;
-        private System.Windows.Forms.TextBox Path;
     }
 }
 
