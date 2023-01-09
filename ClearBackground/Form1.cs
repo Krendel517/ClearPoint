@@ -9,8 +9,8 @@ namespace ClearBackground
 {
     public partial class Form1 : Form
     {
+        OpenFileDialog ofd = new OpenFileDialog();
         private const string resultPath = @"C:\Users\d1mon\Desktop\TestClearBackground.txt";
-        private const string polygonPath = @"C:\Users\d1mon\Desktop\Polygon.txt";
         PointF[] polygon = new PointF[4];
 
         public Form1()
@@ -33,7 +33,8 @@ namespace ClearBackground
 
         private void SetPolygon()
         {
-            string[] lines = GetUserData(polygonPath);
+            DirectoryInfo polygonPath = new DirectoryInfo(txtPathPolygon.Text);
+            string[] lines = GetUserData(Convert.ToString(polygonPath));
             if (lines.Length < 3)
             {
                 Console.WriteLine("Введите минимум 3 точки полигона.");
@@ -53,7 +54,7 @@ namespace ClearBackground
 
         private void ChekAllPoints()
         {
-            DirectoryInfo pointsPath = new DirectoryInfo(txtPath.Text);
+            DirectoryInfo pointsPath = new DirectoryInfo(txtPathPoint.Text);
             string[] allPoints = GetUserData(Convert.ToString(pointsPath));
 
             for (int i = 0; i < allPoints.Length; i++)
@@ -104,14 +105,19 @@ namespace ClearBackground
             return result;
         }
 
-        private void btnOpen_Click(object sender, EventArgs e)
+        private void btnOpenPoint_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog())
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    txtPath.Text = ofd.FileName;
-                }
+                txtPathPoint.Text = ofd.FileName;
+            }
+        }
+
+        private void btnOpenPolygon_Click(object sender, EventArgs e)
+        {
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                txtPathPolygon.Text = ofd.FileName;
             }
         }
     }
