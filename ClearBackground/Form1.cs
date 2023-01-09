@@ -10,7 +10,6 @@ namespace ClearBackground
     public partial class Form1 : Form
     {
         private const string resultPath = @"C:\Users\d1mon\Desktop\TestClearBackground.txt";
-        private const string pointsPath = @"C:\Users\d1mon\Desktop\coordinates_Cityes.txt";
         private const string polygonPath = @"C:\Users\d1mon\Desktop\Polygon.txt";
         PointF[] polygon = new PointF[4];
 
@@ -54,7 +53,8 @@ namespace ClearBackground
 
         private void ChekAllPoints()
         {
-            string[] allPoints = GetUserData(pointsPath);
+            DirectoryInfo pointsPath = new DirectoryInfo(txtPath.Text);
+            string[] allPoints = GetUserData(Convert.ToString(pointsPath));
 
             for (int i = 0; i < allPoints.Length; i++)
             {
@@ -106,27 +106,13 @@ namespace ClearBackground
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            using (FolderBrowserDialog fbd = new FolderBrowserDialog() { Description = "Выберете путь к файлу." })
+            using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                if (fbd.ShowDialog() == DialogResult.OK)
+                if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    webBrowser.Url = new Uri(fbd.SelectedPath);
-                    txtPath.Text = fbd.SelectedPath;
+                    txtPath.Text = ofd.FileName;
                 }
-
             }
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            if (webBrowser.CanGoBack)
-                webBrowser.GoBack();
-        }
-
-        private void btnForward_Click(object sender, EventArgs e)
-        {
-            if (webBrowser.CanGoForward)
-                webBrowser.GoForward();
         }
     }
 }
