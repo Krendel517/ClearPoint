@@ -103,5 +103,30 @@ namespace ClearBackground
             }
             return result;
         }
+
+        private void btnOpen_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog() { Description = "Выберете путь к файлу." })
+            {
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    webBrowser.Url = new Uri(fbd.SelectedPath);
+                    txtPath.Text = fbd.SelectedPath;
+                }
+
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            if (webBrowser.CanGoBack)
+                webBrowser.GoBack();
+        }
+
+        private void btnForward_Click(object sender, EventArgs e)
+        {
+            if (webBrowser.CanGoForward)
+                webBrowser.GoForward();
+        }
     }
 }
