@@ -19,21 +19,21 @@ namespace TestPoints
 
             //ниже 4 строки для углов прямоугольника, чтобы можно было определить для каждой точки внутри она или нет
             streamwriter.WriteLine("1 300.000 300.000");
-            streamwriter.WriteLine("2 300.000 500.000");
-            streamwriter.WriteLine("3 500.000 500.000");
-            streamwriter.WriteLine("4 500.000 300.000");
+            streamwriter.WriteLine("2 300.000 800.000");
+            streamwriter.WriteLine("3 800.000 800.000");
+            streamwriter.WriteLine("4 800.000 300.000");
 
             for (int j = 0; j < i - 4;)
             {
                 bool isXInsidePolygon = false;
                 bool isYInsidePolygon = false;
-
+                
                 streamwriter.Write(j + 5);
                 streamwriter.Write(" ");
                 int x = random.Next(0, 1000);
                 streamwriter.Write(x);
 
-                if (x > 299 && x < 500)
+                if (x > 299 && x < 800)
                 {
                     isXInsidePolygon = true;
                 }
@@ -44,7 +44,7 @@ namespace TestPoints
                 int y = random.Next(0, 1000);
                 streamwriter.Write(y);
 
-                if (y > 299 && y < 500)
+                if (y > 299 && y < 800)
                 {
                     isYInsidePolygon = true;
                 }
