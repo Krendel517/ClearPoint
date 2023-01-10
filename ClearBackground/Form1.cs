@@ -9,10 +9,11 @@ namespace ClearBackground
 {
     public partial class Form1 : Form
     {
-        private const string resultPath = @"C:\Users\d1mon\Desktop\TestClearBackground.txt";
+        public string resultPath = @"C:\Users\d1mon\Desktop\TestClearBackground.txt";
         private const string pointsPath = @"C:\Users\d1mon\Desktop\coordinates_Cityes.txt";
         private const string polygonPath = @"C:\Users\d1mon\Desktop\Polygon.txt";
         PointF[] polygon = new PointF[4];
+        public bool result = false;
 
         public Form1()
         {
@@ -69,8 +70,8 @@ namespace ClearBackground
                 float coordinateY = float.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
 
                 PointF point = new PointF(coordinateX, coordinateY);
-                bool result = IsPointInPolygon4(polygon, point);
-                SaveResult(allPoints[i], result);
+                result = IsPointInPolygon4(polygon, point);
+                TransitionInSaveWind();
 
                 if (i == allPoints.Length - 1)
                 {
@@ -79,7 +80,7 @@ namespace ClearBackground
             }
         }
 
-        private void SaveResult(string line, bool result)
+        public void SaveResult(bool result)
         {
             using (FileStream file = new FileStream(resultPath, FileMode.Append))
             using (StreamWriter writer = new StreamWriter(file))
@@ -88,7 +89,6 @@ namespace ClearBackground
 
         private bool IsPointInPolygon4(PointF[] currentPolygon, PointF currentPoint)
         {
-            bool result = false;
             int j = currentPolygon.Count() - 1;
             for (int i = 0; i < currentPolygon.Count(); i++)
             {
@@ -102,6 +102,13 @@ namespace ClearBackground
                 j = i;
             }
             return result;
+        }
+
+        private void TransitionInSaveWind()
+        {
+            this.Hide();
+            DataSave saveResult = new DataSave();
+            saveResult.Show();
         }
     }
 }
