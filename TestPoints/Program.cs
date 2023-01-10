@@ -7,27 +7,43 @@ using System.Threading.Tasks;
 
 namespace TestPoints
 {
-    internal class Program
+    class Program
     {
-        static void Main(string[] args)
+        int numberOfLines;
+        StreamWriter streamwriter = new StreamWriter("D:\\TestPoints.txt");
+        Random random = new Random();
+
+        public void Start()
+        {
+            //не уверен, что нужно, поэтому не делал. но можно будет добавить метод с указанием пути к файлу для записи
+            UserInput();
+            PointsOfPolygon();
+            RandomPoints();
+        }
+
+        private void UserInput()
         {
             Console.WriteLine("Введите количество строк, которое необходимо сгенерировать в файле");
-            int i = Int32.Parse(Console.ReadLine());
+            numberOfLines = Int32.Parse(Console.ReadLine());
+        }
 
-            StreamWriter streamwriter = new StreamWriter("D:\\TestPoints.txt");
-            Random random = new Random();
-
+        private void PointsOfPolygon()
+        {
             //ниже 4 строки для углов прямоугольника, чтобы можно было определить для каждой точки внутри она или нет
+            //В дальнейшем в этом методе можно сделать ввод произвольных углов прямоугольника
             streamwriter.WriteLine("1 300.000 300.000");
             streamwriter.WriteLine("2 300.000 800.000");
             streamwriter.WriteLine("3 800.000 800.000");
             streamwriter.WriteLine("4 800.000 300.000");
+        }
 
-            for (int j = 0; j < i - 4;)
+        private void RandomPoints()
+        {
+            for (int j = 0; j < numberOfLines - 4;)
             {
                 bool isXInsidePolygon = false;
                 bool isYInsidePolygon = false;
-                
+
                 streamwriter.Write(j + 5);
                 streamwriter.Write(" ");
                 int x = random.Next(0, 1000);
