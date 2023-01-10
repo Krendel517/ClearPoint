@@ -106,22 +106,22 @@ namespace ClearBackground
 
         private void btnOpenPoint_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog())
+            using (OpenFileDialog pathRead = new OpenFileDialog())
             {
-                if (ofd.ShowDialog() == DialogResult.OK)
+                if (pathRead.ShowDialog() == DialogResult.OK)
                 {
-                    txtPointPath.Text = ofd.FileName;
+                    txtPointPath.Text = pathRead.FileName;
                 }
             }
         }
 
         private void btnOpenPolygon_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog())
+            using (OpenFileDialog pathRead = new OpenFileDialog())
             {
-                if (ofd.ShowDialog() == DialogResult.OK)
+                if (pathRead.ShowDialog() == DialogResult.OK)
                 {
-                    txtPolygonPath.Text = ofd.FileName;
+                    txtPolygonPath.Text = pathRead.FileName;
                 }
             }
         }

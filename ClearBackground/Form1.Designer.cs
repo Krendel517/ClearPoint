@@ -91,7 +91,7 @@ namespace ClearBackground
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(130, 13);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Path to points ccordinates";
+            this.label1.Text = "Path to points coordinates";
             // 
             // label2
             // 
@@ -100,7 +100,7 @@ namespace ClearBackground
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(139, 13);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Path to polygon ccordinates";
+            this.label2.Text = "Path to polygon coordinates";
             // 
             // label3
             // 
@@ -109,9 +109,9 @@ namespace ClearBackground
             this.label3.ForeColor = System.Drawing.Color.Red;
             this.label3.Location = new System.Drawing.Point(12, 120);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(346, 16);
+            this.label3.Size = new System.Drawing.Size(354, 16);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Attention! The ccordinate must be in the correct sequence";
+            this.label3.Text = "Attention! The coordinates must be in the correct sequence";
             // 
             // Form1
             // 
