@@ -71,13 +71,13 @@ namespace ClearBackground
 
                 PointF point = new PointF(coordinateX, coordinateY);
                 result = IsPointInPolygon4(polygon, point);
-                TransitionInSaveWind();
 
                 if (i == allPoints.Length - 1)
                 {
                     Console.WriteLine("Все данные обработаны");
                 }
             }
+            TransitionInSaveWind();
         }
 
         public void SaveResult(bool result)
@@ -102,13 +102,6 @@ namespace ClearBackground
                 j = i;
             }
             return result;
-        }
-
-        private void TransitionInSaveWind()
-        {
-            this.Hide();
-            DataSave saveResult = new DataSave();
-            saveResult.Show();
         }
     }
 }

@@ -12,8 +12,7 @@ namespace ClearBackground
 {
     public partial class DataSave : Form
     {
-        Form1 form = new Form1();
-        private string saveResult;
+        bool saveResult;
 
         public DataSave()
         {
@@ -33,13 +32,15 @@ namespace ClearBackground
 
         private void SaveFile_Click(object sender, EventArgs e)
         {
-            form.SaveResult(form.result);
+            Form1 form = new Form1();
+            form.SaveResult(saveResult);
         }
 
-        private void txtDataSave_TextChanged(object sender, EventArgs e)
+        private void TransitionInSaveWind(bool[] result)
         {
-            saveResult = Convert.ToString(form.resultPath);
-            txtDataSave.Text = saveResult;
+            Form1 form = new Form1();
+            form.Hide();
+            this.Show();
         }
     }
 }

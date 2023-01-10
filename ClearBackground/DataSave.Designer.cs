@@ -60,7 +60,7 @@ namespace ClearBackground
             this.txtDataSave.Name = "txtDataSave";
             this.txtDataSave.Size = new System.Drawing.Size(463, 20);
             this.txtDataSave.TabIndex = 2;
-            this.txtDataSave.TextChanged += new System.EventHandler(this.txtDataSave_TextChanged);
+            this.txtDataSave.Text = "C:\\Users\\d1mon\\Desktop\\Coordinates";
             // 
             // DataSave
             // 
