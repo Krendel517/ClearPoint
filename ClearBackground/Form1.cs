@@ -10,8 +10,6 @@ namespace ClearBackground
     public partial class Form1 : Form
     {
         private const string resultPath = @"C:\Users\d1mon\Desktop\TestClearBackground.txt";
-        private const string pointsPath = @"C:\Users\d1mon\Desktop\coordinates_Cityes.txt";
-        private const string polygonPath = @"C:\Users\d1mon\Desktop\Polygon.txt";
         PointF[] polygon = new PointF[4];
 
         public Form1()
@@ -34,6 +32,7 @@ namespace ClearBackground
 
         private void SetPolygon()
         {
+            string polygonPath = txtPolygonPath.Text;
             string[] lines = GetUserData(polygonPath);
             if (lines.Length < 3)
             {
@@ -54,7 +53,8 @@ namespace ClearBackground
 
         private void ChekAllPoints()
         {
-            string[] allPoints = GetUserData(pointsPath);
+        string pointsPath = txtPointPath.Text;
+        string[] allPoints = GetUserData(pointsPath);
 
             for (int i = 0; i < allPoints.Length; i++)
             {
@@ -102,6 +102,28 @@ namespace ClearBackground
                 j = i;
             }
             return result;
+        }
+
+        private void btnOpenPoint_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    txtPointPath.Text = ofd.FileName;
+                }
+            }
+        }
+
+        private void btnOpenPolygon_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    txtPolygonPath.Text = ofd.FileName;
+                }
+            }
         }
     }
 }
