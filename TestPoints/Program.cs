@@ -10,12 +10,11 @@ namespace TestPoints
     class Program
     {
         int numberOfLines;
-        StreamWriter streamwriter = new StreamWriter("D:\\TestPoints.txt");
+        StreamWriter streamWriter = new StreamWriter("D:\\TestPoints.txt");
         Random random = new Random();
 
         public void Start()
         {
-            //не уверен, что нужно, поэтому не делал. но можно будет добавить метод с указанием пути к файлу для записи
             UserInput();
             PointsOfPolygon();
             RandomPoints();
@@ -31,10 +30,10 @@ namespace TestPoints
         {
             //ниже 4 строки для углов прямоугольника, чтобы можно было определить для каждой точки внутри она или нет
             //В дальнейшем в этом методе можно сделать ввод произвольных углов прямоугольника
-            streamwriter.WriteLine("1 300.000 300.000");
-            streamwriter.WriteLine("2 300.000 800.000");
-            streamwriter.WriteLine("3 800.000 800.000");
-            streamwriter.WriteLine("4 800.000 300.000");
+            streamWriter.WriteLine("1 300.000 300.000");
+            streamWriter.WriteLine("2 300.000 800.000");
+            streamWriter.WriteLine("3 800.000 800.000");
+            streamWriter.WriteLine("4 800.000 300.000");
         }
 
         private void RandomPoints()
@@ -44,43 +43,43 @@ namespace TestPoints
                 bool isXInsidePolygon = false;
                 bool isYInsidePolygon = false;
 
-                streamwriter.Write(j + 5);
-                streamwriter.Write(" ");
+                streamWriter.Write(j + 5);
+                streamWriter.Write(" ");
                 int x = random.Next(0, 1000);
-                streamwriter.Write(x);
+                streamWriter.Write(x);
 
-                if (x > 299 && x < 800)
+                if (x >= 300 && x <= 800)
                 {
                     isXInsidePolygon = true;
                 }
 
-                streamwriter.Write(".");
-                streamwriter.Write(random.Next(0, 1000));
-                streamwriter.Write(" ");
+                streamWriter.Write(".");
+                streamWriter.Write(random.Next(0, 1000));
+                streamWriter.Write(" ");
                 int y = random.Next(0, 1000);
-                streamwriter.Write(y);
+                streamWriter.Write(y);
 
-                if (y > 299 && y < 800)
+                if (y >= 300 && y <= 800)
                 {
                     isYInsidePolygon = true;
                 }
 
-                streamwriter.Write(".");
-                streamwriter.Write(random.Next(0, 1000));
+                streamWriter.Write(".");
+                streamWriter.Write(random.Next(0, 1000));
 
                 if (isXInsidePolygon && isYInsidePolygon)
                 {
-                    streamwriter.WriteLine(" True");
+                    streamWriter.WriteLine(" True");
                 }
                 else
                 {
-                    streamwriter.WriteLine(" False");
+                    streamWriter.WriteLine(" False");
                 }
 
                 j++;
             }
 
-            streamwriter.Close();
+            streamWriter.Close();
         }
     }
 }
