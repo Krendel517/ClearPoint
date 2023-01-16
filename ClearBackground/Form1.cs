@@ -9,7 +9,7 @@ namespace ClearBackground
 {
     public partial class Form1 : Form
     {
-        private const string resultPath = @"C:\Users\d1mon\Desktop\TestClearBackground.txt";
+        private string resultPath = "";
         PointF[] polygon = new PointF[4];
 
         public Form1()
@@ -124,6 +124,24 @@ namespace ClearBackground
                     txtPolygonPath.Text = pathRead.FileName;
                 }
             }
+        }
+
+        private void btnAddPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+                checkPath.Text = ofd.FileName;
+                resultPath = ofd.FileName;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
