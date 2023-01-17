@@ -16,7 +16,6 @@ namespace TestPoints
         public void Start()
         {
             UserInput();
-            PointsOfPolygon();
             RandomPoints();
         }
 
@@ -26,24 +25,14 @@ namespace TestPoints
             numberOfLines = Int32.Parse(Console.ReadLine());
         }
 
-        private void PointsOfPolygon()
-        {
-            //ниже 4 строки для углов прямоугольника, чтобы можно было определить для каждой точки внутри она или нет
-            //В дальнейшем в этом методе можно сделать ввод произвольных углов прямоугольника
-            streamWriter.WriteLine("1 300.000 300.000");
-            streamWriter.WriteLine("2 300.000 800.000");
-            streamWriter.WriteLine("3 800.000 800.000");
-            streamWriter.WriteLine("4 800.000 300.000");
-        }
-
         private void RandomPoints()
         {
-            for (int j = 0; j < numberOfLines - 4;)
+            for (int j = 0; j < numberOfLines;)
             {
                 bool isXInsidePolygon = false;
                 bool isYInsidePolygon = false;
 
-                streamWriter.Write(j + 5);
+                streamWriter.Write(j + 1);
                 streamWriter.Write(" ");
                 int x = random.Next(0, 1000);
                 streamWriter.Write(x);
