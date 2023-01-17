@@ -7,12 +7,12 @@ using System.Windows.Forms;
 
 namespace ClearBackground
 {
-    public partial class Form1 : Form
+    public partial class FormWindow : Form
     {
-        private const string resultPath = @"C:\Users\d1mon\Desktop\TestClearBackground.txt";
+        private string resultPath;
         PointF[] polygon = new PointF[4];
 
-        public Form1()
+        public FormWindow()
         {
             InitializeComponent();
         }
@@ -53,8 +53,8 @@ namespace ClearBackground
 
         private void ChekAllPoints()
         {
-        string pointsPath = txtPointPath.Text;
-        string[] allPoints = GetUserData(pointsPath);
+            string pointsPath = txtPointPath.Text;
+            string[] allPoints = GetUserData(pointsPath);
 
             for (int i = 0; i < allPoints.Length; i++)
             {
@@ -124,6 +124,26 @@ namespace ClearBackground
                     txtPolygonPath.Text = pathRead.FileName;
                 }
             }
+        }
+
+        private void btnAddPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                checkPath.Text = openFileDialog.FileName;
+                resultPath = openFileDialog.FileName;
+            }           
+        }
+
+        private void FormWindow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkPath_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
