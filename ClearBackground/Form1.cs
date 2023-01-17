@@ -7,12 +7,12 @@ using System.Windows.Forms;
 
 namespace ClearBackground
 {
-    public partial class Form1 : Form
+    public partial class FormWindow : Form
     {
         private string resultPath = "";
         PointF[] polygon = new PointF[4];
 
-        public Form1()
+        public FormWindow()
         {
             InitializeComponent();
         }
@@ -134,12 +134,12 @@ namespace ClearBackground
                 resultPath = ofd.FileName;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void FormWindow_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void checkPath_TextChanged(object sender, EventArgs e)
         {
 
         }
