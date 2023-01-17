@@ -53,8 +53,8 @@ namespace ClearBackground
 
         private void ChekAllPoints()
         {
-        string pointsPath = txtPointPath.Text;
-        string[] allPoints = GetUserData(pointsPath);
+            string pointsPath = txtPointPath.Text;
+            string[] allPoints = GetUserData(pointsPath);
 
             for (int i = 0; i < allPoints.Length; i++)
             {
@@ -128,10 +128,12 @@ namespace ClearBackground
 
         private void btnAddPath_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            if (ofd.ShowDialog() == DialogResult.OK)
-                checkPath.Text = ofd.FileName;
-                resultPath = ofd.FileName;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                checkPath.Text = openFileDialog.FileName;
+                resultPath = openFileDialog.FileName;
+            }           
         }
 
         private void FormWindow_Load(object sender, EventArgs e)
