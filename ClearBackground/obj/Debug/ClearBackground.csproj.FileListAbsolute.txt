@@ -23,9 +23,9 @@ F:\Github Clone Repos\ClearPoint\ClearBackground\bin\Debug\ClearBackground.exe
 F:\Github Clone Repos\ClearPoint\ClearBackground\bin\Debug\ClearBackground.pdb
 F:\Github Clone Repos\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.AssemblyReference.cache
 F:\Github Clone Repos\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.SuggestedBindingRedirects.cache
-F:\Github Clone Repos\ClearPoint\ClearBackground\obj\Debug\ClearBackground.Form1.resources
 F:\Github Clone Repos\ClearPoint\ClearBackground\obj\Debug\ClearBackground.Properties.Resources.resources
 F:\Github Clone Repos\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.GenerateResource.cache
 F:\Github Clone Repos\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.CoreCompileInputs.cache
 F:\Github Clone Repos\ClearPoint\ClearBackground\obj\Debug\ClearBackground.exe
 F:\Github Clone Repos\ClearPoint\ClearBackground\obj\Debug\ClearBackground.pdb
+F:\Github Clone Repos\ClearPoint\ClearBackground\obj\Debug\ClearBackground.FormWindow.resources
