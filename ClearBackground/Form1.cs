@@ -9,7 +9,7 @@ namespace ClearBackground
 {
     public partial class FormWindow : Form
     {
-        private string resultPath = "";
+        private string resultPath;
         PointF[] polygon = new PointF[4];
 
         public FormWindow()
