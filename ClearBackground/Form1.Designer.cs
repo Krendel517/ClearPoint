@@ -40,6 +40,7 @@ namespace ClearBackground
             this.btnAddPath = new System.Windows.Forms.Button();
             this.checkPath = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ReadFile
@@ -143,12 +144,23 @@ namespace ClearBackground
             this.label2.TabIndex = 11;
             this.label2.Text = "Path to polygons coordinates";
             // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(12, 206);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.TabIndex = 12;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // FormWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(559, 241);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnAddPath);
@@ -181,6 +193,7 @@ namespace ClearBackground
         private System.Windows.Forms.Button btnAddPath;
         private System.Windows.Forms.TextBox checkPath;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnExit;
     }
 }
 
