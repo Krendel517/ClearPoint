@@ -70,7 +70,11 @@ namespace ClearBackground
 
                 PointF point = new PointF(coordinateX, coordinateY);
                 bool result = IsPointInPolygon4(polygon, point);
-                SaveResult(allPoints[i], result);
+
+                if (result)
+                {
+                    SaveResult(allPoints[i], result);
+                }
 
                 if (i == allPoints.Length - 1)
                 {
@@ -83,11 +87,7 @@ namespace ClearBackground
         {
             using (FileStream file = new FileStream(resultPath, FileMode.Append))
             using (StreamWriter writer = new StreamWriter(file))
-
-            if (result)
-            {
-                writer.WriteLine(line);
-            }
+            writer.WriteLine(line);
         }
 
         private bool IsPointInPolygon4(PointF[] currentPolygon, PointF currentPoint)
