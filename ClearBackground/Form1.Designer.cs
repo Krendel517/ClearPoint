@@ -32,6 +32,7 @@ namespace ClearBackground
             this.ReadFile = new System.Windows.Forms.Button();
             this.txtPointPath = new System.Windows.Forms.TextBox();
             this.txtPolygonPath = new System.Windows.Forms.TextBox();
+            this.txtDeleteChars = new System.Windows.Forms.TextBox();
             this.btnOpenPoint = new System.Windows.Forms.Button();
             this.btnOpenPolygon = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -59,6 +60,13 @@ namespace ClearBackground
             this.txtPointPath.Name = "txtPointPath";
             this.txtPointPath.Size = new System.Drawing.Size(437, 20);
             this.txtPointPath.TabIndex = 1;
+            // 
+            // txtPointPath
+            // 
+            this.txtDeleteChars.Location = new System.Drawing.Point(12, 200);
+            this.txtDeleteChars.Name = "txtDeleteChars";
+            this.txtDeleteChars.Size = new System.Drawing.Size(40, 20);
+            this.txtDeleteChars.TabIndex = 12;
             // 
             // txtPolygonPath
             // 
@@ -159,6 +167,7 @@ namespace ClearBackground
             this.Controls.Add(this.btnOpenPoint);
             this.Controls.Add(this.txtPolygonPath);
             this.Controls.Add(this.txtPointPath);
+            this.Controls.Add(this.txtDeleteChars);
             this.Controls.Add(this.ReadFile);
             this.Name = "FormWindow";
             this.Text = "Form1";
@@ -172,6 +181,7 @@ namespace ClearBackground
 
         private System.Windows.Forms.Button ReadFile;
         private System.Windows.Forms.TextBox txtPointPath;
+        private System.Windows.Forms.TextBox txtDeleteChars;
         private System.Windows.Forms.TextBox txtPolygonPath;
         private System.Windows.Forms.Button btnOpenPoint;
         private System.Windows.Forms.Button btnOpenPolygon;

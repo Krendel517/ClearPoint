@@ -10,7 +10,8 @@ namespace ClearBackground
     public partial class FormWindow : Form
     {
         private string resultPath;
-        PointF[] polygon = new PointF[4];
+        private PointF[] polygon;
+        private int deleteChars;
 
         public FormWindow()
         {
@@ -21,6 +22,7 @@ namespace ClearBackground
         {
             SetPolygon();
             ChekAllPoints();
+            deleteChars = Int32.Parse(txtDeleteChars.Text);
         }
 
         private string[] GetUserData(string path)
@@ -40,14 +42,19 @@ namespace ClearBackground
             }
             else
             {
+                PointF[] newPolygon = new PointF[lines.Length];
                 for (int i = 0; i < lines.Length; i++)
                 {
                     string[] splitCoordinates = lines[i].Split(' ');
-                    float coordinatesX = float.Parse(splitCoordinates[1], CultureInfo.InvariantCulture);
-                    float coordinatesY = float.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
-                    polygon[i].X = coordinatesX;
-                    polygon[i].Y = coordinatesY;
+                    string coordX = splitCoordinates[2].Remove(0, deleteChars);
+                    string coordY = splitCoordinates[3].Remove(0, deleteChars);
+                    float coordinatesX = float.Parse(coordX, CultureInfo.InvariantCulture);
+                    float coordinatesY = float.Parse(coordY, CultureInfo.InvariantCulture);
+                    newPolygon[i].X = coordinatesX;
+                    newPolygon[i].Y = coordinatesY;
                 }
+
+                polygon = newPolygon;
             }
         }
 
@@ -65,12 +72,19 @@ namespace ClearBackground
                 }
 
                 string[] splitCoordinates = allPoints[i].Split(' ');
-                float coordinateX = float.Parse(splitCoordinates[1], CultureInfo.InvariantCulture);
-                float coordinateY = float.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
+                string coordX = splitCoordinates[2].Remove(0, deleteChars);
+                string coordY = splitCoordinates[3].Remove(0, deleteChars);
+                float coordinateX = float.Parse(coordX, CultureInfo.InvariantCulture);
+                float coordinateY = float.Parse(coordY, CultureInfo.InvariantCulture);
 
                 PointF point = new PointF(coordinateX, coordinateY);
                 bool result = IsPointInPolygon4(polygon, point);
-                SaveResult(allPoints[i], result);
+                
+                if (result)
+                {
+                    SaveResult(allPoints[i]);
+                }
+                
 
                 if (i == allPoints.Length - 1)
                 {
@@ -79,15 +93,10 @@ namespace ClearBackground
             }
         }
 
-        private void SaveResult(string line, bool result)
+        private void SaveResult(string line)
         {
             using (FileStream file = new FileStream(resultPath, FileMode.Append))
-            using (StreamWriter writer = new StreamWriter(file))
-
-            if (result)
-            {
-                writer.WriteLine(line);
-            }
+            using (StreamWriter writer = new StreamWriter(file)) writer.WriteLine(line);
         }
 
         private bool IsPointInPolygon4(PointF[] currentPolygon, PointF currentPoint)

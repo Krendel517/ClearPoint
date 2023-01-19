@@ -40,3 +40,14 @@ C:\Users\sasha\OneDrive\Documents\GitHub\ClearPoint\ClearBackground\obj\Debug\Cl
 C:\Users\sasha\OneDrive\Documents\GitHub\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.CoreCompileInputs.cache
 C:\Users\sasha\OneDrive\Documents\GitHub\ClearPoint\ClearBackground\obj\Debug\ClearBackground.exe
 C:\Users\sasha\OneDrive\Documents\GitHub\ClearPoint\ClearBackground\obj\Debug\ClearBackground.pdb
+D:\Projects\ClearPoint\ClearBackground\bin\Debug\ClearBackground.exe.config
+D:\Projects\ClearPoint\ClearBackground\bin\Debug\ClearBackground.exe
+D:\Projects\ClearPoint\ClearBackground\bin\Debug\ClearBackground.pdb
+D:\Projects\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.AssemblyReference.cache
+D:\Projects\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.SuggestedBindingRedirects.cache
+D:\Projects\ClearPoint\ClearBackground\obj\Debug\ClearBackground.FormWindow.resources
+D:\Projects\ClearPoint\ClearBackground\obj\Debug\ClearBackground.Properties.Resources.resources
+D:\Projects\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.GenerateResource.cache
+D:\Projects\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.CoreCompileInputs.cache
+D:\Projects\ClearPoint\ClearBackground\obj\Debug\ClearBackground.exe
+D:\Projects\ClearPoint\ClearBackground\obj\Debug\ClearBackground.pdb
