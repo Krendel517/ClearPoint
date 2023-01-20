@@ -73,7 +73,7 @@ namespace ClearBackground
 
                 if (result)
                 {
-                    SaveResult(allPoints[i], result);
+                    SaveResult(allPoints[i]);
                 }
 
                 if (i == allPoints.Length - 1)
@@ -83,7 +83,7 @@ namespace ClearBackground
             }
         }
 
-        private void SaveResult(string line, bool result)
+        private void SaveResult(string line)
         {
             using (FileStream file = new FileStream(resultPath, FileMode.Append))
             using (StreamWriter writer = new StreamWriter(file))
