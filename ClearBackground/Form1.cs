@@ -43,8 +43,8 @@ namespace ClearBackground
                 for (int i = 0; i < lines.Length; i++)
                 {
                     string[] splitCoordinates = lines[i].Split(' ');
-                    float coordinatesX = float.Parse(splitCoordinates[1], CultureInfo.InvariantCulture);
-                    float coordinatesY = float.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
+                    float coordinatesX = float.Parse(CorrectionFormat(splitCoordinates[1]), CultureInfo.InvariantCulture);
+                    float coordinatesY = float.Parse(CorrectionFormat(splitCoordinates[2]), CultureInfo.InvariantCulture);
                     polygon[i].X = coordinatesX;
                     polygon[i].Y = coordinatesY;
                 }
@@ -65,8 +65,8 @@ namespace ClearBackground
                 }
 
                 string[] splitCoordinates = allPoints[i].Split(' ');
-                float coordinateX = float.Parse(splitCoordinates[1], CultureInfo.InvariantCulture);
-                float coordinateY = float.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
+                float coordinateX = float.Parse(CorrectionFormat(splitCoordinates[1]), CultureInfo.InvariantCulture);
+                float coordinateY = float.Parse(CorrectionFormat(splitCoordinates[2]), CultureInfo.InvariantCulture);
 
                 PointF point = new PointF(coordinateX, coordinateY);
                 bool result = IsPointInPolygon4(polygon, point);
@@ -87,7 +87,7 @@ namespace ClearBackground
         {
             using (FileStream file = new FileStream(resultPath, FileMode.Append))
             using (StreamWriter writer = new StreamWriter(file))
-            writer.WriteLine(line);
+                writer.WriteLine(line);
         }
 
         private bool IsPointInPolygon4(PointF[] currentPolygon, PointF currentPoint)
@@ -106,6 +106,19 @@ namespace ClearBackground
                 j = i;
             }
             return result;
+        }
+
+        private string CorrectionFormat(string coordiate)
+        {
+            bool formatIndexIsEmpty = txtCorrectFormat.Text == "";
+            int indexForFormatCoordinate;
+
+            if (formatIndexIsEmpty)
+                txtCorrectFormat.Text = "0";
+
+            indexForFormatCoordinate = Convert.ToInt32(txtCorrectFormat.Text);
+            coordiate = coordiate.Remove(0, indexForFormatCoordinate);
+            return coordiate;
         }
 
         private void btnOpenPoint_Click(object sender, EventArgs e)
@@ -137,7 +150,7 @@ namespace ClearBackground
             {
                 checkPath.Text = openFileDialog.FileName;
                 resultPath = openFileDialog.FileName;
-            }           
+            }
         }
 
         private void FormWindow_Load(object sender, EventArgs e)

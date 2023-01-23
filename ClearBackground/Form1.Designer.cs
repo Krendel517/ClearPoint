@@ -41,6 +41,7 @@ namespace ClearBackground
             this.checkPath = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
+            this.txtCorrectFormat = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // ReadFile
@@ -102,9 +103,9 @@ namespace ClearBackground
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(12, 163);
+            this.label3.Location = new System.Drawing.Point(12, 179);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(353, 16);
+            this.label3.Size = new System.Drawing.Size(354, 16);
             this.label3.TabIndex = 7;
             this.label3.Text = "Attention! The coordinates must be in the correct sequence";
             // 
@@ -154,12 +155,21 @@ namespace ClearBackground
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // txtCorrectFormat
+            // 
+            this.txtCorrectFormat.Location = new System.Drawing.Point(12, 154);
+            this.txtCorrectFormat.Name = "txtCorrectFormat";
+            this.txtCorrectFormat.Size = new System.Drawing.Size(130, 22);
+            this.txtCorrectFormat.TabIndex = 13;
+            this.txtCorrectFormat.Text = "";
+            // 
             // FormWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(559, 241);
+            this.Controls.Add(this.txtCorrectFormat);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
@@ -194,6 +204,7 @@ namespace ClearBackground
         private System.Windows.Forms.TextBox checkPath;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.RichTextBox txtCorrectFormat;
     }
 }
 
