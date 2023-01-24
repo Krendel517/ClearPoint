@@ -40,6 +40,9 @@ namespace ClearBackground
             this.btnAddPath = new System.Windows.Forms.Button();
             this.checkPath = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.indexOfX = new System.Windows.Forms.TextBox();
+            this.indexOfY = new System.Windows.Forms.TextBox();
+            this.userSeparator = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // ReadFile
@@ -101,7 +104,7 @@ namespace ClearBackground
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(12, 163);
+            this.label3.Location = new System.Drawing.Point(9, 142);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(353, 16);
             this.label3.TabIndex = 7;
@@ -143,12 +146,43 @@ namespace ClearBackground
             this.label2.TabIndex = 11;
             this.label2.Text = "Path to polygons coordinates";
             // 
+            // IndexOfX
+            // 
+            this.indexOfX.Location = new System.Drawing.Point(20, 188);
+            this.indexOfX.Name = "IndexOfX";
+            this.indexOfX.Size = new System.Drawing.Size(38, 20);
+            this.indexOfX.TabIndex = 12;
+            this.indexOfX.Text = "#X";
+            this.indexOfX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // IndexOfY
+            // 
+            this.indexOfY.Location = new System.Drawing.Point(83, 188);
+            this.indexOfY.Name = "IndexOfY";
+            this.indexOfY.Size = new System.Drawing.Size(38, 20);
+            this.indexOfY.TabIndex = 13;
+            this.indexOfY.Text = "#Y";
+            this.indexOfY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // userSeparator
+            // 
+            this.userSeparator.Location = new System.Drawing.Point(152, 188);
+            this.userSeparator.Name = "userSeparator";
+            this.userSeparator.Size = new System.Drawing.Size(38, 20);
+            this.userSeparator.TabIndex = 14;
+            this.userSeparator.Text = "Separator";
+            this.userSeparator.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.userSeparator.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            // 
             // FormWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(559, 241);
+            this.Controls.Add(this.userSeparator);
+            this.Controls.Add(this.indexOfY);
+            this.Controls.Add(this.indexOfX);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnAddPath);
@@ -181,6 +215,9 @@ namespace ClearBackground
         private System.Windows.Forms.Button btnAddPath;
         private System.Windows.Forms.TextBox checkPath;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox indexOfX;
+        private System.Windows.Forms.TextBox indexOfY;
+        private System.Windows.Forms.TextBox userSeparator;
     }
 }
 

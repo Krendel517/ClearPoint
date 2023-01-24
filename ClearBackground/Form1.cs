@@ -32,8 +32,13 @@ namespace ClearBackground
 
         private void SetPolygon()
         {
+            int userIndexOfX = Int32.Parse(indexOfX.Text);
+            int userIndexOfY = Int32.Parse(indexOfY.Text);
+            string[] separator = { userSeparator.Text };
+
             string polygonPath = txtPolygonPath.Text;
             string[] lines = GetUserData(polygonPath);
+
             if (lines.Length < 3)
             {
                 Console.WriteLine("Введите минимум 3 точки полигона.");
@@ -42,9 +47,9 @@ namespace ClearBackground
             {
                 for (int i = 0; i < lines.Length; i++)
                 {
-                    string[] splitCoordinates = lines[i].Split(' ');
-                    float coordinatesX = float.Parse(splitCoordinates[1], CultureInfo.InvariantCulture);
-                    float coordinatesY = float.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
+                    string[] splitCoordinates = lines[i].Split(separator, StringSplitOptions.None);
+                    float coordinatesX = float.Parse(splitCoordinates[userIndexOfX - 1], CultureInfo.InvariantCulture);
+                    float coordinatesY = float.Parse(splitCoordinates[userIndexOfY - 1], CultureInfo.InvariantCulture);
                     polygon[i].X = coordinatesX;
                     polygon[i].Y = coordinatesY;
                 }
@@ -53,6 +58,10 @@ namespace ClearBackground
 
         private void ChekAllPoints()
         {
+            int userIndexOfX = Int32.Parse(indexOfX.Text);
+            int userIndexOfY = Int32.Parse(indexOfY.Text);
+            string[] separator = { userSeparator.Text };
+
             string pointsPath = txtPointPath.Text;
             string[] allPoints = GetUserData(pointsPath);
 
@@ -64,9 +73,9 @@ namespace ClearBackground
                     break;
                 }
 
-                string[] splitCoordinates = allPoints[i].Split(' ');
-                float coordinateX = float.Parse(splitCoordinates[1], CultureInfo.InvariantCulture);
-                float coordinateY = float.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
+                string[] splitCoordinates = allPoints[i].Split(separator, StringSplitOptions.None);
+                float coordinateX = float.Parse(splitCoordinates[userIndexOfX - 1], CultureInfo.InvariantCulture);
+                float coordinateY = float.Parse(splitCoordinates[userIndexOfY - 1], CultureInfo.InvariantCulture);
 
                 PointF point = new PointF(coordinateX, coordinateY);
                 bool result = IsPointInPolygon4(polygon, point);
@@ -87,7 +96,7 @@ namespace ClearBackground
         {
             using (FileStream file = new FileStream(resultPath, FileMode.Append))
             using (StreamWriter writer = new StreamWriter(file))
-            writer.WriteLine(line);
+                writer.WriteLine(line);
         }
 
         private bool IsPointInPolygon4(PointF[] currentPolygon, PointF currentPoint)
@@ -137,7 +146,7 @@ namespace ClearBackground
             {
                 checkPath.Text = openFileDialog.FileName;
                 resultPath = openFileDialog.FileName;
-            }           
+            }
         }
 
         private void FormWindow_Load(object sender, EventArgs e)
@@ -146,6 +155,16 @@ namespace ClearBackground
         }
 
         private void checkPath_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
 
         }
