@@ -44,7 +44,6 @@ namespace ClearBackground
             this.indexOfX = new System.Windows.Forms.TextBox();
             this.indexOfY = new System.Windows.Forms.TextBox();
             this.userSeparator = new System.Windows.Forms.TextBox();
-            this.IndexSeparatorToolTip = new System.Windows.Forms.Label();
             this.toolTipIndexAndSeparator = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
@@ -151,7 +150,7 @@ namespace ClearBackground
             // 
             // indexOfX
             // 
-            this.indexOfX.Location = new System.Drawing.Point(12, 225);
+            this.indexOfX.Location = new System.Drawing.Point(12, 170);
             this.indexOfX.Name = "indexOfX";
             this.indexOfX.Size = new System.Drawing.Size(38, 20);
             this.indexOfX.TabIndex = 12;
@@ -163,7 +162,7 @@ namespace ClearBackground
             // 
             // indexOfY
             // 
-            this.indexOfY.Location = new System.Drawing.Point(56, 225);
+            this.indexOfY.Location = new System.Drawing.Point(56, 170);
             this.indexOfY.Name = "indexOfY";
             this.indexOfY.Size = new System.Drawing.Size(38, 20);
             this.indexOfY.TabIndex = 13;
@@ -175,7 +174,7 @@ namespace ClearBackground
             // 
             // userSeparator
             // 
-            this.userSeparator.Location = new System.Drawing.Point(100, 225);
+            this.userSeparator.Location = new System.Drawing.Point(100, 170);
             this.userSeparator.Name = "userSeparator";
             this.userSeparator.Size = new System.Drawing.Size(56, 20);
             this.userSeparator.TabIndex = 14;
@@ -186,22 +185,10 @@ namespace ClearBackground
         "/>");
             this.userSeparator.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
-            // IndexSeparatorToolTip
-            // 
-            this.IndexSeparatorToolTip.AutoSize = true;
-            this.IndexSeparatorToolTip.Location = new System.Drawing.Point(9, 170);
-            this.IndexSeparatorToolTip.Name = "IndexSeparatorToolTip";
-            this.IndexSeparatorToolTip.Size = new System.Drawing.Size(440, 52);
-            this.IndexSeparatorToolTip.TabIndex = 16;
-            this.IndexSeparatorToolTip.Text = "Specify the index of X, Y  and separator. For example: in line <1//ABC//100.000//" +
-    "200.000>\r\nX=100.000 and has index <3>\r\nY=200.000 and has index <4>\r\nseparator </" +
-    "/>";
-            this.IndexSeparatorToolTip.Click += new System.EventHandler(this.label6_Click);
-            // 
             // toolTipIndexAndSeparator
             // 
             this.toolTipIndexAndSeparator.AutomaticDelay = 100;
-            this.toolTipIndexAndSeparator.AutoPopDelay = 100000;
+            this.toolTipIndexAndSeparator.AutoPopDelay = 1000000;
             this.toolTipIndexAndSeparator.InitialDelay = 100;
             this.toolTipIndexAndSeparator.IsBalloon = true;
             this.toolTipIndexAndSeparator.ReshowDelay = 20;
@@ -228,7 +215,6 @@ namespace ClearBackground
             this.Controls.Add(this.txtPolygonPath);
             this.Controls.Add(this.txtPointPath);
             this.Controls.Add(this.ReadFile);
-            this.Controls.Add(this.IndexSeparatorToolTip);
             this.Name = "FormWindow";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FormWindow_Load);
@@ -253,7 +239,6 @@ namespace ClearBackground
         private System.Windows.Forms.TextBox indexOfX;
         private System.Windows.Forms.TextBox indexOfY;
         private System.Windows.Forms.TextBox userSeparator;
-        private System.Windows.Forms.Label IndexSeparatorToolTip;
         private System.Windows.Forms.ToolTip toolTipIndexAndSeparator;
     }
 }
