@@ -10,7 +10,7 @@ namespace ClearBackground
     public partial class FormWindow : Form
     {
         private string resultPath;
-        PointF[] polygon = new PointF[4];
+        PointF[] polygon;
 
         public FormWindow()
         {
@@ -27,6 +27,7 @@ namespace ClearBackground
         {
             string[] allLines;
             allLines = File.ReadAllLines(path);
+
             return allLines;
         }
 
@@ -34,6 +35,8 @@ namespace ClearBackground
         {
             string polygonPath = txtPolygonPath.Text;
             string[] lines = GetUserData(polygonPath);
+            polygon = new PointF[lines.Length];
+
             if (lines.Length < 3)
             {
                 Console.WriteLine("Введите минимум 3 точки полигона.");
@@ -69,7 +72,7 @@ namespace ClearBackground
                 float coordinateY = float.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
 
                 PointF point = new PointF(coordinateX, coordinateY);
-                bool result = IsPointInPolygon4(polygon, point);
+                bool result = IsPointInPolygon(polygon, point);
 
                 if (result)
                 {
@@ -90,7 +93,7 @@ namespace ClearBackground
             writer.WriteLine(line);
         }
 
-        private bool IsPointInPolygon4(PointF[] currentPolygon, PointF currentPoint)
+        private bool IsPointInPolygon(PointF[] currentPolygon, PointF currentPoint)
         {
             bool result = false;
             int j = currentPolygon.Count() - 1;
