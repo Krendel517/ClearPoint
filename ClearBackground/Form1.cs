@@ -20,7 +20,7 @@ namespace ClearBackground
         private void button1_Click(object sender, EventArgs e)
         {
             SetPolygon();
-            ChekAllPoints();
+            CheсkAllPoints();
         }
 
         private string[] GetUserData(string path)
@@ -56,7 +56,7 @@ namespace ClearBackground
             }
         }
 
-        private void ChekAllPoints()
+        private void CheсkAllPoints()
         {
             int userIndexOfX = Int32.Parse(indexOfX.Text);
             int userIndexOfY = Int32.Parse(indexOfY.Text);
