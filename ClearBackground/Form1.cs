@@ -10,7 +10,7 @@ namespace ClearBackground
     public partial class FormWindow : Form
     {
         private string resultPath;
-        PointF[] polygon = new PointF[4];
+        PointF[] polygon;
 
         public FormWindow()
         {
@@ -42,6 +42,7 @@ namespace ClearBackground
             {
                 for (int i = 0; i < lines.Length; i++)
                 {
+                    polygon = new PointF[i + 1];
                     string[] splitCoordinates = lines[i].Split(' ');
                     float coordinatesX = float.Parse(splitCoordinates[1], CultureInfo.InvariantCulture);
                     float coordinatesY = float.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
