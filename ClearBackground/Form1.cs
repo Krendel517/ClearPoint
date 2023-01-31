@@ -47,6 +47,12 @@ namespace ClearBackground
             {
                 for (int i = 0; i < lines.Length; i++)
                 {
+                    if (!lines[i].Contains(separator[0]))
+                    {
+                        errorText.Text = $"Separator not found in line №{i + 1} of polygon coordinates,\ncorrect or specify the correct separator";
+                        break;
+                    }
+
                     string[] splitCoordinates = lines[i].Split(separator, StringSplitOptions.None);
                     float coordinatesX = float.Parse(splitCoordinates[userIndexOfX - 1], CultureInfo.InvariantCulture);
                     float coordinatesY = float.Parse(splitCoordinates[userIndexOfY - 1], CultureInfo.InvariantCulture);
@@ -70,6 +76,12 @@ namespace ClearBackground
                 if (string.IsNullOrEmpty(allPoints[i]))
                 {
                     Console.WriteLine($"Строка №{i} пустая.");
+                    break;
+                }
+
+                if (!allPoints[i].Contains(separator[0]))
+                {
+                    errorText.Text = $"Separator not found in line №{i + 1} of points coordinates,\ncorrect or specify the correct separator";
                     break;
                 }
 

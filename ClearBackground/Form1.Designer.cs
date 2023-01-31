@@ -45,6 +45,7 @@ namespace ClearBackground
             this.indexOfY = new System.Windows.Forms.TextBox();
             this.userSeparator = new System.Windows.Forms.TextBox();
             this.toolTipIndexAndSeparator = new System.Windows.Forms.ToolTip(this.components);
+            this.errorText = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ReadFile
@@ -195,12 +196,23 @@ namespace ClearBackground
             this.toolTipIndexAndSeparator.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTipIndexAndSeparator.ToolTipTitle = "Important information";
             // 
+            // errorText
+            // 
+            this.errorText.AutoSize = true;
+            this.errorText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.errorText.Location = new System.Drawing.Point(12, 197);
+            this.errorText.Name = "errorText";
+            this.errorText.Size = new System.Drawing.Size(13, 20);
+            this.errorText.TabIndex = 15;
+            this.errorText.Text = " ";
+            // 
             // FormWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(559, 257);
+            this.Controls.Add(this.errorText);
             this.Controls.Add(this.userSeparator);
             this.Controls.Add(this.indexOfY);
             this.Controls.Add(this.indexOfX);
@@ -240,6 +252,7 @@ namespace ClearBackground
         private System.Windows.Forms.TextBox indexOfY;
         private System.Windows.Forms.TextBox userSeparator;
         private System.Windows.Forms.ToolTip toolTipIndexAndSeparator;
+        private System.Windows.Forms.Label errorText;
     }
 }
 
