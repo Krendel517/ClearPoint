@@ -34,6 +34,7 @@ namespace ClearBackground
         {
             string polygonPath = txtPolygonPath.Text;
             string[] lines = GetUserData(polygonPath);
+            polygon = new PointF[lines.Length];
             if (lines.Length < 3)
             {
                 Console.WriteLine("Введите минимум 3 точки полигона.");
@@ -42,7 +43,6 @@ namespace ClearBackground
             {
                 for (int i = 0; i < lines.Length; i++)
                 {
-                    polygon = new PointF[i + 1];
                     string[] splitCoordinates = lines[i].Split(' ');
                     float coordinatesX = float.Parse(splitCoordinates[1], CultureInfo.InvariantCulture);
                     float coordinatesY = float.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
