@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -10,7 +9,7 @@ namespace ClearBackground
     public partial class FormWindow : Form
     {
         private string resultPath;
-        PointF[] polygon = new PointF[4];
+        PointD[] polygon = new PointD[4];
 
         public FormWindow()
         {
@@ -47,6 +46,7 @@ namespace ClearBackground
             {
                 for (int i = 0; i < lines.Length; i++)
                 {
+
                     if (!lines[i].Contains(separator[0]))
                     {
                         errorText.Text = $"Separator not found in line №{i + 1} of polygon coordinates,\ncorrect or specify the correct separator";
@@ -54,8 +54,8 @@ namespace ClearBackground
                     }
 
                     string[] splitCoordinates = lines[i].Split(separator, StringSplitOptions.None);
-                    float coordinatesX = float.Parse(splitCoordinates[userIndexOfX - 1], CultureInfo.InvariantCulture);
-                    float coordinatesY = float.Parse(splitCoordinates[userIndexOfY - 1], CultureInfo.InvariantCulture);
+                    double coordinatesX = double.Parse(splitCoordinates[1], CultureInfo.InvariantCulture);
+                    double coordinatesY = double.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
                     polygon[i].X = coordinatesX;
                     polygon[i].Y = coordinatesY;
                 }
@@ -86,10 +86,10 @@ namespace ClearBackground
                 }
 
                 string[] splitCoordinates = allPoints[i].Split(separator, StringSplitOptions.None);
-                float coordinateX = float.Parse(splitCoordinates[userIndexOfX - 1], CultureInfo.InvariantCulture);
-                float coordinateY = float.Parse(splitCoordinates[userIndexOfY - 1], CultureInfo.InvariantCulture);
+                double coordinateX = double.Parse(splitCoordinates[1], CultureInfo.InvariantCulture);
+                double coordinateY = double.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
 
-                PointF point = new PointF(coordinateX, coordinateY);
+                PointD point = new PointD(coordinateX, coordinateY);
                 bool result = IsPointInPolygon4(polygon, point);
 
                 if (result)
@@ -111,7 +111,7 @@ namespace ClearBackground
             writer.WriteLine(line);
         }
 
-        private bool IsPointInPolygon4(PointF[] currentPolygon, PointF currentPoint)
+        private bool IsPointInPolygon4(PointD[] currentPolygon, PointD currentPoint)
         {
             bool result = false;
             int j = currentPolygon.Count() - 1;

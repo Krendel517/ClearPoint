@@ -41,13 +41,13 @@ namespace ClearBackground
             this.btnAddPath = new System.Windows.Forms.Button();
             this.checkPath = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.SuspendLayout();
             this.indexOfX = new System.Windows.Forms.TextBox();
             this.indexOfY = new System.Windows.Forms.TextBox();
             this.userSeparator = new System.Windows.Forms.TextBox();
             this.toolTipIndexAndSeparator = new System.Windows.Forms.ToolTip(this.components);
             this.errorText = new System.Windows.Forms.Label();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.SuspendLayout();
             // 
             // ReadFile
             // 
@@ -212,7 +212,7 @@ namespace ClearBackground
             this.btnExit.Location = new System.Drawing.Point(12, 206);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
-            this.btnExit.TabIndex = 12;
+            this.btnExit.TabIndex = 19;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -227,6 +227,7 @@ namespace ClearBackground
             this.Controls.Add(this.userSeparator);
             this.Controls.Add(this.indexOfY);
             this.Controls.Add(this.indexOfX);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnAddPath);
@@ -259,12 +260,13 @@ namespace ClearBackground
         private System.Windows.Forms.Button btnAddPath;
         private System.Windows.Forms.TextBox checkPath;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.TextBox indexOfX;
         private System.Windows.Forms.TextBox indexOfY;
         private System.Windows.Forms.TextBox userSeparator;
         private System.Windows.Forms.ToolTip toolTipIndexAndSeparator;
         private System.Windows.Forms.Label errorText;
-        private System.Windows.Forms.Button btnExit;
+       
     }
 }
 
