@@ -46,6 +46,7 @@ namespace ClearBackground
             this.userSeparator = new System.Windows.Forms.TextBox();
             this.toolTipIndexAndSeparator = new System.Windows.Forms.ToolTip(this.components);
             this.errorText = new System.Windows.Forms.Label();
+            this.btnExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ReadFile
@@ -205,6 +206,16 @@ namespace ClearBackground
             this.errorText.Size = new System.Drawing.Size(13, 20);
             this.errorText.TabIndex = 15;
             this.errorText.Text = " ";
+            //
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(12, 206);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.TabIndex = 12;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // FormWindow
             // 
@@ -253,6 +264,7 @@ namespace ClearBackground
         private System.Windows.Forms.TextBox userSeparator;
         private System.Windows.Forms.ToolTip toolTipIndexAndSeparator;
         private System.Windows.Forms.Label errorText;
+        private System.Windows.Forms.Button btnExit;
     }
 }
 

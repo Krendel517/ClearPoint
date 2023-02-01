@@ -108,7 +108,7 @@ namespace ClearBackground
         {
             using (FileStream file = new FileStream(resultPath, FileMode.Append))
             using (StreamWriter writer = new StreamWriter(file))
-                writer.WriteLine(line);
+            writer.WriteLine(line);
         }
 
         private bool IsPointInPolygon4(PointF[] currentPolygon, PointF currentPoint)
@@ -184,6 +184,11 @@ namespace ClearBackground
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }
