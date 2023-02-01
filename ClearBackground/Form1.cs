@@ -54,8 +54,8 @@ namespace ClearBackground
                     }
 
                     string[] splitCoordinates = lines[i].Split(separator, StringSplitOptions.None);
-                    double coordinatesX = double.Parse(splitCoordinates[1], CultureInfo.InvariantCulture);
-                    double coordinatesY = double.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
+                    double coordinatesX = double.Parse(splitCoordinates[userIndexOfX - 1], CultureInfo.InvariantCulture);
+                    double coordinatesY = double.Parse(splitCoordinates[userIndexOfY - 1], CultureInfo.InvariantCulture);
                     polygon[i].X = coordinatesX;
                     polygon[i].Y = coordinatesY;
                 }
@@ -86,8 +86,8 @@ namespace ClearBackground
                 }
 
                 string[] splitCoordinates = allPoints[i].Split(separator, StringSplitOptions.None);
-                double coordinateX = double.Parse(splitCoordinates[1], CultureInfo.InvariantCulture);
-                double coordinateY = double.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
+                double coordinateX = double.Parse(splitCoordinates[userIndexOfX - 1], CultureInfo.InvariantCulture);
+                double coordinateY = double.Parse(splitCoordinates[userIndexOfY - 1], CultureInfo.InvariantCulture);
 
                 PointD point = new PointD(coordinateX, coordinateY);
                 bool result = IsPointInPolygon4(polygon, point);
