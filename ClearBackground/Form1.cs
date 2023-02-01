@@ -19,7 +19,7 @@ namespace ClearBackground
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SetPolygon();
+            SetPolygonalalala();
             ChekAllPoints();
         }
 
@@ -30,7 +30,7 @@ namespace ClearBackground
             return allLines;
         }
 
-        private void SetPolygon()
+        private void SetPolygonalalala()
         {
             string polygonPath = txtPolygonPath.Text;
             string[] lines = GetUserData(polygonPath);
