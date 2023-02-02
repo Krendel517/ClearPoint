@@ -172,6 +172,7 @@ namespace ClearBackground
             this.toolTipIndexAndSeparator.SetToolTip(this.indexOfX, "Specify the index of X, Y  and separator. For example: in line <1//ABC//100.000//" +
         "200.000>\r\nX=100.000 and has index <3>\r\nY=200.000 and has index <4>\r\nseparator </" +
         "/>");
+            this.indexOfX.TextChanged += new System.EventHandler(this.indexOfX_TextChanged);
             // 
             // indexOfY
             // 
@@ -184,6 +185,7 @@ namespace ClearBackground
             this.toolTipIndexAndSeparator.SetToolTip(this.indexOfY, "Specify the index of X, Y  and separator. For example: in line <1//ABC//100.000//" +
         "200.000>\r\nX=100.000 and has index <3>\r\nY=200.000 and has index <4>\r\nseparator </" +
         "/>");
+            this.indexOfY.TextChanged += new System.EventHandler(this.indexOfY_TextChanged);
             // 
             // userSeparator
             // 
@@ -224,6 +226,7 @@ namespace ClearBackground
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(192, 23);
             this.progressBar1.TabIndex = 20;
+            this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
             // 
             // FormWindow
             // 

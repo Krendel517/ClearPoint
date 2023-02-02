@@ -203,5 +203,20 @@ namespace ClearBackground
         {
             Environment.Exit(0);
         }
+
+        private void indexOfX_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void indexOfY_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
