@@ -158,6 +158,11 @@ namespace ClearBackground
                 checkPath.Text = folderBrowserDialog.SelectedPath;
                 resultPath = folderBrowserDialog.SelectedPath;
             }
+
+            string fileName = "Result.txt";
+            resultPath = Path.Combine(resultPath, fileName);
+            var resultfile = File.Create(resultPath);
+            resultfile.Close();
         }
 
         private void FormWindow_Load(object sender, EventArgs e)
