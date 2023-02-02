@@ -3,6 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ClearBackground
 {
@@ -70,6 +71,12 @@ namespace ClearBackground
             string pointsPath = txtPointPath.Text;
             string[] allPoints = GetUserData(pointsPath);
 
+            progressBar1.Visible = true;
+            progressBar1.Minimum = 1;
+            progressBar1.Maximum = allPoints.Length;
+            progressBar1.Value = 1;
+            progressBar1.Step = 1;
+
             for (int i = 0; i < allPoints.Length; i++)
             {
                 if (string.IsNullOrEmpty(allPoints[i]))
@@ -100,6 +107,8 @@ namespace ClearBackground
                 {
                     Console.WriteLine("Все данные обработаны");
                 }
+
+                progressBar1.PerformStep();
             }
         }
 

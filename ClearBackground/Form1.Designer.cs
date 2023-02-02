@@ -47,6 +47,7 @@ namespace ClearBackground
             this.userSeparator = new System.Windows.Forms.TextBox();
             this.toolTipIndexAndSeparator = new System.Windows.Forms.ToolTip(this.components);
             this.errorText = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // ReadFile
@@ -217,12 +218,20 @@ namespace ClearBackground
             this.errorText.TabIndex = 15;
             this.errorText.Text = " ";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(193, 167);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(192, 23);
+            this.progressBar1.TabIndex = 20;
+            // 
             // FormWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(559, 257);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.errorText);
             this.Controls.Add(this.userSeparator);
             this.Controls.Add(this.indexOfY);
@@ -266,7 +275,7 @@ namespace ClearBackground
         private System.Windows.Forms.TextBox userSeparator;
         private System.Windows.Forms.ToolTip toolTipIndexAndSeparator;
         private System.Windows.Forms.Label errorText;
-       
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
