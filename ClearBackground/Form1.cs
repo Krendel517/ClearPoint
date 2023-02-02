@@ -3,6 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ClearBackground
 {
@@ -70,6 +71,8 @@ namespace ClearBackground
             string pointsPath = txtPointPath.Text;
             string[] allPoints = GetUserData(pointsPath);
 
+            InitializeProgressBar(allPoints);
+
             for (int i = 0; i < allPoints.Length; i++)
             {
                 if (string.IsNullOrEmpty(allPoints[i]))
@@ -100,6 +103,8 @@ namespace ClearBackground
                 {
                     Console.WriteLine("Все данные обработаны");
                 }
+
+                progressBar1.PerformStep();
             }
         }
 
@@ -126,6 +131,15 @@ namespace ClearBackground
                 j = i;
             }
             return result;
+        }
+
+        private void InitializeProgressBar(string[] allPoints)
+        {
+            progressBar1.Visible = true;
+            progressBar1.Minimum = 1;
+            progressBar1.Maximum = allPoints.Length;
+            progressBar1.Value = 1;
+            progressBar1.Step = 1;
         }
 
         private void btnOpenPoint_Click(object sender, EventArgs e)
@@ -188,6 +202,21 @@ namespace ClearBackground
         private void btnExit_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void indexOfX_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void indexOfY_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

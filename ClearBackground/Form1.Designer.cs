@@ -47,6 +47,7 @@ namespace ClearBackground
             this.userSeparator = new System.Windows.Forms.TextBox();
             this.toolTipIndexAndSeparator = new System.Windows.Forms.ToolTip(this.components);
             this.errorText = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // ReadFile
@@ -171,6 +172,7 @@ namespace ClearBackground
             this.toolTipIndexAndSeparator.SetToolTip(this.indexOfX, "Specify the index of X, Y  and separator. For example: in line <1//ABC//100.000//" +
         "200.000>\r\nX=100.000 and has index <3>\r\nY=200.000 and has index <4>\r\nseparator </" +
         "/>");
+            this.indexOfX.TextChanged += new System.EventHandler(this.indexOfX_TextChanged);
             // 
             // indexOfY
             // 
@@ -183,6 +185,7 @@ namespace ClearBackground
             this.toolTipIndexAndSeparator.SetToolTip(this.indexOfY, "Specify the index of X, Y  and separator. For example: in line <1//ABC//100.000//" +
         "200.000>\r\nX=100.000 and has index <3>\r\nY=200.000 and has index <4>\r\nseparator </" +
         "/>");
+            this.indexOfY.TextChanged += new System.EventHandler(this.indexOfY_TextChanged);
             // 
             // userSeparator
             // 
@@ -217,12 +220,21 @@ namespace ClearBackground
             this.errorText.TabIndex = 15;
             this.errorText.Text = " ";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(193, 167);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(192, 23);
+            this.progressBar1.TabIndex = 20;
+            this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
+            // 
             // FormWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(559, 257);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.errorText);
             this.Controls.Add(this.userSeparator);
             this.Controls.Add(this.indexOfY);
@@ -266,7 +278,7 @@ namespace ClearBackground
         private System.Windows.Forms.TextBox userSeparator;
         private System.Windows.Forms.ToolTip toolTipIndexAndSeparator;
         private System.Windows.Forms.Label errorText;
-       
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
