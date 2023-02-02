@@ -46,7 +46,6 @@ namespace ClearBackground
             {
                 for (int i = 0; i < lines.Length; i++)
                 {
-
                     if (!lines[i].Contains(separator[0]))
                     {
                         errorText.Text = $"Separator not found in line №{i + 1} of polygon coordinates,\ncorrect or specify the correct separator";
