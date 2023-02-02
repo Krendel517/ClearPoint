@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace ClearBackground
     {
         private string resultPath;
         PointD[] polygon = new PointD[4];
+        Point[] polygon2 = new Point[4];
 
         public FormWindow()
         {
@@ -58,8 +60,24 @@ namespace ClearBackground
                     double coordinatesY = double.Parse(splitCoordinates[userIndexOfY - 1], CultureInfo.InvariantCulture);
                     polygon[i].X = coordinatesX;
                     polygon[i].Y = coordinatesY;
+
+                    int simpleX = Convert.ToInt32(polygon[i].X);
+                    int simpleY = Convert.ToInt32(polygon[i].Y);
+                    polygon2[i].X = simpleX;
+                    polygon2[i].Y = simpleY;
                 }
+
+                DrawPolygon();
             }
+        }
+
+        private void DrawPolygon()
+        {
+            
+            Graphics graphics = pictureBox1.CreateGraphics();
+            Pen pen = new Pen(Color.Red, 1);
+            graphics.DrawPolygon(pen, polygon2);
+
         }
 
         private void CheсkAllPoints()

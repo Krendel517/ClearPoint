@@ -48,6 +48,8 @@ namespace ClearBackground
             this.toolTipIndexAndSeparator = new System.Windows.Forms.ToolTip(this.components);
             this.errorText = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // ReadFile
@@ -225,12 +227,21 @@ namespace ClearBackground
             this.progressBar1.Size = new System.Drawing.Size(192, 23);
             this.progressBar1.TabIndex = 20;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(17, 276);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(405, 220);
+            this.pictureBox1.TabIndex = 21;
+            this.pictureBox1.TabStop = false;
+            // 
             // FormWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(559, 257);
+            this.ClientSize = new System.Drawing.Size(559, 498);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.errorText);
             this.Controls.Add(this.userSeparator);
@@ -251,6 +262,7 @@ namespace ClearBackground
             this.Name = "FormWindow";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FormWindow_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,6 +288,7 @@ namespace ClearBackground
         private System.Windows.Forms.ToolTip toolTipIndexAndSeparator;
         private System.Windows.Forms.Label errorText;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
