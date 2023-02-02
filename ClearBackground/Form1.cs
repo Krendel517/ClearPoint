@@ -71,11 +71,7 @@ namespace ClearBackground
             string pointsPath = txtPointPath.Text;
             string[] allPoints = GetUserData(pointsPath);
 
-            progressBar1.Visible = true;
-            progressBar1.Minimum = 1;
-            progressBar1.Maximum = allPoints.Length;
-            progressBar1.Value = 1;
-            progressBar1.Step = 1;
+            InitializeProgressBar(allPoints);
 
             for (int i = 0; i < allPoints.Length; i++)
             {
@@ -135,6 +131,15 @@ namespace ClearBackground
                 j = i;
             }
             return result;
+        }
+
+        private void InitializeProgressBar(string[] allPoints)
+        {
+            progressBar1.Visible = true;
+            progressBar1.Minimum = 1;
+            progressBar1.Maximum = allPoints.Length;
+            progressBar1.Value = 1;
+            progressBar1.Step = 1;
         }
 
         private void btnOpenPoint_Click(object sender, EventArgs e)
