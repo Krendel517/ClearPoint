@@ -19,7 +19,7 @@ namespace ClearBackground
         private void button1_Click(object sender, EventArgs e)
         {
             SetPolygon();
-            ChekAllPoints();
+            CheсkAllPoints();
         }
 
         private string[] GetUserData(string path)
@@ -31,8 +31,13 @@ namespace ClearBackground
 
         private void SetPolygon()
         {
+            int userIndexOfX = Int32.Parse(indexOfX.Text);
+            int userIndexOfY = Int32.Parse(indexOfY.Text);
+            string[] separator = { userSeparator.Text };
+
             string polygonPath = txtPolygonPath.Text;
             string[] lines = GetUserData(polygonPath);
+
             if (lines.Length < 3)
             {
                 Console.WriteLine("Введите минимум 3 точки полигона.");
@@ -41,17 +46,27 @@ namespace ClearBackground
             {
                 for (int i = 0; i < lines.Length; i++)
                 {
-                    string[] splitCoordinates = lines[i].Split(' ');
-                    double coordinatesX = double.Parse(splitCoordinates[1], CultureInfo.InvariantCulture);
-                    double coordinatesY = double.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
+                    if (!lines[i].Contains(separator[0]))
+                    {
+                        errorText.Text = $"Separator not found in line №{i + 1} of polygon coordinates,\ncorrect or specify the correct separator";
+                        break;
+                    }
+
+                    string[] splitCoordinates = lines[i].Split(separator, StringSplitOptions.None);
+                    double coordinatesX = double.Parse(splitCoordinates[userIndexOfX - 1], CultureInfo.InvariantCulture);
+                    double coordinatesY = double.Parse(splitCoordinates[userIndexOfY - 1], CultureInfo.InvariantCulture);
                     polygon[i].X = coordinatesX;
                     polygon[i].Y = coordinatesY;
                 }
             }
         }
 
-        private void ChekAllPoints()
+        private void CheсkAllPoints()
         {
+            int userIndexOfX = Int32.Parse(indexOfX.Text);
+            int userIndexOfY = Int32.Parse(indexOfY.Text);
+            string[] separator = { userSeparator.Text };
+
             string pointsPath = txtPointPath.Text;
             string[] allPoints = GetUserData(pointsPath);
 
@@ -63,9 +78,15 @@ namespace ClearBackground
                     break;
                 }
 
-                string[] splitCoordinates = allPoints[i].Split(' ');
-                double coordinateX = double.Parse(splitCoordinates[1], CultureInfo.InvariantCulture);
-                double coordinateY = double.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
+                if (!allPoints[i].Contains(separator[0]))
+                {
+                    errorText.Text = $"Separator not found in line №{i + 1} of points coordinates,\ncorrect or specify the correct separator";
+                    break;
+                }
+
+                string[] splitCoordinates = allPoints[i].Split(separator, StringSplitOptions.None);
+                double coordinateX = double.Parse(splitCoordinates[userIndexOfX - 1], CultureInfo.InvariantCulture);
+                double coordinateY = double.Parse(splitCoordinates[userIndexOfY - 1], CultureInfo.InvariantCulture);
 
                 PointD point = new PointD(coordinateX, coordinateY);
                 bool result = IsPointInPolygon4(polygon, point);
@@ -136,7 +157,7 @@ namespace ClearBackground
             {
                 checkPath.Text = openFileDialog.FileName;
                 resultPath = openFileDialog.FileName;
-            }           
+            }
         }
 
         private void FormWindow_Load(object sender, EventArgs e)
@@ -145,6 +166,21 @@ namespace ClearBackground
         }
 
         private void checkPath_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
         {
 
         }
