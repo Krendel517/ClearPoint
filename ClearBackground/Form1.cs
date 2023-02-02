@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ClearBackground
@@ -12,7 +13,9 @@ namespace ClearBackground
     {
         private string resultPath;
         PointD[] polygon = new PointD[4];
-        Point[] polygon2 = new Point[4];
+        Point[] polygonInt = new Point[4];
+        Point[] polygonAfterX = new Point[4];
+        Point[] polygonAfterY = new Point[4];
 
         public FormWindow()
         {
@@ -63,8 +66,8 @@ namespace ClearBackground
 
                     int simpleX = Convert.ToInt32(polygon[i].X);
                     int simpleY = Convert.ToInt32(polygon[i].Y);
-                    polygon2[i].X = simpleX;
-                    polygon2[i].Y = simpleY;
+                    polygonInt[i].X = simpleX;
+                    polygonInt[i].Y = simpleY;
                 }
 
                 DrawPolygon();
@@ -73,10 +76,40 @@ namespace ClearBackground
 
         private void DrawPolygon()
         {
-            
+            bool needToScaleX = false;
+            bool needToScaleY = false;
+            int[] scaleNumberX = new int[polygonInt.Length];
+            //max x=400 max y=220
+
+            for(int i = 0; i < polygonInt.Length; i++)
+            {
+                if (polygonInt[i].X > 400 || polygonInt[i].Y > 220)
+                {
+                    needToScaleX = true;
+                    break;
+                }
+            }
+
+            if (needToScaleX)
+            {
+                for(int i = 0; i < polygonInt.Length; i++)
+                {
+                    scaleNumberX[i] = 400 / polygonInt[i].X;
+                }
+
+                int maxScaleX = scaleNumberX.Max();
+
+                for (int i = 0; i < polygonInt.Length; i++)
+                {
+                    polygonAfterX[i].X = polygonInt[i].X / maxScaleX;
+                    polygonAfterY[i].Y = polygonInt[i].Y / maxScaleX;
+                }
+            }
+
+
             Graphics graphics = pictureBox1.CreateGraphics();
             Pen pen = new Pen(Color.Red, 1);
-            graphics.DrawPolygon(pen, polygon2);
+            graphics.DrawPolygon(pen, polygonInt);
 
         }
 
@@ -134,7 +167,7 @@ namespace ClearBackground
         {
             using (FileStream file = new FileStream(resultPath, FileMode.Append))
             using (StreamWriter writer = new StreamWriter(file))
-            writer.WriteLine(line);
+                writer.WriteLine(line);
         }
 
         private bool IsPointInPolygon4(PointD[] currentPolygon, PointD currentPoint)
@@ -215,6 +248,11 @@ namespace ClearBackground
         private void btnExit_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
