@@ -152,11 +152,11 @@ namespace ClearBackground
 
         private void btnAddPath_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                checkPath.Text = openFileDialog.FileName;
-                resultPath = openFileDialog.FileName;
+                checkPath.Text = folderBrowserDialog.SelectedPath;
+                resultPath = folderBrowserDialog.SelectedPath;
             }
         }
 
