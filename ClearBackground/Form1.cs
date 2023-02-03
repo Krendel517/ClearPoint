@@ -53,17 +53,13 @@ namespace ClearBackground
                         break;
                     }
 
-                    //string[] splitCoordinates = lines[i].Split(separator, StringSplitOptions.None);
-                    //double coordinatesX = double.Parse(splitCoordinates[userIndexOfX - 1], CultureInfo.InvariantCulture);
-                    //double coordinatesY = double.Parse(splitCoordinates[userIndexOfY - 1], CultureInfo.InvariantCulture);
-
                     string[] splitCoordinates = lines[i].Split(separator, StringSplitOptions.RemoveEmptyEntries);
                     bool isNumberX = Double.TryParse(splitCoordinates[userIndexOfX - 1], NumberStyles.Float, CultureInfo.InvariantCulture, out double coordinateX);
                     bool isNumberY = Double.TryParse(splitCoordinates[userIndexOfY - 1], NumberStyles.Float, CultureInfo.InvariantCulture, out double coordinateY);
 
                     if (!isNumberX || !isNumberY)
                     {
-                        errorText.Text = "SHOK KONTENT";
+                        errorText.Text = "Invalid separator specified, check the entered data";
                         break;
                     }
 
@@ -98,17 +94,13 @@ namespace ClearBackground
                     break;
                 }
 
-                //string[] splitCoordinates = allPoints[i].Split(separator, StringSplitOptions.None);
-                //double coordinateX = double.Parse(splitCoordinates[userIndexOfX - 1], CultureInfo.InvariantCulture);
-                //double coordinateY = double.Parse(splitCoordinates[userIndexOfY - 1], CultureInfo.InvariantCulture);
-
                 string[] splitCoordinates = allPoints[i].Split(separator, StringSplitOptions.RemoveEmptyEntries);
                 bool isNumberX = Double.TryParse(splitCoordinates[userIndexOfX - 1], NumberStyles.Number, CultureInfo.InvariantCulture, out double coordinateX);
                 bool isNumberY = Double.TryParse(splitCoordinates[userIndexOfY - 1], NumberStyles.Number, CultureInfo.InvariantCulture, out double coordinateY);
 
                 if (!isNumberX || !isNumberY)
                 {
-                    errorText.Text = "SHOK KONTENT";
+                    errorText.Text = "Invalid separator specified, check the entered data";
                     break;
                 }
 
