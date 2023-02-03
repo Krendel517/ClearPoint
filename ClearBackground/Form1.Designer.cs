@@ -120,9 +120,9 @@ namespace ClearBackground
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 103);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(114, 13);
+            this.label4.Size = new System.Drawing.Size(109, 13);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Add folder for result file";
+            this.label4.Text = "Add path for result file";
             // 
             // btnAddPath
             // 
@@ -130,7 +130,7 @@ namespace ClearBackground
             this.btnAddPath.Name = "btnAddPath";
             this.btnAddPath.Size = new System.Drawing.Size(92, 28);
             this.btnAddPath.TabIndex = 9;
-            this.btnAddPath.Text = "Open Folder";
+            this.btnAddPath.Text = "Open Path";
             this.btnAddPath.UseVisualStyleBackColor = true;
             this.btnAddPath.Click += new System.EventHandler(this.btnAddPath_Click);
             // 
