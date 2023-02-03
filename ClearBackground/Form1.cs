@@ -13,11 +13,8 @@ namespace ClearBackground
     {
         private string resultPath;
         PointD[] polygon = new PointD[4];
-        PointF[] polygonInt = new PointF[4];
-        PointF[] polygonAfterX = new PointF[4];
-        PointF[] polygonAfterY = new PointF[4];
-        PointF[] polygonAfterOffset = new PointF[4];
-
+        PointF[] polygonAfterScale = new PointF[4];
+        
         public FormWindow()
         {
             InitializeComponent();
@@ -67,8 +64,8 @@ namespace ClearBackground
 
                     int simpleX = Convert.ToInt32(polygon[i].X);
                     int simpleY = Convert.ToInt32(polygon[i].Y);
-                    polygonInt[i].X = simpleX;
-                    polygonInt[i].Y = simpleY;
+                    polygonAfterScale[i].X = simpleX;
+                    polygonAfterScale[i].Y = simpleY;
                 }
 
                 DrawPolygon();
@@ -79,13 +76,13 @@ namespace ClearBackground
         {
             bool needToScaleX = false;
             bool needToScaleY = false;
-            float[] scaleNumberX = new float[polygonInt.Length];
-            float[] scaleNumberY = new float[polygonInt.Length];
+            float[] scaleNumberX = new float[polygonAfterScale.Length];
+            float[] scaleNumberY = new float[polygonAfterScale.Length];
             //max x=400 max y=220
 
-            for (int i = 0; i < polygonInt.Length; i++)
+            for (int i = 0; i < polygonAfterScale.Length; i++)
             {
-                if (polygonInt[i].X > 400)
+                if (polygonAfterScale[i].X > 400)
                 {
                     needToScaleX = true;
                     break;
@@ -94,23 +91,23 @@ namespace ClearBackground
 
             if (needToScaleX)
             {
-                for(int i = 0; i < polygonInt.Length; i++)
+                for(int i = 0; i < polygonAfterScale.Length; i++)
                 {
-                    scaleNumberX[i] = polygonInt[i].X / 400;
+                    scaleNumberX[i] = polygonAfterScale[i].X / 400;
                 }
 
                 float maxScaleX = scaleNumberX.Max();
 
-                for (int i = 0; i < polygonInt.Length; i++)
+                for (int i = 0; i < polygonAfterScale.Length; i++)
                 {
-                    polygonAfterX[i].X = polygonInt[i].X / maxScaleX;
-                    polygonAfterX[i].Y = polygonInt[i].Y / maxScaleX;
+                    polygonAfterScale[i].X = polygonAfterScale[i].X / maxScaleX;
+                    polygonAfterScale[i].Y = polygonAfterScale[i].Y / maxScaleX;
                 }
             }
 
-            for (int i = 0; i < polygonInt.Length; i++)
+            for (int i = 0; i < polygonAfterScale.Length; i++)
             {
-                if (polygonAfterX[i].Y > 220)
+                if (polygonAfterScale[i].Y > 220)
                 {
                     needToScaleY = true;
                     break;
@@ -119,29 +116,29 @@ namespace ClearBackground
 
             if (needToScaleY)
             {
-                for (int i = 0; i < polygonInt.Length; i++)
+                for (int i = 0; i < polygonAfterScale.Length; i++)
                 {
-                    scaleNumberY[i] = polygonAfterX[i].Y / 220;
+                    scaleNumberY[i] = polygonAfterScale[i].Y / 220;
                 }
 
                 float maxScaleY = scaleNumberY.Max();
 
-                for (int i = 0; i < polygonInt.Length; i++)
+                for (int i = 0; i < polygonAfterScale.Length; i++)
                 {
-                    polygonAfterY[i].X = polygonAfterX[i].X / maxScaleY;
-                    polygonAfterY[i].Y = polygonAfterX[i].Y / maxScaleY;
+                    polygonAfterScale[i].X = polygonAfterScale[i].X / maxScaleY;
+                    polygonAfterScale[i].Y = polygonAfterScale[i].Y / maxScaleY;
                 }
             }
 
-            for (int i = 0; i < polygonInt.Length; i++)
+            for (int i = 0; i < polygonAfterScale.Length; i++)
             {
-                polygonAfterOffset[i].X = polygonAfterY[i].X;
-                polygonAfterOffset[i].Y = 220 - polygonAfterY[i].Y;
+                polygonAfterScale[i].X = polygonAfterScale[i].X;
+                polygonAfterScale[i].Y = 220 - polygonAfterScale[i].Y;
             }
 
             Graphics graphics = pictureBox1.CreateGraphics();
             Pen pen = new Pen(Color.Red, 1);
-            graphics.DrawPolygon(pen, polygonAfterOffset);
+            graphics.DrawPolygon(pen, polygonAfterScale);
 
         }
 
