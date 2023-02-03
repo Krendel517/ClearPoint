@@ -76,8 +76,8 @@ namespace ClearBackground
         {
             bool needToScaleX = false;
             bool needToScaleY = false;
-            float[] scaleNumberX = new float[polygonAfterScale.Length];
-            float[] scaleNumberY = new float[polygonAfterScale.Length];
+            float[] scaleCoefficientX = new float[polygonAfterScale.Length];
+            float[] scaleCoefficientY = new float[polygonAfterScale.Length];
             //max x=400 max y=220
 
             for (int i = 0; i < polygonAfterScale.Length; i++)
@@ -93,10 +93,10 @@ namespace ClearBackground
             {
                 for(int i = 0; i < polygonAfterScale.Length; i++)
                 {
-                    scaleNumberX[i] = polygonAfterScale[i].X / 400;
+                    scaleCoefficientX[i] = polygonAfterScale[i].X / 400;
                 }
 
-                float maxScaleX = scaleNumberX.Max();
+                float maxScaleX = scaleCoefficientX.Max();
 
                 for (int i = 0; i < polygonAfterScale.Length; i++)
                 {
@@ -118,10 +118,10 @@ namespace ClearBackground
             {
                 for (int i = 0; i < polygonAfterScale.Length; i++)
                 {
-                    scaleNumberY[i] = polygonAfterScale[i].Y / 220;
+                    scaleCoefficientY[i] = polygonAfterScale[i].Y / 220;
                 }
 
-                float maxScaleY = scaleNumberY.Max();
+                float maxScaleY = scaleCoefficientY.Max();
 
                 for (int i = 0; i < polygonAfterScale.Length; i++)
                 {
@@ -139,7 +139,6 @@ namespace ClearBackground
             Graphics graphics = pictureBox1.CreateGraphics();
             Pen pen = new Pen(Color.Red, 1);
             graphics.DrawPolygon(pen, polygonAfterScale);
-
         }
 
         private void CheсkAllPoints()
