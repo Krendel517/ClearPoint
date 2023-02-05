@@ -7,12 +7,12 @@ using System.Windows.Forms;
 
 namespace ClearBackground
 {
-    public partial class FormWindow : Form
+    public partial class FormWindow213213 : Form
     {
         private string resultPath;
-        PointF[] polygon = new PointF[4];
+        PointF[] polygon = new PointF[7];
 
-        public FormWindow()
+        public FormWindow213213()
         {
             InitializeComponent();
         }

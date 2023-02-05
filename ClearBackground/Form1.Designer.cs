@@ -1,7 +1,7 @@
 ﻿
 namespace ClearBackground
 {
-    partial class FormWindow
+    partial class FormWindow213213
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -172,7 +172,7 @@ namespace ClearBackground
             this.Controls.Add(this.txtPolygonPath);
             this.Controls.Add(this.txtPointPath);
             this.Controls.Add(this.ReadFile);
-            this.Name = "FormWindow";
+            this.Name = "FormWindow213213";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FormWindow_Load);
             this.ResumeLayout(false);
