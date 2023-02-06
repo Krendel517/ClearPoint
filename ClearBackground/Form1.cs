@@ -12,9 +12,8 @@ namespace ClearBackground
     public partial class FormWindow : Form
     {
         private string resultPath;
-        PointD[] polygon = new PointD[4];
-        PointF[] polygonAfterScale = new PointF[4];
-        
+        PointD[] polygon;
+
         public FormWindow()
         {
             InitializeComponent();
@@ -41,6 +40,7 @@ namespace ClearBackground
 
             string polygonPath = txtPolygonPath.Text;
             string[] lines = GetUserData(polygonPath);
+            polygon = new PointD[lines.Length];
 
             if (lines.Length < 3)
             {
@@ -61,84 +61,11 @@ namespace ClearBackground
                     double coordinatesY = double.Parse(splitCoordinates[userIndexOfY - 1], CultureInfo.InvariantCulture);
                     polygon[i].X = coordinatesX;
                     polygon[i].Y = coordinatesY;
-
-                    int simpleX = Convert.ToInt32(polygon[i].X);
-                    int simpleY = Convert.ToInt32(polygon[i].Y);
-                    polygonAfterScale[i].X = simpleX;
-                    polygonAfterScale[i].Y = simpleY;
                 }
 
-                DrawPolygon();
+                PolygonDisplay polygonDisplay = new PolygonDisplay();
+                polygonDisplay.ScalingPolygon(polygon);
             }
-        }
-
-        private void DrawPolygon()
-        {
-            bool needToScaleX = false;
-            bool needToScaleY = false;
-            float[] scaleCoefficientX = new float[polygonAfterScale.Length];
-            float[] scaleCoefficientY = new float[polygonAfterScale.Length];
-            //max x=400 max y=220
-
-            for (int i = 0; i < polygonAfterScale.Length; i++)
-            {
-                if (polygonAfterScale[i].X > 400)
-                {
-                    needToScaleX = true;
-                    break;
-                }
-            }
-
-            if (needToScaleX)
-            {
-                for(int i = 0; i < polygonAfterScale.Length; i++)
-                {
-                    scaleCoefficientX[i] = polygonAfterScale[i].X / 400;
-                }
-
-                float maxScaleX = scaleCoefficientX.Max();
-
-                for (int i = 0; i < polygonAfterScale.Length; i++)
-                {
-                    polygonAfterScale[i].X = polygonAfterScale[i].X / maxScaleX;
-                    polygonAfterScale[i].Y = polygonAfterScale[i].Y / maxScaleX;
-                }
-            }
-
-            for (int i = 0; i < polygonAfterScale.Length; i++)
-            {
-                if (polygonAfterScale[i].Y > 220)
-                {
-                    needToScaleY = true;
-                    break;
-                }
-            }
-
-            if (needToScaleY)
-            {
-                for (int i = 0; i < polygonAfterScale.Length; i++)
-                {
-                    scaleCoefficientY[i] = polygonAfterScale[i].Y / 220;
-                }
-
-                float maxScaleY = scaleCoefficientY.Max();
-
-                for (int i = 0; i < polygonAfterScale.Length; i++)
-                {
-                    polygonAfterScale[i].X = polygonAfterScale[i].X / maxScaleY;
-                    polygonAfterScale[i].Y = polygonAfterScale[i].Y / maxScaleY;
-                }
-            }
-
-            for (int i = 0; i < polygonAfterScale.Length; i++)
-            {
-                polygonAfterScale[i].X = polygonAfterScale[i].X;
-                polygonAfterScale[i].Y = 220 - polygonAfterScale[i].Y;
-            }
-
-            Graphics graphics = pictureBox1.CreateGraphics();
-            Pen pen = new Pen(Color.Red, 1);
-            graphics.DrawPolygon(pen, polygonAfterScale);
         }
 
         private void CheсkAllPoints()
@@ -150,11 +77,7 @@ namespace ClearBackground
             string pointsPath = txtPointPath.Text;
             string[] allPoints = GetUserData(pointsPath);
 
-            progressBar1.Visible = true;
-            progressBar1.Minimum = 1;
-            progressBar1.Maximum = allPoints.Length;
-            progressBar1.Value = 1;
-            progressBar1.Step = 1;
+            InitializeProgressBar(allPoints);
 
             for (int i = 0; i < allPoints.Length; i++)
             {
@@ -189,6 +112,15 @@ namespace ClearBackground
 
                 progressBar1.PerformStep();
             }
+        }
+
+        private void InitializeProgressBar(string[] allPoints)
+        {
+            progressBar1.Visible = true;
+            progressBar1.Minimum = 1;
+            progressBar1.Maximum = allPoints.Length;
+            progressBar1.Value = 1;
+            progressBar1.Step = 1;
         }
 
         private void SaveResult(string line)
