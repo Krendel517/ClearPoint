@@ -167,17 +167,27 @@ namespace ClearBackground
 
         private void btnAddPath_Click(object sender, EventArgs e)
         {
+            resultPath = " ";
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 checkPath.Text = folderBrowserDialog.SelectedPath;
-                resultPath = folderBrowserDialog.SelectedPath;
+                resultPath = folderBrowserDialog.SelectedPath; 
             }
 
-            string fileName = "Result.txt";
-            resultPath = Path.Combine(resultPath, fileName);
-            var resultfile = File.Create(resultPath);
-            resultfile.Close();
+            if (resultPath == " ")
+            {
+                errorText.Text = $"Check folder path";
+            }
+
+            if (resultPath == folderBrowserDialog.SelectedPath)
+            {
+                string fileName = "Result.txt";
+                resultPath = Path.Combine(resultPath, fileName);
+                errorText.Text = "";
+                var resultfile = File.Create(resultPath);
+                resultfile.Close();
+            }
         }
 
         private void FormWindow_Load(object sender, EventArgs e)
