@@ -72,8 +72,10 @@ namespace ClearBackground
         private void Draw(PointF[] polygonAfterScale)
         {
             Graphics graphics = pictureBox1.CreateGraphics();
-            Pen pen = new Pen(Color.Red, 1);
+            Pen pen = new Pen(Color.White, 1);
+            Brush brush = new SolidBrush(Color.White);
             graphics.DrawPolygon(pen, polygonAfterScale);
+            graphics.FillPolygon(brush, polygonAfterScale);
         }
 
         private void CheсkAllPoints()

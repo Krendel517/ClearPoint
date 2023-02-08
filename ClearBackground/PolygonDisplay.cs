@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ClearBackground
 {
     public class PolygonDisplay
     {
         PointF[] polygonAfterScale;
+        //Point[] polygonForVector;
 
         public PointF[] pointFs { get { return polygonAfterScale; } }
 
@@ -31,11 +28,14 @@ namespace ClearBackground
         public void ScalingPolygon(PointD[] polygon)
         {
             SetNewPolygon(polygon);
-            
+
             bool needToScaleX = false;
             bool needToScaleY = false;
             float[] scaleCoefficientX = new float[polygon.Length];
             float[] scaleCoefficientY = new float[polygon.Length];
+
+            float[] coordinateYAfterScale = new float[polygon.Length];
+            float[] coordinateXAfterScale = new float[polygon.Length];
             //max x=400 max y=220
 
             for (int i = 0; i < polygonAfterScale.Length; i++)
@@ -90,9 +90,41 @@ namespace ClearBackground
 
             for (int i = 0; i < polygonAfterScale.Length; i++)
             {
-                polygonAfterScale[i].X = polygonAfterScale[i].X;
-                polygonAfterScale[i].Y = 220 - polygonAfterScale[i].Y;
+                coordinateYAfterScale[i] = polygonAfterScale[i].Y;
             }
+
+            for (int i = 0; i < polygonAfterScale.Length; i++)
+            {
+                coordinateXAfterScale[i] = polygonAfterScale[i].X;
+            }
+
+            //max x=400 max y=220
+
+            float maxY = coordinateYAfterScale.Max();
+            float minY = coordinateYAfterScale.Min();
+            float differenceY = maxY - minY;
+            float displaceDistanceY = (220 - differenceY) / 2;
+
+            float maxX = coordinateXAfterScale.Max();
+            float minX = coordinateXAfterScale.Min();
+            float differenceX = maxX - minX;
+            float displaceDistanceX = (400 - differenceX) / 2;
+
+            for (int i = 0; i < polygonAfterScale.Length; i++)
+            {
+                if(displaceDistanceX + minX > 200)
+                {
+                    polygonAfterScale[i].X = polygonAfterScale[i].X - minX + displaceDistanceX;
+                }
+                else
+                {
+                    polygonAfterScale[i].X = polygonAfterScale[i].X - minX - displaceDistanceX;
+                }
+
+                polygonAfterScale[i].Y = 220 + displaceDistanceY - polygonAfterScale[i].Y;
+
+                //тут нужно добавить масштабирование для маленьких полигонов
+            }    
         }
     }
 }
