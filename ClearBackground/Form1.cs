@@ -67,10 +67,10 @@ namespace ClearBackground
                         }
 
                         string[] splitCoordinates = lines[i].Split(separator, StringSplitOptions.RemoveEmptyEntries);
-                        bool isNumberX = Double.TryParse(splitCoordinates[userIndexOfX - 1], NumberStyles.Float, CultureInfo.InvariantCulture, out double coordinateX);
-                        bool isNumberY = Double.TryParse(splitCoordinates[userIndexOfY - 1], NumberStyles.Float, CultureInfo.InvariantCulture, out double coordinateY);
+                        bool xValidSeparator = Double.TryParse(splitCoordinates[userIndexOfX - 1], NumberStyles.Float, CultureInfo.InvariantCulture, out double coordinateX);
+                        bool yValidSeparator = Double.TryParse(splitCoordinates[userIndexOfY - 1], NumberStyles.Float, CultureInfo.InvariantCulture, out double coordinateY);
 
-                        if (!isNumberX || !isNumberY)
+                        if (!xValidSeparator || !yValidSeparator)
                         {
                             errorText.Text = "Invalid separator specified, check the entered data";
                             break;
@@ -123,10 +123,10 @@ namespace ClearBackground
                     }
 
                     string[] splitCoordinates = allPoints[i].Split(separator, StringSplitOptions.RemoveEmptyEntries);
-                    bool isNumberX = Double.TryParse(splitCoordinates[userIndexOfX - 1], NumberStyles.Number, CultureInfo.InvariantCulture, out double coordinateX);
-                    bool isNumberY = Double.TryParse(splitCoordinates[userIndexOfY - 1], NumberStyles.Number, CultureInfo.InvariantCulture, out double coordinateY);
+                    bool xValidSeparator = Double.TryParse(splitCoordinates[userIndexOfX - 1], NumberStyles.Number, CultureInfo.InvariantCulture, out double coordinateX);
+                    bool yValidSeparator = Double.TryParse(splitCoordinates[userIndexOfY - 1], NumberStyles.Number, CultureInfo.InvariantCulture, out double coordinateY);
 
-                    if (!isNumberX || !isNumberY)
+                    if (!xValidSeparator || !yValidSeparator)
                     {
                         errorText.Text = "Invalid separator specified, check the entered data";
                         break;
