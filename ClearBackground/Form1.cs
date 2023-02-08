@@ -32,10 +32,6 @@ namespace ClearBackground
 
         private void SetPolygon()
         {
-            int userIndexOfX = Int32.Parse(indexOfX.Text);
-            int userIndexOfY = Int32.Parse(indexOfY.Text);
-            string[] separator = { userSeparator.Text };
-
             string polygonPath = txtPolygonPath.Text;
             string[] lines = GetUserData(polygonPath);
             polygon = new PointD[lines.Length];
@@ -48,33 +44,48 @@ namespace ClearBackground
             {
                 for (int i = 0; i < lines.Length; i++)
                 {
-                    if (!lines[i].Contains(separator[0]))
+                    bool xIsNumber = indexOfX.Text.Any(Char.IsNumber);
+                    bool yIsNumber = indexOfY.Text.Any(Char.IsNumber);
+
+                    if (!xIsNumber || !yIsNumber)
                     {
-                        errorText.Text = $"Separator not found in line №{i + 1} of polygon coordinates,\ncorrect or specify the correct separator";
+                        errorText.Text = "Wrong index of cordinates specified, check the entered data";
                         break;
                     }
-
-                    string[] splitCoordinates = lines[i].Split(separator, StringSplitOptions.RemoveEmptyEntries);
-                    bool isNumberX = Double.TryParse(splitCoordinates[userIndexOfX - 1], NumberStyles.Float, CultureInfo.InvariantCulture, out double coordinateX);
-                    bool isNumberY = Double.TryParse(splitCoordinates[userIndexOfY - 1], NumberStyles.Float, CultureInfo.InvariantCulture, out double coordinateY);
-
-                    if (!isNumberX || !isNumberY)
+                    else 
                     {
-                        errorText.Text = "Invalid separator specified, check the entered data";
-                        break;
-                    }
+                        errorText.Text = " ";
 
-                    polygon[i].X = coordinateX;
-                    polygon[i].Y = coordinateY;
+                        int userIndexOfX = Int32.Parse(indexOfX.Text);
+                        int userIndexOfY = Int32.Parse(indexOfY.Text);
+                        string[] separator = { userSeparator.Text };
+
+                        if (!lines[i].Contains(separator[0]))
+                        {
+                            errorText.Text = $"Separator not found in line №{i + 1} of polygon coordinates,\ncorrect or specify the correct separator";
+                            break;
+                        }
+
+                        string[] splitCoordinates = lines[i].Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                        bool isNumberX = Double.TryParse(splitCoordinates[userIndexOfX - 1], NumberStyles.Float, CultureInfo.InvariantCulture, out double coordinateX);
+                        bool isNumberY = Double.TryParse(splitCoordinates[userIndexOfY - 1], NumberStyles.Float, CultureInfo.InvariantCulture, out double coordinateY);
+
+                        if (!isNumberX || !isNumberY)
+                        {
+                            errorText.Text = "Invalid separator specified, check the entered data";
+                            break;
+                        }
+
+                        polygon[i].X = coordinateX;
+                        polygon[i].Y = coordinateY;
+                    }
                 }
             }
         }
 
         private void CheсkAllPoints()
         {
-            int userIndexOfX = Int32.Parse(indexOfX.Text);
-            int userIndexOfY = Int32.Parse(indexOfY.Text);
-            string[] separator = { userSeparator.Text };
+            
 
             string pointsPath = txtPointPath.Text;
             string[] allPoints = GetUserData(pointsPath);
@@ -83,43 +94,60 @@ namespace ClearBackground
 
             for (int i = 0; i < allPoints.Length; i++)
             {
-                if (string.IsNullOrEmpty(allPoints[i]))
+                bool xIsNumber = indexOfX.Text.Any(Char.IsNumber);
+                bool yIsNumber = indexOfY.Text.Any(Char.IsNumber);
+
+                if (!xIsNumber || !yIsNumber)
                 {
-                    Console.WriteLine($"Строка №{i} пустая.");
+                    errorText.Text = "Wrong index of cordinates specified, check the entered data";
                     break;
                 }
-
-                if (!allPoints[i].Contains(separator[0]))
+                else
                 {
-                    errorText.Text = $"Separator not found in line №{i + 1} of points coordinates,\ncorrect or specify the correct separator";
-                    break;
+                    errorText.Text = " ";
+
+                    int userIndexOfX = Int32.Parse(indexOfX.Text);
+                    int userIndexOfY = Int32.Parse(indexOfY.Text);
+                    string[] separator = { userSeparator.Text };
+
+                    if (string.IsNullOrEmpty(allPoints[i]))
+                    {
+                        Console.WriteLine($"Строка №{i} пустая.");
+                        break;
+                    }
+
+                    if (!allPoints[i].Contains(separator[0]))
+                    {
+                        errorText.Text = $"Separator not found in line №{i + 1} of points coordinates,\ncorrect or specify the correct separator";
+                        break;
+                    }
+
+                    string[] splitCoordinates = allPoints[i].Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                    bool isNumberX = Double.TryParse(splitCoordinates[userIndexOfX - 1], NumberStyles.Number, CultureInfo.InvariantCulture, out double coordinateX);
+                    bool isNumberY = Double.TryParse(splitCoordinates[userIndexOfY - 1], NumberStyles.Number, CultureInfo.InvariantCulture, out double coordinateY);
+
+                    if (!isNumberX || !isNumberY)
+                    {
+                        errorText.Text = "Invalid separator specified, check the entered data";
+                        break;
+                    }
+
+                    PointD point = new PointD(coordinateX, coordinateY);
+                    bool result = IsPointInPolygon4(polygon, point);
+
+                    if (result)
+                    {
+                        SaveResult(allPoints[i]);
+                    }
+
+                    if (i == allPoints.Length - 1)
+                    {
+                        Console.WriteLine("Все данные обработаны");
+                    }
+
+                    progressBar1.PerformStep();
                 }
-
-                string[] splitCoordinates = allPoints[i].Split(separator, StringSplitOptions.RemoveEmptyEntries);
-                bool isNumberX = Double.TryParse(splitCoordinates[userIndexOfX - 1], NumberStyles.Number, CultureInfo.InvariantCulture, out double coordinateX);
-                bool isNumberY = Double.TryParse(splitCoordinates[userIndexOfY - 1], NumberStyles.Number, CultureInfo.InvariantCulture, out double coordinateY);
-
-                if (!isNumberX || !isNumberY)
-                {
-                    errorText.Text = "Invalid separator specified, check the entered data";
-                    break;
-                }
-
-                PointD point = new PointD(coordinateX, coordinateY);
-                bool result = IsPointInPolygon4(polygon, point);
-
-                if (result)
-                {
-                    SaveResult(allPoints[i]);
-                }
-
-                if (i == allPoints.Length - 1)
-                {
-                    Console.WriteLine("Все данные обработаны");
-                }
-
-                progressBar1.PerformStep();
-            }
+            } 
         }
 
         private void SaveResult(string line)
