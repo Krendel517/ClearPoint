@@ -4,8 +4,8 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using static System.Windows.Forms.LinkLabel;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+//using static System.Windows.Forms.LinkLabel;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ClearBackground
 {

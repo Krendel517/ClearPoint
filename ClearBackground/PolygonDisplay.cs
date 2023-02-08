@@ -118,7 +118,7 @@ namespace ClearBackground
                 }
                 else
                 {
-                    polygonAfterScale[i].X = polygonAfterScale[i].X - minX - displaceDistanceX;
+                    polygonAfterScale[i].X =  polygonAfterScale[i].X - (minX - displaceDistanceX);
                 }
 
                 polygonAfterScale[i].Y = 220 + displaceDistanceY - polygonAfterScale[i].Y;
