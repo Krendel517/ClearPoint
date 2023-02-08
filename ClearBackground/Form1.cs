@@ -10,7 +10,7 @@ namespace ClearBackground
     public partial class FormWindow : Form
     {
         private string resultPath;
-        PointD[] polygon = new PointD[4];
+        PointD[] polygon;
 
         public FormWindow()
         {
@@ -38,6 +38,7 @@ namespace ClearBackground
 
             string polygonPath = txtPolygonPath.Text;
             string[] lines = GetUserData(polygonPath);
+            polygon = new PointD[lines.Length];
 
             if (lines.Length < 3)
             {
