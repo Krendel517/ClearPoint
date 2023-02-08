@@ -12,6 +12,8 @@ namespace ClearBackground
     {
         PointF[] polygonAfterScale;
 
+        public PointF[] pointFs { get { return polygonAfterScale; } }
+
         private void SetNewPolygon(PointD[] polygon)
         {
 
@@ -91,15 +93,6 @@ namespace ClearBackground
                 polygonAfterScale[i].X = polygonAfterScale[i].X;
                 polygonAfterScale[i].Y = 220 - polygonAfterScale[i].Y;
             }
-
-            DrawPolygon(polygonAfterScale);
-        }
-        
-        private void DrawPolygon(PointF[] polygonAfterScale)
-        {
-            Graphics graphics = pictureBox1.CreateGraphics();
-            Pen pen = new Pen(Color.Red, 1);
-            graphics.DrawPolygon(pen, polygonAfterScale);
         }
     }
 }

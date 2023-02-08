@@ -65,7 +65,15 @@ namespace ClearBackground
 
                 PolygonDisplay polygonDisplay = new PolygonDisplay();
                 polygonDisplay.ScalingPolygon(polygon);
+                Draw(polygonDisplay.pointFs);
             }
+        }
+
+        private void Draw(PointF[] polygonAfterScale)
+        {
+            Graphics graphics = pictureBox1.CreateGraphics();
+            Pen pen = new Pen(Color.Red, 1);
+            graphics.DrawPolygon(pen, polygonAfterScale);
         }
 
         private void CheсkAllPoints()
