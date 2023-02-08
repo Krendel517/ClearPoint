@@ -213,10 +213,10 @@ namespace ClearBackground
             // errorText
             // 
             this.errorText.AutoSize = true;
-            this.errorText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.errorText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.errorText.Location = new System.Drawing.Point(12, 197);
             this.errorText.Name = "errorText";
-            this.errorText.Size = new System.Drawing.Size(13, 20);
+            this.errorText.Size = new System.Drawing.Size(12, 17);
             this.errorText.TabIndex = 15;
             this.errorText.Text = " ";
             // 
