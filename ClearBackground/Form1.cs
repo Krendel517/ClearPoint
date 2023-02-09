@@ -74,6 +74,7 @@ namespace ClearBackground
             Graphics graphics = pictureBox1.CreateGraphics();
             Pen pen = new Pen(Color.White, 1);
             Brush brush = new SolidBrush(Color.White);
+            graphics.Clear(Color.DimGray);
             graphics.DrawPolygon(pen, polygonAfterScale);
             graphics.FillPolygon(brush, polygonAfterScale);
         }

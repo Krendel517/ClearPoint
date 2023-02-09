@@ -137,9 +137,13 @@ namespace ClearBackground
             int multiplicatorX;
             int multiplicatorY;
 
-            if (400 / differenceX > 220 / differenceY)
+            for (int i = 0; i < polygonAfterScale.Length; i++)
             {
-                for (int i = 0; i < polygonAfterScale.Length; i++)
+                if (differenceX * 2 > 400 || differenceY * 2 > 220)
+                {
+                    break;
+                }
+                if (400 / differenceX > 220 / differenceY)
                 {
                     multiplicatorX = Convert.ToInt32(400 / differenceX);
 
@@ -147,11 +151,9 @@ namespace ClearBackground
                     vectorCoordinateY = polygonAfterScale[i].Y - center.Y;
                     polygonAfterScale[i].X = polygonAfterScale[i].X + vectorCoordinateX * (multiplicatorX / 2 - 1);
                     polygonAfterScale[i].Y = polygonAfterScale[i].Y + vectorCoordinateY * (multiplicatorX / 2 - 1);
+
                 }
-            }
-            else if (220 / differenceY > 400 / differenceX)
-            {
-                for (int i = 0; i < polygonAfterScale.Length; i++)
+                else if (220 / differenceY > 400 / differenceX)
                 {
                     multiplicatorY = Convert.ToInt32(220 / differenceY);
 
@@ -159,6 +161,7 @@ namespace ClearBackground
                     vectorCoordinateY = polygonAfterScale[i].Y - center.Y;
                     polygonAfterScale[i].X = polygonAfterScale[i].X + vectorCoordinateX * (multiplicatorY / 2 - 1);
                     polygonAfterScale[i].Y = polygonAfterScale[i].Y + vectorCoordinateY * (multiplicatorY / 2 - 1);
+
                 }
             }
         }
