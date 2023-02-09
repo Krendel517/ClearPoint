@@ -7,7 +7,6 @@ namespace ClearBackground
     public class PolygonDisplay
     {
         PointF[] polygonAfterScale;
-        //Point[] polygonForVector;
 
         public PointF[] pointFs { get { return polygonAfterScale; } }
 
@@ -112,19 +111,56 @@ namespace ClearBackground
 
             for (int i = 0; i < polygonAfterScale.Length; i++)
             {
-                if(displaceDistanceX + minX > 200)
+                if (displaceDistanceX + minX > 200)
                 {
                     polygonAfterScale[i].X = polygonAfterScale[i].X - minX + displaceDistanceX;
                 }
                 else
                 {
-                    polygonAfterScale[i].X =  polygonAfterScale[i].X - (minX - displaceDistanceX);
+                    polygonAfterScale[i].X = polygonAfterScale[i].X - (minX - displaceDistanceX);
                 }
 
                 polygonAfterScale[i].Y = 220 + displaceDistanceY - polygonAfterScale[i].Y;
+            }
 
-                //тут нужно добавить масштабирование для маленьких полигонов
-            }    
+            MakingPolygonBigger(differenceX, differenceY);
+        }
+
+        private void MakingPolygonBigger(float differenceX, float differenceY)
+        {
+            //тут нужно добавить масштабирование для маленьких полигонов
+            //От каждого угла полигона отнимаю координаты центральной точки бокса, получаю вектор,
+            //который прибавляю к координате той же точки, таким образом увеличиваю полигона
+            PointF center = new PointF(200, 110);
+            float vectorCoordinateX;
+            float vectorCoordinateY;
+            int multiplicatorX;
+            int multiplicatorY;
+
+            if (400 / differenceX > 220 / differenceY)
+            {
+                for (int i = 0; i < polygonAfterScale.Length; i++)
+                {
+                    multiplicatorX = Convert.ToInt32(400 / differenceX);
+
+                    vectorCoordinateX = polygonAfterScale[i].X - center.X;
+                    vectorCoordinateY = polygonAfterScale[i].Y - center.Y;
+                    polygonAfterScale[i].X = polygonAfterScale[i].X + vectorCoordinateX * (multiplicatorX / 2 - 1);
+                    polygonAfterScale[i].Y = polygonAfterScale[i].Y + vectorCoordinateY * (multiplicatorX / 2 - 1);
+                }
+            }
+            else if (220 / differenceY > 400 / differenceX)
+            {
+                for (int i = 0; i < polygonAfterScale.Length; i++)
+                {
+                    multiplicatorY = Convert.ToInt32(220 / differenceY);
+
+                    vectorCoordinateX = polygonAfterScale[i].X - center.X;
+                    vectorCoordinateY = polygonAfterScale[i].Y - center.Y;
+                    polygonAfterScale[i].X = polygonAfterScale[i].X + vectorCoordinateX * (multiplicatorY / 2 - 1);
+                    polygonAfterScale[i].Y = polygonAfterScale[i].Y + vectorCoordinateY * (multiplicatorY / 2 - 1);
+                }
+            }
         }
     }
 }
