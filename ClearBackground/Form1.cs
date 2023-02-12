@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ClearBackground
 {
-    public partial class Form1 : Form
+    public partial class FormWindow : Form
     {
-        private const string resultPath = @"C:\Users\d1mon\Desktop\TestClearBackground.txt";
-        private const string pointsPath = @"C:\Users\d1mon\Desktop\coordinates_Cityes.txt";
-        private const string polygonPath = @"C:\Users\d1mon\Desktop\Polygon.txt";
-        PointF[] polygon = new PointF[4];
+        private string resultPath;
+        PointD[] polygon;
 
-        public Form1()
+        public FormWindow()
         {
             InitializeComponent();
         }
@@ -22,7 +20,7 @@ namespace ClearBackground
         private void button1_Click(object sender, EventArgs e)
         {
             SetPolygon();
-            ChekAllPoints();
+            CheсkAllPoints();
         }
 
         private string[] GetUserData(string path)
@@ -34,7 +32,14 @@ namespace ClearBackground
 
         private void SetPolygon()
         {
+            int userIndexOfX = Int32.Parse(indexOfX.Text);
+            int userIndexOfY = Int32.Parse(indexOfY.Text);
+            string[] separator = { userSeparator.Text };
+
+            string polygonPath = txtPolygonPath.Text;
             string[] lines = GetUserData(polygonPath);
+            polygon = new PointD[lines.Length];
+
             if (lines.Length < 3)
             {
                 Console.WriteLine("Введите минимум 3 точки полигона.");
@@ -43,18 +48,38 @@ namespace ClearBackground
             {
                 for (int i = 0; i < lines.Length; i++)
                 {
-                    string[] splitCoordinates = lines[i].Split(' ');
-                    float coordinatesX = float.Parse(splitCoordinates[1], CultureInfo.InvariantCulture);
-                    float coordinatesY = float.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
-                    polygon[i].X = coordinatesX;
-                    polygon[i].Y = coordinatesY;
+                    if (!lines[i].Contains(separator[0]))
+                    {
+                        errorText.Text = $"Separator not found in line №{i + 1} of polygon coordinates,\ncorrect or specify the correct separator";
+                        break;
+                    }
+
+                    string[] splitCoordinates = lines[i].Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                    bool isNumberX = Double.TryParse(splitCoordinates[userIndexOfX - 1], NumberStyles.Float, CultureInfo.InvariantCulture, out double coordinateX);
+                    bool isNumberY = Double.TryParse(splitCoordinates[userIndexOfY - 1], NumberStyles.Float, CultureInfo.InvariantCulture, out double coordinateY);
+
+                    if (!isNumberX || !isNumberY)
+                    {
+                        errorText.Text = "Invalid separator specified, check the entered data";
+                        break;
+                    }
+
+                    polygon[i].X = coordinateX;
+                    polygon[i].Y = coordinateY;
                 }
             }
         }
 
-        private void ChekAllPoints()
+        private void CheсkAllPoints()
         {
+            int userIndexOfX = Int32.Parse(indexOfX.Text);
+            int userIndexOfY = Int32.Parse(indexOfY.Text);
+            string[] separator = { userSeparator.Text };
+
+            string pointsPath = txtPointPath.Text;
             string[] allPoints = GetUserData(pointsPath);
+
+            InitializeProgressBar(allPoints);
 
             for (int i = 0; i < allPoints.Length; i++)
             {
@@ -64,29 +89,47 @@ namespace ClearBackground
                     break;
                 }
 
-                string[] splitCoordinates = allPoints[i].Split(' ');
-                float coordinateX = float.Parse(splitCoordinates[1], CultureInfo.InvariantCulture);
-                float coordinateY = float.Parse(splitCoordinates[2], CultureInfo.InvariantCulture);
+                if (!allPoints[i].Contains(separator[0]))
+                {
+                    errorText.Text = $"Separator not found in line №{i + 1} of points coordinates,\ncorrect or specify the correct separator";
+                    break;
+                }
 
-                PointF point = new PointF(coordinateX, coordinateY);
+                string[] splitCoordinates = allPoints[i].Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                bool isNumberX = Double.TryParse(splitCoordinates[userIndexOfX - 1], NumberStyles.Number, CultureInfo.InvariantCulture, out double coordinateX);
+                bool isNumberY = Double.TryParse(splitCoordinates[userIndexOfY - 1], NumberStyles.Number, CultureInfo.InvariantCulture, out double coordinateY);
+
+                if (!isNumberX || !isNumberY)
+                {
+                    errorText.Text = "Invalid separator specified, check the entered data";
+                    break;
+                }
+
+                PointD point = new PointD(coordinateX, coordinateY);
                 bool result = IsPointInPolygon4(polygon, point);
-                SaveResult(allPoints[i], result);
+
+                if (result)
+                {
+                    SaveResult(allPoints[i]);
+                }
 
                 if (i == allPoints.Length - 1)
                 {
                     Console.WriteLine("Все данные обработаны");
                 }
+
+                progressBar1.PerformStep();
             }
         }
 
-        private void SaveResult(string line, bool result)
+        private void SaveResult(string line)
         {
             using (FileStream file = new FileStream(resultPath, FileMode.Append))
             using (StreamWriter writer = new StreamWriter(file))
-                writer.WriteLine(result);
+            writer.WriteLine(line);
         }
 
-        private bool IsPointInPolygon4(PointF[] currentPolygon, PointF currentPoint)
+        private bool IsPointInPolygon4(PointD[] currentPolygon, PointD currentPoint)
         {
             bool result = false;
             int j = currentPolygon.Count() - 1;
@@ -102,6 +145,97 @@ namespace ClearBackground
                 j = i;
             }
             return result;
+        }
+
+        private void InitializeProgressBar(string[] allPoints)
+        {
+            progressBar1.Visible = true;
+            progressBar1.Minimum = 1;
+            progressBar1.Maximum = allPoints.Length;
+            progressBar1.Value = 1;
+            progressBar1.Step = 1;
+        }
+
+        private void btnOpenPoint_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog pathRead = new OpenFileDialog())
+            {
+                if (pathRead.ShowDialog() == DialogResult.OK)
+                {
+                    txtPointPath.Text = pathRead.FileName;
+                }
+            }
+        }
+
+        private void btnOpenPolygon_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog pathRead = new OpenFileDialog())
+            {
+                if (pathRead.ShowDialog() == DialogResult.OK)
+                {
+                    txtPolygonPath.Text = pathRead.FileName;
+                }
+            }
+        }
+
+        private void btnAddPath_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                checkPath.Text = folderBrowserDialog.SelectedPath;
+                resultPath = folderBrowserDialog.SelectedPath;
+            }
+
+            string fileName = "Result.txt";
+            resultPath = Path.Combine(resultPath, fileName);
+            var resultfile = File.Create(resultPath);
+            resultfile.Close();
+        }
+
+        private void FormWindow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkPath_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void indexOfX_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void indexOfY_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

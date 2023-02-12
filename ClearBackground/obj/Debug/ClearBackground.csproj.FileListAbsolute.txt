@@ -18,3 +18,25 @@ E:\UnityProject\ClearPoint\ClearPoint\ClearBackground\obj\Debug\ClearBackground.
 E:\UnityProject\ClearPoint\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.CoreCompileInputs.cache
 E:\UnityProject\ClearPoint\ClearPoint\ClearBackground\obj\Debug\ClearBackground.exe
 E:\UnityProject\ClearPoint\ClearPoint\ClearBackground\obj\Debug\ClearBackground.pdb
+F:\Github Clone Repos\ClearPoint\ClearBackground\bin\Debug\ClearBackground.exe.config
+F:\Github Clone Repos\ClearPoint\ClearBackground\bin\Debug\ClearBackground.exe
+F:\Github Clone Repos\ClearPoint\ClearBackground\bin\Debug\ClearBackground.pdb
+F:\Github Clone Repos\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.AssemblyReference.cache
+F:\Github Clone Repos\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.SuggestedBindingRedirects.cache
+F:\Github Clone Repos\ClearPoint\ClearBackground\obj\Debug\ClearBackground.Properties.Resources.resources
+F:\Github Clone Repos\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.GenerateResource.cache
+F:\Github Clone Repos\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.CoreCompileInputs.cache
+F:\Github Clone Repos\ClearPoint\ClearBackground\obj\Debug\ClearBackground.exe
+F:\Github Clone Repos\ClearPoint\ClearBackground\obj\Debug\ClearBackground.pdb
+F:\Github Clone Repos\ClearPoint\ClearBackground\obj\Debug\ClearBackground.FormWindow.resources
+C:\Users\sasha\OneDrive\Documents\GitHub\ClearPoint\ClearBackground\bin\Debug\ClearBackground.exe.config
+C:\Users\sasha\OneDrive\Documents\GitHub\ClearPoint\ClearBackground\bin\Debug\ClearBackground.exe
+C:\Users\sasha\OneDrive\Documents\GitHub\ClearPoint\ClearBackground\bin\Debug\ClearBackground.pdb
+C:\Users\sasha\OneDrive\Documents\GitHub\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.AssemblyReference.cache
+C:\Users\sasha\OneDrive\Documents\GitHub\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.SuggestedBindingRedirects.cache
+C:\Users\sasha\OneDrive\Documents\GitHub\ClearPoint\ClearBackground\obj\Debug\ClearBackground.FormWindow.resources
+C:\Users\sasha\OneDrive\Documents\GitHub\ClearPoint\ClearBackground\obj\Debug\ClearBackground.Properties.Resources.resources
+C:\Users\sasha\OneDrive\Documents\GitHub\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.GenerateResource.cache
+C:\Users\sasha\OneDrive\Documents\GitHub\ClearPoint\ClearBackground\obj\Debug\ClearBackground.csproj.CoreCompileInputs.cache
+C:\Users\sasha\OneDrive\Documents\GitHub\ClearPoint\ClearBackground\obj\Debug\ClearBackground.exe
+C:\Users\sasha\OneDrive\Documents\GitHub\ClearPoint\ClearBackground\obj\Debug\ClearBackground.pdb
