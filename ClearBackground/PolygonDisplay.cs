@@ -6,161 +6,175 @@ namespace ClearBackground
 {
     public class PolygonDisplay
     {
-        PointF[] polygonAfterScale;
+        private bool needToScaleX = false;
+        private bool needToScaleY = false;
+        private float xAxisSizeOfPolygon;
+        private float yAxisSizeOfPolygon;
+        private PointF[] polygonPointsAfterScale;
+        private float[] scaleCoefficientX;
+        private float[] scaleCoefficientY;
+        private float heightOfPicture = 220;
+        private float widthOfPicture = 400;
+        private PointF centerOfPicturebox = new PointF(200, 110);
 
-        public PointF[] pointFs { get { return polygonAfterScale; } }
+        public PointF[] PolygonPoints => polygonPointsAfterScale;
 
-        private void SetNewPolygon(PointD[] polygon)
+        public void ScalingPolygon(PointD[] polygon)
         {
+            SetPolygon(polygon);
+            CheckScalingForX();
+            XReductionToCoordinateSystem();
+            CheckScalingForY();
+            YReductionToCoordinateSystem();
+            CenteringPolygon();
+            StretchingPolygon();
+        }
 
-            polygonAfterScale = new PointF[polygon.Length];
+        private void SetPolygon(PointD[] polygon)
+        {
+            polygonPointsAfterScale = new PointF[polygon.Length];
 
             for (int i = 0; i < polygon.Length; i++)
             {
                 float simpleX = Convert.ToSingle(polygon[i].X);
                 float simpleY = Convert.ToSingle(polygon[i].Y);
-                polygonAfterScale[i].X = simpleX;
-                polygonAfterScale[i].Y = simpleY;
+                polygonPointsAfterScale[i].X = simpleX;
+                polygonPointsAfterScale[i].Y = simpleY;
             }
+
+            scaleCoefficientX = new float[polygon.Length];
+            scaleCoefficientY = new float[polygon.Length];
         }
 
-        public void ScalingPolygon(PointD[] polygon)
+        private void CheckScalingForX()
         {
-            SetNewPolygon(polygon);
-
-            bool needToScaleX = false;
-            bool needToScaleY = false;
-            float[] scaleCoefficientX = new float[polygon.Length];
-            float[] scaleCoefficientY = new float[polygon.Length];
-
-            float[] coordinateYAfterScale = new float[polygon.Length];
-            float[] coordinateXAfterScale = new float[polygon.Length];
-            //max x=400 max y=220
-
-            for (int i = 0; i < polygonAfterScale.Length; i++)
+            for (int i = 0; i < polygonPointsAfterScale.Length; i++)
             {
-                if (polygonAfterScale[i].X > 400)
+                if (polygonPointsAfterScale[i].X > widthOfPicture)
                 {
                     needToScaleX = true;
                     break;
                 }
             }
+        }
 
-            if (needToScaleX)
+        private void CheckScalingForY()
+        {
+            for (int i = 0; i < polygonPointsAfterScale.Length; i++)
             {
-                for (int i = 0; i < polygonAfterScale.Length; i++)
-                {
-                    scaleCoefficientX[i] = polygonAfterScale[i].X / 400;
-                }
-
-                float maxScaleX = scaleCoefficientX.Max();
-
-                for (int i = 0; i < polygonAfterScale.Length; i++)
-                {
-                    polygonAfterScale[i].X = polygonAfterScale[i].X / maxScaleX;
-                    polygonAfterScale[i].Y = polygonAfterScale[i].Y / maxScaleX;
-                }
-            }
-
-            for (int i = 0; i < polygonAfterScale.Length; i++)
-            {
-                if (polygonAfterScale[i].Y > 220)
+                if (polygonPointsAfterScale[i].Y > heightOfPicture)
                 {
                     needToScaleY = true;
                     break;
                 }
             }
+        }
 
+        private void XReductionToCoordinateSystem()
+        {
+            if (needToScaleX)
+            {
+                for (int i = 0; i < polygonPointsAfterScale.Length; i++)
+                {
+                    scaleCoefficientX[i] = polygonPointsAfterScale[i].X / widthOfPicture;
+                }
+
+                float maxScaleX = scaleCoefficientX.Max();
+
+                for (int i = 0; i < polygonPointsAfterScale.Length; i++)
+                {
+                    polygonPointsAfterScale[i].X = polygonPointsAfterScale[i].X / maxScaleX;
+                    polygonPointsAfterScale[i].Y = polygonPointsAfterScale[i].Y / maxScaleX;
+                }
+            }
+        }
+
+        private void YReductionToCoordinateSystem()
+        {
             if (needToScaleY)
             {
-                for (int i = 0; i < polygonAfterScale.Length; i++)
+                for (int i = 0; i < polygonPointsAfterScale.Length; i++)
                 {
-                    scaleCoefficientY[i] = polygonAfterScale[i].Y / 220;
+                    scaleCoefficientY[i] = polygonPointsAfterScale[i].Y / heightOfPicture;
                 }
 
                 float maxScaleY = scaleCoefficientY.Max();
 
-                for (int i = 0; i < polygonAfterScale.Length; i++)
+                for (int i = 0; i < polygonPointsAfterScale.Length; i++)
                 {
-                    polygonAfterScale[i].X = polygonAfterScale[i].X / maxScaleY;
-                    polygonAfterScale[i].Y = polygonAfterScale[i].Y / maxScaleY;
+                    polygonPointsAfterScale[i].X = polygonPointsAfterScale[i].X / maxScaleY;
+                    polygonPointsAfterScale[i].Y = polygonPointsAfterScale[i].Y / maxScaleY;
                 }
             }
+        }
 
-            for (int i = 0; i < polygonAfterScale.Length; i++)
+        private void CenteringPolygon()
+        {
+            float[] coordinateYAfterScale = new float[polygonPointsAfterScale.Length];
+            float[] coordinateXAfterScale = new float[polygonPointsAfterScale.Length];
+
+            for (int i = 0; i < polygonPointsAfterScale.Length; i++)
             {
-                coordinateYAfterScale[i] = polygonAfterScale[i].Y;
+                coordinateYAfterScale[i] = polygonPointsAfterScale[i].Y;
             }
 
-            for (int i = 0; i < polygonAfterScale.Length; i++)
+            for (int i = 0; i < polygonPointsAfterScale.Length; i++)
             {
-                coordinateXAfterScale[i] = polygonAfterScale[i].X;
+                coordinateXAfterScale[i] = polygonPointsAfterScale[i].X;
             }
-
-            //max x=400 max y=220
 
             float maxY = coordinateYAfterScale.Max();
             float minY = coordinateYAfterScale.Min();
-            float differenceY = maxY - minY;
-            float displaceDistanceY = (220 - differenceY) / 2;
+            yAxisSizeOfPolygon = maxY - minY;
+            float displaceDistanceY = (heightOfPicture - yAxisSizeOfPolygon) / 2;
 
             float maxX = coordinateXAfterScale.Max();
             float minX = coordinateXAfterScale.Min();
-            float differenceX = maxX - minX;
-            float displaceDistanceX = (400 - differenceX) / 2;
+            xAxisSizeOfPolygon = maxX - minX;
+            float displaceDistanceX = (widthOfPicture - xAxisSizeOfPolygon) / 2;
 
-            for (int i = 0; i < polygonAfterScale.Length; i++)
+            for (int i = 0; i < polygonPointsAfterScale.Length; i++)
             {
-                if (displaceDistanceX + minX > 200)
-                {
-                    polygonAfterScale[i].X = polygonAfterScale[i].X - minX + displaceDistanceX;
-                }
-                else
-                {
-                    polygonAfterScale[i].X = polygonAfterScale[i].X - (minX - displaceDistanceX);
-                }
-
-                polygonAfterScale[i].Y = 220 + displaceDistanceY - polygonAfterScale[i].Y;
+                polygonPointsAfterScale[i].X = polygonPointsAfterScale[i].X - minX + displaceDistanceX;
+                polygonPointsAfterScale[i].Y = polygonPointsAfterScale[i].Y * (-1) + maxY + displaceDistanceY;
             }
-
-            MakingPolygonBigger(differenceX, differenceY);
         }
 
-        private void MakingPolygonBigger(float differenceX, float differenceY)
+        private void StretchingPolygon()
         {
-            //тут нужно добавить масштабирование для маленьких полигонов
-            //От каждого угла полигона отнимаю координаты центральной точки бокса, получаю вектор,
-            //который прибавляю к координате той же точки, таким образом увеличиваю полигона
-            PointF center = new PointF(200, 110);
             float vectorCoordinateX;
             float vectorCoordinateY;
-            int multiplicatorX;
-            int multiplicatorY;
+            int preventingOverscale = 1;
+            float doubledPolygonSizeX = xAxisSizeOfPolygon * 2;
+            float doubledPolygonSizeY = yAxisSizeOfPolygon * 2;
 
-            for (int i = 0; i < polygonAfterScale.Length; i++)
+            for (int i = 0; i < polygonPointsAfterScale.Length; i++)
             {
-                if (differenceX * 2 > 400 || differenceY * 2 > 220)
+                if (doubledPolygonSizeX > widthOfPicture || doubledPolygonSizeY > heightOfPicture)
                 {
                     break;
                 }
-                if (400 / differenceX > 220 / differenceY)
-                {
-                    multiplicatorX = Convert.ToInt32(400 / differenceX);
 
-                    vectorCoordinateX = polygonAfterScale[i].X - center.X;
-                    vectorCoordinateY = polygonAfterScale[i].Y - center.Y;
-                    polygonAfterScale[i].X = polygonAfterScale[i].X + vectorCoordinateX * (multiplicatorX / 2 - 1);
-                    polygonAfterScale[i].Y = polygonAfterScale[i].Y + vectorCoordinateY * (multiplicatorX / 2 - 1);
+                if (widthOfPicture / xAxisSizeOfPolygon > heightOfPicture / yAxisSizeOfPolygon)
+                {
+                    int xSizeDifference = Convert.ToInt32(widthOfPicture / xAxisSizeOfPolygon);
+                    int halfSizeDifferenceX = xSizeDifference / 2;
+
+                    vectorCoordinateX = polygonPointsAfterScale[i].X - centerOfPicturebox.X;
+                    vectorCoordinateY = polygonPointsAfterScale[i].Y - centerOfPicturebox.Y;
+                    polygonPointsAfterScale[i].X = polygonPointsAfterScale[i].X + vectorCoordinateX * (halfSizeDifferenceX - preventingOverscale);
+                    polygonPointsAfterScale[i].Y = polygonPointsAfterScale[i].Y + vectorCoordinateY * (halfSizeDifferenceX - preventingOverscale);
 
                 }
-                else if (220 / differenceY > 400 / differenceX)
+                else if (heightOfPicture / yAxisSizeOfPolygon > widthOfPicture / xAxisSizeOfPolygon)
                 {
-                    multiplicatorY = Convert.ToInt32(220 / differenceY);
+                    int ySizeDifference = Convert.ToInt32(heightOfPicture / yAxisSizeOfPolygon);
+                    int halfSizeDifferenceY = ySizeDifference / 2;
 
-                    vectorCoordinateX = polygonAfterScale[i].X - center.X;
-                    vectorCoordinateY = polygonAfterScale[i].Y - center.Y;
-                    polygonAfterScale[i].X = polygonAfterScale[i].X + vectorCoordinateX * (multiplicatorY / 2 - 1);
-                    polygonAfterScale[i].Y = polygonAfterScale[i].Y + vectorCoordinateY * (multiplicatorY / 2 - 1);
+                    vectorCoordinateX = polygonPointsAfterScale[i].X - centerOfPicturebox.X;
+                    vectorCoordinateY = polygonPointsAfterScale[i].Y - centerOfPicturebox.Y;
+                    polygonPointsAfterScale[i].X = polygonPointsAfterScale[i].X + vectorCoordinateX * (halfSizeDifferenceY - preventingOverscale);
+                    polygonPointsAfterScale[i].Y = polygonPointsAfterScale[i].Y + vectorCoordinateY * (halfSizeDifferenceY - preventingOverscale);
 
                 }
             }

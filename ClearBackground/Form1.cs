@@ -65,7 +65,7 @@ namespace ClearBackground
 
                 PolygonDisplay polygonDisplay = new PolygonDisplay();
                 polygonDisplay.ScalingPolygon(polygon);
-                Draw(polygonDisplay.pointFs);
+                Draw(polygonDisplay.PolygonPoints);
             }
         }
 
