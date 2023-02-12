@@ -57,9 +57,10 @@ namespace ClearBackground
             // ReadFile
             // 
             this.ReadFile.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ReadFile.Location = new System.Drawing.Point(422, 167);
+            this.ReadFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ReadFile.Location = new System.Drawing.Point(455, 195);
             this.ReadFile.Name = "ReadFile";
-            this.ReadFile.Size = new System.Drawing.Size(125, 50);
+            this.ReadFile.Size = new System.Drawing.Size(92, 50);
             this.ReadFile.TabIndex = 0;
             this.ReadFile.Text = "Start";
             this.ReadFile.UseVisualStyleBackColor = true;
@@ -67,23 +68,24 @@ namespace ClearBackground
             // 
             // txtPointPath
             // 
-            this.txtPointPath.Location = new System.Drawing.Point(12, 23);
+            this.txtPointPath.Location = new System.Drawing.Point(12, 25);
             this.txtPointPath.Name = "txtPointPath";
             this.txtPointPath.Size = new System.Drawing.Size(437, 20);
             this.txtPointPath.TabIndex = 1;
             // 
             // txtPolygonPath
             // 
-            this.txtPolygonPath.Location = new System.Drawing.Point(12, 71);
+            this.txtPolygonPath.Location = new System.Drawing.Point(12, 85);
             this.txtPolygonPath.Name = "txtPolygonPath";
             this.txtPolygonPath.Size = new System.Drawing.Size(437, 20);
             this.txtPolygonPath.TabIndex = 2;
             // 
             // btnOpenPoint
             // 
-            this.btnOpenPoint.Location = new System.Drawing.Point(455, 18);
+            this.btnOpenPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnOpenPoint.Location = new System.Drawing.Point(455, 20);
             this.btnOpenPoint.Name = "btnOpenPoint";
-            this.btnOpenPoint.Size = new System.Drawing.Size(92, 28);
+            this.btnOpenPoint.Size = new System.Drawing.Size(92, 30);
             this.btnOpenPoint.TabIndex = 3;
             this.btnOpenPoint.Text = "Open Point";
             this.btnOpenPoint.UseVisualStyleBackColor = true;
@@ -91,9 +93,10 @@ namespace ClearBackground
             // 
             // btnOpenPolygon
             // 
-            this.btnOpenPolygon.Location = new System.Drawing.Point(455, 66);
+            this.btnOpenPolygon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnOpenPolygon.Location = new System.Drawing.Point(455, 80);
             this.btnOpenPolygon.Name = "btnOpenPolygon";
-            this.btnOpenPolygon.Size = new System.Drawing.Size(92, 28);
+            this.btnOpenPolygon.Size = new System.Drawing.Size(92, 30);
             this.btnOpenPolygon.TabIndex = 4;
             this.btnOpenPolygon.Text = "Open Polygon";
             this.btnOpenPolygon.UseVisualStyleBackColor = true;
@@ -102,37 +105,40 @@ namespace ClearBackground
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 7);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(12, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 13);
+            this.label1.Size = new System.Drawing.Size(173, 17);
             this.label1.TabIndex = 5;
             this.label1.Text = "Path to points coordinates";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(9, 142);
+            this.label3.Location = new System.Drawing.Point(12, 170);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(353, 16);
+            this.label3.Size = new System.Drawing.Size(381, 17);
             this.label3.TabIndex = 7;
             this.label3.Text = "Attention! The coordinates must be in the correct sequence";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 103);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(12, 125);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(114, 13);
+            this.label4.Size = new System.Drawing.Size(155, 17);
             this.label4.TabIndex = 10;
             this.label4.Text = "Add folder for result file";
             // 
             // btnAddPath
             // 
-            this.btnAddPath.Location = new System.Drawing.Point(455, 114);
+            this.btnAddPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnAddPath.Location = new System.Drawing.Point(455, 140);
             this.btnAddPath.Name = "btnAddPath";
-            this.btnAddPath.Size = new System.Drawing.Size(92, 28);
+            this.btnAddPath.Size = new System.Drawing.Size(92, 30);
             this.btnAddPath.TabIndex = 9;
             this.btnAddPath.Text = "Open Folder";
             this.btnAddPath.UseVisualStyleBackColor = true;
@@ -140,7 +146,7 @@ namespace ClearBackground
             // 
             // checkPath
             // 
-            this.checkPath.Location = new System.Drawing.Point(12, 119);
+            this.checkPath.Location = new System.Drawing.Point(12, 145);
             this.checkPath.Name = "checkPath";
             this.checkPath.Size = new System.Drawing.Size(437, 20);
             this.checkPath.TabIndex = 8;
@@ -149,17 +155,19 @@ namespace ClearBackground
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 55);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(12, 65);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(144, 13);
+            this.label2.Size = new System.Drawing.Size(192, 17);
             this.label2.TabIndex = 11;
             this.label2.Text = "Path to polygons coordinates";
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(422, 223);
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnExit.Location = new System.Drawing.Point(455, 250);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.Size = new System.Drawing.Size(92, 25);
             this.btnExit.TabIndex = 19;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -167,9 +175,9 @@ namespace ClearBackground
             // 
             // indexOfX
             // 
-            this.indexOfX.Location = new System.Drawing.Point(12, 170);
+            this.indexOfX.Location = new System.Drawing.Point(12, 195);
             this.indexOfX.Name = "indexOfX";
-            this.indexOfX.Size = new System.Drawing.Size(38, 20);
+            this.indexOfX.Size = new System.Drawing.Size(40, 20);
             this.indexOfX.TabIndex = 12;
             this.indexOfX.Text = "#X";
             this.indexOfX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -180,9 +188,9 @@ namespace ClearBackground
             // 
             // indexOfY
             // 
-            this.indexOfY.Location = new System.Drawing.Point(56, 170);
+            this.indexOfY.Location = new System.Drawing.Point(62, 195);
             this.indexOfY.Name = "indexOfY";
-            this.indexOfY.Size = new System.Drawing.Size(38, 20);
+            this.indexOfY.Size = new System.Drawing.Size(40, 20);
             this.indexOfY.TabIndex = 13;
             this.indexOfY.Text = "#Y";
             this.indexOfY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -193,9 +201,9 @@ namespace ClearBackground
             // 
             // userSeparator
             // 
-            this.userSeparator.Location = new System.Drawing.Point(100, 170);
+            this.userSeparator.Location = new System.Drawing.Point(112, 195);
             this.userSeparator.Name = "userSeparator";
-            this.userSeparator.Size = new System.Drawing.Size(56, 20);
+            this.userSeparator.Size = new System.Drawing.Size(55, 20);
             this.userSeparator.TabIndex = 14;
             this.userSeparator.Text = "Separator";
             this.userSeparator.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -217,18 +225,20 @@ namespace ClearBackground
             // errorText
             // 
             this.errorText.AutoSize = true;
+            this.errorText.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.errorText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.errorText.Location = new System.Drawing.Point(12, 197);
+            this.errorText.Location = new System.Drawing.Point(12, 230);
             this.errorText.Name = "errorText";
             this.errorText.Size = new System.Drawing.Size(13, 20);
             this.errorText.TabIndex = 15;
             this.errorText.Text = " ";
+            this.errorText.Click += new System.EventHandler(this.errorText_Click);
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(193, 167);
+            this.progressBar1.Location = new System.Drawing.Point(200, 195);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(192, 23);
+            this.progressBar1.Size = new System.Drawing.Size(200, 20);
             this.progressBar1.TabIndex = 20;
             this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
             // 
@@ -297,8 +307,10 @@ namespace ClearBackground
             this.Controls.Add(this.txtPolygonPath);
             this.Controls.Add(this.txtPointPath);
             this.Controls.Add(this.ReadFile);
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormWindow";
-            this.Text = "Form1";
+            this.Text = "Clear Point";
             this.Load += new System.EventHandler(this.FormWindow_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
