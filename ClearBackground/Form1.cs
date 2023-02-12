@@ -42,7 +42,7 @@ namespace ClearBackground
 
             if (lines.Length < 3)
             {
-                Console.WriteLine("Введите минимум 3 точки полигона.");
+                errorText.Text = "Enter at least 3 polygon points";
             }
             else
             {
@@ -85,7 +85,7 @@ namespace ClearBackground
             {
                 if (string.IsNullOrEmpty(allPoints[i]))
                 {
-                    Console.WriteLine($"Строка №{i} пустая.");
+                    errorText.Text = $"Line №{i} is empty.";
                     break;
                 }
 
