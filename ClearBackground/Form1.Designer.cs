@@ -30,6 +30,7 @@ namespace ClearBackground
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormWindow));
             this.ReadFile = new System.Windows.Forms.Button();
             this.txtPointPath = new System.Windows.Forms.TextBox();
             this.txtPolygonPath = new System.Windows.Forms.TextBox();
@@ -48,6 +49,9 @@ namespace ClearBackground
             this.toolTipIndexAndSeparator = new System.Windows.Forms.ToolTip(this.components);
             this.errorText = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.PPointsOkLbl = new System.Windows.Forms.Label();
+            this.CPointsOkLbl = new System.Windows.Forms.Label();
+            this.savedLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ReadFile
@@ -228,12 +232,54 @@ namespace ClearBackground
             this.progressBar1.TabIndex = 20;
             this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
             // 
+            // PPointsOkLbl
+            // 
+            this.PPointsOkLbl.AutoSize = true;
+            this.PPointsOkLbl.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.PPointsOkLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PPointsOkLbl.ForeColor = System.Drawing.Color.Green;
+            this.PPointsOkLbl.Location = new System.Drawing.Point(12, 105);
+            this.PPointsOkLbl.Name = "PPointsOkLbl";
+            this.PPointsOkLbl.Size = new System.Drawing.Size(10, 13);
+            this.PPointsOkLbl.TabIndex = 21;
+            this.PPointsOkLbl.Text = " ";
+            this.PPointsOkLbl.Click += new System.EventHandler(this.PPointsOkLbl_Click);
+            // 
+            // CPointsOkLbl
+            // 
+            this.CPointsOkLbl.AutoSize = true;
+            this.CPointsOkLbl.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.CPointsOkLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CPointsOkLbl.ForeColor = System.Drawing.Color.Green;
+            this.CPointsOkLbl.Location = new System.Drawing.Point(12, 45);
+            this.CPointsOkLbl.Name = "CPointsOkLbl";
+            this.CPointsOkLbl.Size = new System.Drawing.Size(10, 13);
+            this.CPointsOkLbl.TabIndex = 22;
+            this.CPointsOkLbl.Text = " ";
+            this.CPointsOkLbl.Click += new System.EventHandler(this.CPointsOkLbl_Click);
+            // 
+            // savedLbl
+            // 
+            this.savedLbl.AutoSize = true;
+            this.savedLbl.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.savedLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.savedLbl.ForeColor = System.Drawing.Color.Green;
+            this.savedLbl.Location = new System.Drawing.Point(200, 215);
+            this.savedLbl.Name = "savedLbl";
+            this.savedLbl.Size = new System.Drawing.Size(10, 13);
+            this.savedLbl.TabIndex = 24;
+            this.savedLbl.Text = " ";
+            this.savedLbl.Click += new System.EventHandler(this.savedLbl_Click);
+            // 
             // FormWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(559, 257);
+            this.ClientSize = new System.Drawing.Size(559, 281);
+            this.Controls.Add(this.savedLbl);
+            this.Controls.Add(this.CPointsOkLbl);
+            this.Controls.Add(this.PPointsOkLbl);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.errorText);
             this.Controls.Add(this.userSeparator);
@@ -279,6 +325,9 @@ namespace ClearBackground
         private System.Windows.Forms.ToolTip toolTipIndexAndSeparator;
         private System.Windows.Forms.Label errorText;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label PPointsOkLbl;
+        private System.Windows.Forms.Label CPointsOkLbl;
+        private System.Windows.Forms.Label savedLbl;
     }
 }
 

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ClearBackground
@@ -66,6 +68,8 @@ namespace ClearBackground
 
                     polygon[i].X = coordinateX;
                     polygon[i].Y = coordinateY;
+
+                    CPointsOkLbl.Text = $"Polygon coordinates from {lines.Length} points are read";                  
                 }
             }
         }
@@ -80,6 +84,8 @@ namespace ClearBackground
             string[] allPoints = GetUserData(pointsPath);
 
             InitializeProgressBar(allPoints);
+
+            PPointsOkLbl.Text = $"Coordinates of {allPoints.Length} test points are read";
 
             for (int i = 0; i < allPoints.Length; i++)
             {
@@ -113,12 +119,8 @@ namespace ClearBackground
                     SaveResult(allPoints[i]);
                 }
 
-                if (i == allPoints.Length - 1)
-                {
-                    Console.WriteLine("Все данные обработаны");
-                }
-
                 progressBar1.PerformStep();
+                savedLbl.Text = "Result is saved!";
             }
         }
 
@@ -144,6 +146,7 @@ namespace ClearBackground
                 }
                 j = i;
             }
+
             return result;
         }
 
@@ -234,6 +237,26 @@ namespace ClearBackground
         }
 
         private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void errorText_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PPointsOkLbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CPointsOkLbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void savedLbl_Click(object sender, EventArgs e)
         {
 
         }
