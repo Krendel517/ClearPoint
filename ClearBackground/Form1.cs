@@ -179,8 +179,7 @@ namespace ClearBackground
             {
                 errorText.Text = $"Check folder path";
             }
-
-            if (resultPath == folderBrowserDialog.SelectedPath)
+            else
             {
                 string fileName = "Result.txt";
                 resultPath = Path.Combine(resultPath, fileName);
