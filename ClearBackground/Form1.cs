@@ -167,7 +167,7 @@ namespace ClearBackground
 
         private void btnAddPath_Click(object sender, EventArgs e)
         {
-            resultPath = " ";
+            resultPath = null;
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
@@ -175,7 +175,7 @@ namespace ClearBackground
                 resultPath = folderBrowserDialog.SelectedPath; 
             }
 
-            if (resultPath == " ")
+            if (string.IsNullOrEmpty(resultPath))
             {
                 errorText.Text = $"Check folder path";
             }
