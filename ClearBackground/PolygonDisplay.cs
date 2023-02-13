@@ -10,14 +10,14 @@ namespace ClearBackground
         private bool needToScaleY = false;
         private float xAxisSizeOfPolygon;
         private float yAxisSizeOfPolygon;
-        private PointF[] polygonPointsAfterScale;
+        private PointF[] polygonPoints;
         private float[] scaleCoefficientX;
         private float[] scaleCoefficientY;
         private float heightOfPicture = 220;
         private float widthOfPicture = 400;
         private PointF centerOfPicturebox = new PointF(200, 110);
 
-        public PointF[] PolygonPoints => polygonPointsAfterScale;
+        public PointF[] PolygonPoints => polygonPoints;
 
         public void ScalingPolygon(PointD[] polygon)
         {
@@ -32,14 +32,14 @@ namespace ClearBackground
 
         private void SetPolygon(PointD[] polygon)
         {
-            polygonPointsAfterScale = new PointF[polygon.Length];
+            polygonPoints = new PointF[polygon.Length];
 
             for (int i = 0; i < polygon.Length; i++)
             {
                 float simpleX = Convert.ToSingle(polygon[i].X);
                 float simpleY = Convert.ToSingle(polygon[i].Y);
-                polygonPointsAfterScale[i].X = simpleX;
-                polygonPointsAfterScale[i].Y = simpleY;
+                polygonPoints[i].X = simpleX;
+                polygonPoints[i].Y = simpleY;
             }
 
             scaleCoefficientX = new float[polygon.Length];
@@ -48,9 +48,9 @@ namespace ClearBackground
 
         private void CheckScalingForX()
         {
-            for (int i = 0; i < polygonPointsAfterScale.Length; i++)
+            for (int i = 0; i < polygonPoints.Length; i++)
             {
-                if (polygonPointsAfterScale[i].X > widthOfPicture)
+                if (polygonPoints[i].X > widthOfPicture)
                 {
                     needToScaleX = true;
                     break;
@@ -60,9 +60,9 @@ namespace ClearBackground
 
         private void CheckScalingForY()
         {
-            for (int i = 0; i < polygonPointsAfterScale.Length; i++)
+            for (int i = 0; i < polygonPoints.Length; i++)
             {
-                if (polygonPointsAfterScale[i].Y > heightOfPicture)
+                if (polygonPoints[i].Y > heightOfPicture)
                 {
                     needToScaleY = true;
                     break;
@@ -74,17 +74,17 @@ namespace ClearBackground
         {
             if (needToScaleX)
             {
-                for (int i = 0; i < polygonPointsAfterScale.Length; i++)
+                for (int i = 0; i < polygonPoints.Length; i++)
                 {
-                    scaleCoefficientX[i] = polygonPointsAfterScale[i].X / widthOfPicture;
+                    scaleCoefficientX[i] = polygonPoints[i].X / widthOfPicture;
                 }
 
                 float maxScaleX = scaleCoefficientX.Max();
 
-                for (int i = 0; i < polygonPointsAfterScale.Length; i++)
+                for (int i = 0; i < polygonPoints.Length; i++)
                 {
-                    polygonPointsAfterScale[i].X = polygonPointsAfterScale[i].X / maxScaleX;
-                    polygonPointsAfterScale[i].Y = polygonPointsAfterScale[i].Y / maxScaleX;
+                    polygonPoints[i].X = polygonPoints[i].X / maxScaleX;
+                    polygonPoints[i].Y = polygonPoints[i].Y / maxScaleX;
                 }
             }
         }
@@ -93,34 +93,34 @@ namespace ClearBackground
         {
             if (needToScaleY)
             {
-                for (int i = 0; i < polygonPointsAfterScale.Length; i++)
+                for (int i = 0; i < polygonPoints.Length; i++)
                 {
-                    scaleCoefficientY[i] = polygonPointsAfterScale[i].Y / heightOfPicture;
+                    scaleCoefficientY[i] = polygonPoints[i].Y / heightOfPicture;
                 }
 
                 float maxScaleY = scaleCoefficientY.Max();
 
-                for (int i = 0; i < polygonPointsAfterScale.Length; i++)
+                for (int i = 0; i < polygonPoints.Length; i++)
                 {
-                    polygonPointsAfterScale[i].X = polygonPointsAfterScale[i].X / maxScaleY;
-                    polygonPointsAfterScale[i].Y = polygonPointsAfterScale[i].Y / maxScaleY;
+                    polygonPoints[i].X = polygonPoints[i].X / maxScaleY;
+                    polygonPoints[i].Y = polygonPoints[i].Y / maxScaleY;
                 }
             }
         }
 
         private void CenteringPolygon()
         {
-            float[] coordinateYAfterScale = new float[polygonPointsAfterScale.Length];
-            float[] coordinateXAfterScale = new float[polygonPointsAfterScale.Length];
+            float[] coordinateYAfterScale = new float[polygonPoints.Length];
+            float[] coordinateXAfterScale = new float[polygonPoints.Length];
 
-            for (int i = 0; i < polygonPointsAfterScale.Length; i++)
+            for (int i = 0; i < polygonPoints.Length; i++)
             {
-                coordinateYAfterScale[i] = polygonPointsAfterScale[i].Y;
+                coordinateYAfterScale[i] = polygonPoints[i].Y;
             }
 
-            for (int i = 0; i < polygonPointsAfterScale.Length; i++)
+            for (int i = 0; i < polygonPoints.Length; i++)
             {
-                coordinateXAfterScale[i] = polygonPointsAfterScale[i].X;
+                coordinateXAfterScale[i] = polygonPoints[i].X;
             }
 
             float maxY = coordinateYAfterScale.Max();
@@ -133,10 +133,10 @@ namespace ClearBackground
             xAxisSizeOfPolygon = maxX - minX;
             float displaceDistanceX = (widthOfPicture - xAxisSizeOfPolygon) / 2;
 
-            for (int i = 0; i < polygonPointsAfterScale.Length; i++)
+            for (int i = 0; i < polygonPoints.Length; i++)
             {
-                polygonPointsAfterScale[i].X = polygonPointsAfterScale[i].X - minX + displaceDistanceX;
-                polygonPointsAfterScale[i].Y = polygonPointsAfterScale[i].Y * (-1) + maxY + displaceDistanceY;
+                polygonPoints[i].X = polygonPoints[i].X - minX + displaceDistanceX;
+                polygonPoints[i].Y = polygonPoints[i].Y * (-1) + maxY + displaceDistanceY;
             }
         }
 
@@ -148,7 +148,7 @@ namespace ClearBackground
             float doubledPolygonSizeX = xAxisSizeOfPolygon * 2;
             float doubledPolygonSizeY = yAxisSizeOfPolygon * 2;
 
-            for (int i = 0; i < polygonPointsAfterScale.Length; i++)
+            for (int i = 0; i < polygonPoints.Length; i++)
             {
                 if (doubledPolygonSizeX > widthOfPicture || doubledPolygonSizeY > heightOfPicture)
                 {
@@ -160,22 +160,20 @@ namespace ClearBackground
                     int xSizeDifference = Convert.ToInt32(widthOfPicture / xAxisSizeOfPolygon);
                     int halfSizeDifferenceX = xSizeDifference / 2;
 
-                    vectorCoordinateX = polygonPointsAfterScale[i].X - centerOfPicturebox.X;
-                    vectorCoordinateY = polygonPointsAfterScale[i].Y - centerOfPicturebox.Y;
-                    polygonPointsAfterScale[i].X = polygonPointsAfterScale[i].X + vectorCoordinateX * (halfSizeDifferenceX - preventingOverscale);
-                    polygonPointsAfterScale[i].Y = polygonPointsAfterScale[i].Y + vectorCoordinateY * (halfSizeDifferenceX - preventingOverscale);
-
+                    vectorCoordinateX = polygonPoints[i].X - centerOfPicturebox.X;
+                    vectorCoordinateY = polygonPoints[i].Y - centerOfPicturebox.Y;
+                    polygonPoints[i].X = polygonPoints[i].X + vectorCoordinateX * (halfSizeDifferenceX - preventingOverscale);
+                    polygonPoints[i].Y = polygonPoints[i].Y + vectorCoordinateY * (halfSizeDifferenceX - preventingOverscale);
                 }
                 else if (heightOfPicture / yAxisSizeOfPolygon > widthOfPicture / xAxisSizeOfPolygon)
                 {
                     int ySizeDifference = Convert.ToInt32(heightOfPicture / yAxisSizeOfPolygon);
                     int halfSizeDifferenceY = ySizeDifference / 2;
 
-                    vectorCoordinateX = polygonPointsAfterScale[i].X - centerOfPicturebox.X;
-                    vectorCoordinateY = polygonPointsAfterScale[i].Y - centerOfPicturebox.Y;
-                    polygonPointsAfterScale[i].X = polygonPointsAfterScale[i].X + vectorCoordinateX * (halfSizeDifferenceY - preventingOverscale);
-                    polygonPointsAfterScale[i].Y = polygonPointsAfterScale[i].Y + vectorCoordinateY * (halfSizeDifferenceY - preventingOverscale);
-
+                    vectorCoordinateX = polygonPoints[i].X - centerOfPicturebox.X;
+                    vectorCoordinateY = polygonPoints[i].Y - centerOfPicturebox.Y;
+                    polygonPoints[i].X = polygonPoints[i].X + vectorCoordinateX * (halfSizeDifferenceY - preventingOverscale);
+                    polygonPoints[i].Y = polygonPoints[i].Y + vectorCoordinateY * (halfSizeDifferenceY - preventingOverscale);
                 }
             }
         }
