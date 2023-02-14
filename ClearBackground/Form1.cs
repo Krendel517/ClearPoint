@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Drawing;
 
 namespace ClearBackground
 {
@@ -99,10 +100,6 @@ namespace ClearBackground
 
         private void CheсkAllPoints()
         {
-            int userIndexOfX = Int32.Parse(indexOfX.Text);
-            int userIndexOfY = Int32.Parse(indexOfY.Text);
-            string[] separator = { userSeparator.Text };
-
             string pointsPath = txtPointPath.Text;
             string[] allPoints = GetUserData(pointsPath);
 
