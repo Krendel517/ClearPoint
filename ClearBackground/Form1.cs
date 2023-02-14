@@ -53,7 +53,7 @@ namespace ClearBackground
                         errorText.Text = "Wrong index of cordinates specified, check the entered data";
                         break;
                     }
-                    else 
+                    else
                     {
                         errorText.Text = " ";
 
@@ -93,9 +93,17 @@ namespace ClearBackground
             Graphics graphics = pictureBox1.CreateGraphics();
             Pen pen = new Pen(Color.White, 1);
             Brush brush = new SolidBrush(Color.White);
+            Brush redbrush = new SolidBrush(Color.OrangeRed);
             graphics.Clear(Color.DimGray);
             graphics.DrawPolygon(pen, polygonAfterScale);
+            Font font = new Font("Arial", 9, FontStyle.Bold);
             graphics.FillPolygon(brush, polygonAfterScale);
+
+            for (int i = 0; i < polygonAfterScale.Length; i++)
+            {
+                int numberOfPoint = i + 1;
+                graphics.DrawString(numberOfPoint.ToString(), font, redbrush, polygonAfterScale[i]);
+            }
         }
 
         private void CheсkAllPoints()
@@ -160,14 +168,14 @@ namespace ClearBackground
 
                     progressBar1.PerformStep();
                 }
-            } 
+            }
         }
 
         private void SaveResult(string line)
         {
             using (FileStream file = new FileStream(resultPath, FileMode.Append))
             using (StreamWriter writer = new StreamWriter(file))
-            writer.WriteLine(line);
+                writer.WriteLine(line);
         }
 
         private bool IsPointInPolygon4(PointD[] currentPolygon, PointD currentPoint)
@@ -227,7 +235,7 @@ namespace ClearBackground
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 checkPath.Text = folderBrowserDialog.SelectedPath;
-                resultPath = folderBrowserDialog.SelectedPath; 
+                resultPath = folderBrowserDialog.SelectedPath;
             }
 
             if (string.IsNullOrEmpty(resultPath))
