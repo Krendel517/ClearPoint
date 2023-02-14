@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Drawing;
 
 namespace ClearBackground
 {
@@ -80,13 +81,25 @@ namespace ClearBackground
                         polygon[i].Y = coordinateY;
                     }
                 }
+
+                PolygonDisplay polygonDisplay = new PolygonDisplay();
+                polygonDisplay.ScalingPolygon(polygon);
+                Draw(polygonDisplay.PolygonPoints);
             }
+        }
+
+        private void Draw(PointF[] polygonAfterScale)
+        {
+            Graphics graphics = pictureBox1.CreateGraphics();
+            Pen pen = new Pen(Color.White, 1);
+            Brush brush = new SolidBrush(Color.White);
+            graphics.Clear(Color.DimGray);
+            graphics.DrawPolygon(pen, polygonAfterScale);
+            graphics.FillPolygon(brush, polygonAfterScale);
         }
 
         private void CheсkAllPoints()
         {
-            
-
             string pointsPath = txtPointPath.Text;
             string[] allPoints = GetUserData(pointsPath);
 
@@ -259,6 +272,11 @@ namespace ClearBackground
         private void btnExit_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void indexOfX_TextChanged(object sender, EventArgs e)
