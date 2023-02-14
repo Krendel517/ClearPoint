@@ -122,9 +122,9 @@ namespace ClearBackground
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 103);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(109, 13);
+            this.label4.Size = new System.Drawing.Size(114, 13);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Add path for result file";
+            this.label4.Text = "Add folder for result file";
             // 
             // btnAddPath
             // 
@@ -132,7 +132,7 @@ namespace ClearBackground
             this.btnAddPath.Name = "btnAddPath";
             this.btnAddPath.Size = new System.Drawing.Size(92, 28);
             this.btnAddPath.TabIndex = 9;
-            this.btnAddPath.Text = "Open Path";
+            this.btnAddPath.Text = "Open Folder";
             this.btnAddPath.UseVisualStyleBackColor = true;
             this.btnAddPath.Click += new System.EventHandler(this.btnAddPath_Click);
             // 
@@ -174,6 +174,7 @@ namespace ClearBackground
             this.toolTipIndexAndSeparator.SetToolTip(this.indexOfX, "Specify the index of X, Y  and separator. For example: in line <1//ABC//100.000//" +
         "200.000>\r\nX=100.000 and has index <3>\r\nY=200.000 and has index <4>\r\nseparator </" +
         "/>");
+            this.indexOfX.TextChanged += new System.EventHandler(this.indexOfX_TextChanged);
             // 
             // indexOfY
             // 
@@ -186,6 +187,7 @@ namespace ClearBackground
             this.toolTipIndexAndSeparator.SetToolTip(this.indexOfY, "Specify the index of X, Y  and separator. For example: in line <1//ABC//100.000//" +
         "200.000>\r\nX=100.000 and has index <3>\r\nY=200.000 and has index <4>\r\nseparator </" +
         "/>");
+            this.indexOfY.TextChanged += new System.EventHandler(this.indexOfY_TextChanged);
             // 
             // userSeparator
             // 
@@ -213,10 +215,10 @@ namespace ClearBackground
             // errorText
             // 
             this.errorText.AutoSize = true;
-            this.errorText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.errorText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.errorText.Location = new System.Drawing.Point(12, 197);
             this.errorText.Name = "errorText";
-            this.errorText.Size = new System.Drawing.Size(13, 20);
+            this.errorText.Size = new System.Drawing.Size(12, 17);
             this.errorText.TabIndex = 15;
             this.errorText.Text = " ";
             // 
@@ -226,6 +228,7 @@ namespace ClearBackground
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(192, 23);
             this.progressBar1.TabIndex = 20;
+            this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
             // 
             // pictureBox1
             // 
@@ -267,7 +270,6 @@ namespace ClearBackground
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

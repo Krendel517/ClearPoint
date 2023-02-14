@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ClearBackground
 {
@@ -32,10 +32,6 @@ namespace ClearBackground
 
         private void SetPolygon()
         {
-            int userIndexOfX = Int32.Parse(indexOfX.Text);
-            int userIndexOfY = Int32.Parse(indexOfY.Text);
-            string[] separator = { userSeparator.Text };
-
             string polygonPath = txtPolygonPath.Text;
             string[] lines = GetUserData(polygonPath);
             polygon = new PointD[lines.Length];
@@ -48,17 +44,41 @@ namespace ClearBackground
             {
                 for (int i = 0; i < lines.Length; i++)
                 {
-                    if (!lines[i].Contains(separator[0]))
+                    bool xIsNumber = indexOfX.Text.Any(Char.IsNumber);
+                    bool yIsNumber = indexOfY.Text.Any(Char.IsNumber);
+
+                    if (!xIsNumber || !yIsNumber)
                     {
-                        errorText.Text = $"Separator not found in line №{i + 1} of polygon coordinates,\ncorrect or specify the correct separator";
+                        errorText.Text = "Wrong index of cordinates specified, check the entered data";
                         break;
                     }
+                    else 
+                    {
+                        errorText.Text = " ";
 
-                    string[] splitCoordinates = lines[i].Split(separator, StringSplitOptions.None);
-                    double coordinatesX = double.Parse(splitCoordinates[userIndexOfX - 1], CultureInfo.InvariantCulture);
-                    double coordinatesY = double.Parse(splitCoordinates[userIndexOfY - 1], CultureInfo.InvariantCulture);
-                    polygon[i].X = coordinatesX;
-                    polygon[i].Y = coordinatesY;
+                        int userIndexOfX = Int32.Parse(indexOfX.Text);
+                        int userIndexOfY = Int32.Parse(indexOfY.Text);
+                        string[] separator = { userSeparator.Text };
+
+                        if (!lines[i].Contains(separator[0]))
+                        {
+                            errorText.Text = $"Separator not found in line №{i + 1} of polygon coordinates,\ncorrect or specify the correct separator";
+                            break;
+                        }
+
+                        string[] splitCoordinates = lines[i].Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                        bool xValidSeparator = Double.TryParse(splitCoordinates[userIndexOfX - 1], NumberStyles.Float, CultureInfo.InvariantCulture, out double coordinateX);
+                        bool yValidSeparator = Double.TryParse(splitCoordinates[userIndexOfY - 1], NumberStyles.Float, CultureInfo.InvariantCulture, out double coordinateY);
+
+                        if (!xValidSeparator || !yValidSeparator)
+                        {
+                            errorText.Text = "Invalid separator specified, check the entered data";
+                            break;
+                        }
+
+                        polygon[i].X = coordinateX;
+                        polygon[i].Y = coordinateY;
+                    }
                 }
 
                 PolygonDisplay polygonDisplay = new PolygonDisplay();
@@ -90,53 +110,67 @@ namespace ClearBackground
 
             for (int i = 0; i < allPoints.Length; i++)
             {
-                if (string.IsNullOrEmpty(allPoints[i]))
+                bool xIsNumber = indexOfX.Text.Any(Char.IsNumber);
+                bool yIsNumber = indexOfY.Text.Any(Char.IsNumber);
+
+                if (!xIsNumber || !yIsNumber)
                 {
-                    Console.WriteLine($"Строка №{i} пустая.");
+                    errorText.Text = "Wrong index of cordinates specified, check the entered data";
                     break;
                 }
-
-                if (!allPoints[i].Contains(separator[0]))
+                else
                 {
-                    errorText.Text = $"Separator not found in line №{i + 1} of points coordinates,\ncorrect or specify the correct separator";
-                    break;
+                    errorText.Text = " ";
+
+                    int userIndexOfX = Int32.Parse(indexOfX.Text);
+                    int userIndexOfY = Int32.Parse(indexOfY.Text);
+                    string[] separator = { userSeparator.Text };
+
+                    if (string.IsNullOrEmpty(allPoints[i]))
+                    {
+                        Console.WriteLine($"Строка №{i} пустая.");
+                        break;
+                    }
+
+                    if (!allPoints[i].Contains(separator[0]))
+                    {
+                        errorText.Text = $"Separator not found in line №{i + 1} of points coordinates,\ncorrect or specify the correct separator";
+                        break;
+                    }
+
+                    string[] splitCoordinates = allPoints[i].Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                    bool xValidSeparator = Double.TryParse(splitCoordinates[userIndexOfX - 1], NumberStyles.Number, CultureInfo.InvariantCulture, out double coordinateX);
+                    bool yValidSeparator = Double.TryParse(splitCoordinates[userIndexOfY - 1], NumberStyles.Number, CultureInfo.InvariantCulture, out double coordinateY);
+
+                    if (!xValidSeparator || !yValidSeparator)
+                    {
+                        errorText.Text = "Invalid separator specified, check the entered data";
+                        break;
+                    }
+
+                    PointD point = new PointD(coordinateX, coordinateY);
+                    bool result = IsPointInPolygon4(polygon, point);
+
+                    if (result)
+                    {
+                        SaveResult(allPoints[i]);
+                    }
+
+                    if (i == allPoints.Length - 1)
+                    {
+                        Console.WriteLine("Все данные обработаны");
+                    }
+
+                    progressBar1.PerformStep();
                 }
-
-                string[] splitCoordinates = allPoints[i].Split(separator, StringSplitOptions.None);
-                double coordinateX = double.Parse(splitCoordinates[userIndexOfX - 1], CultureInfo.InvariantCulture);
-                double coordinateY = double.Parse(splitCoordinates[userIndexOfY - 1], CultureInfo.InvariantCulture);
-
-                PointD point = new PointD(coordinateX, coordinateY);
-                bool result = IsPointInPolygon4(polygon, point);
-
-                if (result)
-                {
-                    SaveResult(allPoints[i]);
-                }
-
-                if (i == allPoints.Length - 1)
-                {
-                    Console.WriteLine("Все данные обработаны");
-                }
-
-                progressBar1.PerformStep();
-            }
-        }
-
-        private void InitializeProgressBar(string[] allPoints)
-        {
-            progressBar1.Visible = true;
-            progressBar1.Minimum = 1;
-            progressBar1.Maximum = allPoints.Length;
-            progressBar1.Value = 1;
-            progressBar1.Step = 1;
+            } 
         }
 
         private void SaveResult(string line)
         {
             using (FileStream file = new FileStream(resultPath, FileMode.Append))
             using (StreamWriter writer = new StreamWriter(file))
-                writer.WriteLine(line);
+            writer.WriteLine(line);
         }
 
         private bool IsPointInPolygon4(PointD[] currentPolygon, PointD currentPoint)
@@ -155,6 +189,15 @@ namespace ClearBackground
                 j = i;
             }
             return result;
+        }
+
+        private void InitializeProgressBar(string[] allPoints)
+        {
+            progressBar1.Visible = true;
+            progressBar1.Minimum = 1;
+            progressBar1.Maximum = allPoints.Length;
+            progressBar1.Value = 1;
+            progressBar1.Step = 1;
         }
 
         private void btnOpenPoint_Click(object sender, EventArgs e)
@@ -181,11 +224,26 @@ namespace ClearBackground
 
         private void btnAddPath_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            resultPath = null;
+
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                checkPath.Text = openFileDialog.FileName;
-                resultPath = openFileDialog.FileName;
+                checkPath.Text = folderBrowserDialog.SelectedPath;
+                resultPath = folderBrowserDialog.SelectedPath; 
+            }
+
+            if (string.IsNullOrEmpty(resultPath))
+            {
+                errorText.Text = $"Check folder path";
+            }
+            else
+            {
+                string fileName = "Result.txt";
+                resultPath = Path.Combine(resultPath, fileName);
+                errorText.Text = "";
+                var resultfile = File.Create(resultPath);
+                resultfile.Close();
             }
         }
 
@@ -220,6 +278,21 @@ namespace ClearBackground
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void indexOfX_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void indexOfY_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
         {
 
         }
