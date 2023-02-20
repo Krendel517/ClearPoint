@@ -79,6 +79,8 @@ namespace ClearBackground
 
                         polygon[i].X = coordinateX;
                         polygon[i].Y = coordinateY;
+
+                        coordinatesStatusLbl.Text = $"Polygon coordinates from {lines.Length} points are read";
                     }
                 }
 
@@ -104,6 +106,8 @@ namespace ClearBackground
             string[] allPoints = GetUserData(pointsPath);
 
             InitializeProgressBar(allPoints);
+
+            polygonsStatusLbl.Text = $"Coordinates of {allPoints.Length} test points are read";
 
             for (int i = 0; i < allPoints.Length; i++)
             {
@@ -159,6 +163,7 @@ namespace ClearBackground
                     }
 
                     progressBar1.PerformStep();
+                    resultLbl.Text = "Result is saved!";
                 }
             } 
         }
@@ -290,6 +295,21 @@ namespace ClearBackground
         }
 
         private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void resultLbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void coordinatesStatusLbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void polygonsStatusLbl_Click(object sender, EventArgs e)
         {
 
         }

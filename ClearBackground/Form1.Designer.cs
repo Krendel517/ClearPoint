@@ -307,8 +307,10 @@ namespace ClearBackground
             this.coordinatesStatusLbl.ForeColor = System.Drawing.Color.Green;
             this.coordinatesStatusLbl.Location = new System.Drawing.Point(12, 80);
             this.coordinatesStatusLbl.Name = "coordinatesStatusLbl";
-            this.coordinatesStatusLbl.Size = new System.Drawing.Size(0, 13);
+            this.coordinatesStatusLbl.Size = new System.Drawing.Size(10, 13);
             this.coordinatesStatusLbl.TabIndex = 26;
+            this.coordinatesStatusLbl.Text = " ";
+            this.coordinatesStatusLbl.Click += new System.EventHandler(this.coordinatesStatusLbl_Click);
             // 
             // polygonsStatusLbl
             // 
@@ -317,19 +319,22 @@ namespace ClearBackground
             this.polygonsStatusLbl.ForeColor = System.Drawing.Color.Green;
             this.polygonsStatusLbl.Location = new System.Drawing.Point(12, 140);
             this.polygonsStatusLbl.Name = "polygonsStatusLbl";
-            this.polygonsStatusLbl.Size = new System.Drawing.Size(0, 13);
+            this.polygonsStatusLbl.Size = new System.Drawing.Size(10, 13);
             this.polygonsStatusLbl.TabIndex = 27;
+            this.polygonsStatusLbl.Text = " ";
+            this.polygonsStatusLbl.Click += new System.EventHandler(this.polygonsStatusLbl_Click);
             // 
             // resultLbl
             // 
             this.resultLbl.AutoSize = true;
-            this.resultLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.resultLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.resultLbl.ForeColor = System.Drawing.Color.Green;
-            this.resultLbl.Location = new System.Drawing.Point(427, 265);
+            this.resultLbl.Location = new System.Drawing.Point(415, 265);
             this.resultLbl.Name = "resultLbl";
-            this.resultLbl.Size = new System.Drawing.Size(13, 20);
+            this.resultLbl.Size = new System.Drawing.Size(12, 17);
             this.resultLbl.TabIndex = 28;
             this.resultLbl.Text = " ";
+            this.resultLbl.Click += new System.EventHandler(this.resultLbl_Click);
             // 
             // FormWindow
             // 
