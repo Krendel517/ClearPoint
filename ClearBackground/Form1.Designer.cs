@@ -47,18 +47,18 @@ namespace ClearBackground
             this.indexOfY = new System.Windows.Forms.TextBox();
             this.userSeparator = new System.Windows.Forms.TextBox();
             this.toolTipIndexAndSeparator = new System.Windows.Forms.ToolTip(this.components);
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.errorText = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.indexXLbl = new System.Windows.Forms.Label();
             this.indexYbl = new System.Windows.Forms.Label();
             this.separatorLbl = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.coordinatesStatusLbl = new System.Windows.Forms.Label();
             this.polygonsStatusLbl = new System.Windows.Forms.Label();
             this.resultLbl = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // ReadFile
@@ -229,6 +229,20 @@ namespace ClearBackground
             this.toolTipIndexAndSeparator.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTipIndexAndSeparator.ToolTipTitle = "Important information";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
+            this.pictureBox2.Location = new System.Drawing.Point(400, 8);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox2.TabIndex = 25;
+            this.pictureBox2.TabStop = false;
+            this.toolTipIndexAndSeparator.SetToolTip(this.pictureBox2, "Specify the index of X, Y  and Separator. For example: in line <1//ABC//100.000//" +
+        "200.000>\r\nX = 100.000 and has index <3>\r\nY = 200.000 and has index <4>\r\nSeparato" +
+        "r <//>\r\n");
+            this.pictureBox2.WaitOnLoad = true;
+            // 
             // errorText
             // 
             this.errorText.AutoSize = true;
@@ -288,20 +302,6 @@ namespace ClearBackground
             this.separatorLbl.Size = new System.Drawing.Size(71, 17);
             this.separatorLbl.TabIndex = 24;
             this.separatorLbl.Text = "Separator";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(400, 8);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox2.TabIndex = 25;
-            this.pictureBox2.TabStop = false;
-            this.toolTipIndexAndSeparator.SetToolTip(this.pictureBox2, "Specify the index of X, Y  and Separator. For example: in line <1//ABC//100.000//" +
-        "200.000>\r\nX = 100.000 and has index <3>\r\nY = 200.000 and has index <4>\r\nSeparato" +
-        "r <//>\r\n");
-            this.pictureBox2.WaitOnLoad = true;
             // 
             // coordinatesStatusLbl
             // 
@@ -368,8 +368,8 @@ namespace ClearBackground
             this.Name = "FormWindow";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FormWindow_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
