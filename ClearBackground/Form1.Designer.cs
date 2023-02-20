@@ -186,7 +186,6 @@ namespace ClearBackground
             this.indexOfX.Name = "indexOfX";
             this.indexOfX.Size = new System.Drawing.Size(38, 20);
             this.indexOfX.TabIndex = 12;
-            this.indexOfX.Text = " ";
             this.indexOfX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTipIndexAndSeparator.SetToolTip(this.indexOfX, "Specify the index of X, Y  and separator. For example: in line <1//ABC//100.000//" +
         "200.000>\r\nX=100.000 and has index <3>\r\nY=200.000 and has index <4>\r\nseparator </" +
@@ -199,7 +198,6 @@ namespace ClearBackground
             this.indexOfY.Name = "indexOfY";
             this.indexOfY.Size = new System.Drawing.Size(38, 20);
             this.indexOfY.TabIndex = 13;
-            this.indexOfY.Text = " ";
             this.indexOfY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTipIndexAndSeparator.SetToolTip(this.indexOfY, "Specify the index of X, Y  and separator. For example: in line <1//ABC//100.000//" +
         "200.000>\r\nX=100.000 and has index <3>\r\nY=200.000 and has index <4>\r\nseparator </" +
@@ -212,7 +210,6 @@ namespace ClearBackground
             this.userSeparator.Name = "userSeparator";
             this.userSeparator.Size = new System.Drawing.Size(56, 20);
             this.userSeparator.TabIndex = 14;
-            this.userSeparator.Text = " ";
             this.userSeparator.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTipIndexAndSeparator.SetToolTip(this.userSeparator, "Specify the index of X, Y  and separator. For example: in line <1//ABC//100.000//" +
         "200.000>\r\nX=100.000 and has index <3>\r\nY=200.000 and has index <4>\r\nseparator </" +
