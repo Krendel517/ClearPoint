@@ -11,7 +11,8 @@ namespace ClearBackground
     public partial class FormWindow : Form
     {
         private string resultPath;
-        PointD[] polygon;
+        public PointD[] polygon;
+        PolygonDisplay polygonDisplay = new PolygonDisplay();
 
         public FormWindow()
         {
@@ -21,7 +22,7 @@ namespace ClearBackground
         private void button1_Click(object sender, EventArgs e)
         {
             SetPolygon();
-            CheсkAllPoints();
+            //CheсkAllPoints();
         }
 
         private string[] GetUserData(string path)
@@ -82,9 +83,10 @@ namespace ClearBackground
                     }
                 }
 
-                PolygonDisplay polygonDisplay = new PolygonDisplay();
                 polygonDisplay.ScalingPolygon(polygon);
                 Draw(polygonDisplay.PolygonPoints);
+                errorText.Text = "If displayed polygon matches the expected one, click <Continue>\nIf it doesn't then click <Generate new polygon>." +
+                    "\nAttention: the function allows the construction of only a convex polygon";
             }
         }
 
@@ -300,6 +302,17 @@ namespace ClearBackground
         private void progressBar1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void generatePolygon_Click(object sender, EventArgs e)
+        {
+            polygonDisplay.ArrangementOfPoints(polygon);
+            Draw(polygonDisplay.PolygonPoints);
+        }
+
+        private void continueAfterDrawing_Click(object sender, EventArgs e)
+        {
+            CheсkAllPoints();
         }
     }
 }

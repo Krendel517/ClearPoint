@@ -29,7 +29,6 @@ namespace ClearBackground
             YReductionToCoordinateSystem();
             CenteringPolygon();
             StretchingPolygon();
-            ArrangementOfPoints();
         }
 
         private void SetPolygon(PointD[] polygon)
@@ -180,12 +179,13 @@ namespace ClearBackground
             }
         }
 
-        private void ArrangementOfPoints()
+        public void ArrangementOfPoints(PointD[] polygon)
         {
             double[] angleFromCentre = new double[polygonPoints.Length];
             double angleForSorting;
             double lineDistance;
-            PointF pointForSorting;
+            PointD pointDForSorting;
+            PointF pointFForSorting;
 
             for (int i = 0; i < polygonPoints.Length; i++)
             {
@@ -212,9 +212,14 @@ namespace ClearBackground
                         angleFromCentre[i] = angleFromCentre[j];
                         angleFromCentre[j] = angleForSorting;
 
-                        pointForSorting = polygonPoints[i];
+                        pointFForSorting = polygonPoints[i];
                         polygonPoints[i] = polygonPoints[j];
-                        polygonPoints[j] = pointForSorting;
+                        polygonPoints[j] = pointFForSorting;
+
+                        pointDForSorting = polygon[i];
+                        polygon[i] = polygon[j];
+                        polygon[j] = pointDForSorting;
+                        
                     }
                 }
             }

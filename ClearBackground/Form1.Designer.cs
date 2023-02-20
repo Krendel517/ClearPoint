@@ -49,6 +49,8 @@ namespace ClearBackground
             this.errorText = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.generatePolygon = new System.Windows.Forms.Button();
+            this.continueAfterDrawing = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -240,12 +242,35 @@ namespace ClearBackground
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // generatePolygon
+            // 
+            this.generatePolygon.AllowDrop = true;
+            this.generatePolygon.Location = new System.Drawing.Point(441, 322);
+            this.generatePolygon.Name = "generatePolygon";
+            this.generatePolygon.Size = new System.Drawing.Size(93, 34);
+            this.generatePolygon.TabIndex = 22;
+            this.generatePolygon.Text = "Generate new polygon";
+            this.generatePolygon.UseVisualStyleBackColor = true;
+            this.generatePolygon.Click += new System.EventHandler(this.generatePolygon_Click);
+            // 
+            // continueAfterDrawing
+            // 
+            this.continueAfterDrawing.Location = new System.Drawing.Point(441, 276);
+            this.continueAfterDrawing.Name = "continueAfterDrawing";
+            this.continueAfterDrawing.Size = new System.Drawing.Size(93, 29);
+            this.continueAfterDrawing.TabIndex = 23;
+            this.continueAfterDrawing.Text = "Continue";
+            this.continueAfterDrawing.UseVisualStyleBackColor = true;
+            this.continueAfterDrawing.Click += new System.EventHandler(this.continueAfterDrawing_Click);
+            // 
             // FormWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(559, 498);
+            this.Controls.Add(this.continueAfterDrawing);
+            this.Controls.Add(this.generatePolygon);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.errorText);
@@ -270,6 +295,7 @@ namespace ClearBackground
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
@@ -293,6 +319,8 @@ namespace ClearBackground
         private System.Windows.Forms.Label errorText;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button generatePolygon;
+        private System.Windows.Forms.Button continueAfterDrawing;
     }
 }
 
