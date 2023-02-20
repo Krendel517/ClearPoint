@@ -39,7 +39,7 @@ namespace ClearBackground
 
             if (lines.Length < 3)
             {
-                Console.WriteLine("Введите минимум 3 точки полигона.");
+                errorText.Text = "Enter at least 3 polygon points";
             }
             else
             {
@@ -48,6 +48,8 @@ namespace ClearBackground
                     bool xIsNumber = indexOfX.Text.Any(Char.IsNumber);
                     bool yIsNumber = indexOfY.Text.Any(Char.IsNumber);
 
+                    errorText.Text = " ";
+
                     if (!xIsNumber || !yIsNumber)
                     {
                         errorText.Text = "Wrong index of cordinates specified, check the entered data";
@@ -55,8 +57,6 @@ namespace ClearBackground
                     }
                     else 
                     {
-                        errorText.Text = " ";
-
                         int userIndexOfX = Int32.Parse(indexOfX.Text);
                         int userIndexOfY = Int32.Parse(indexOfY.Text);
                         string[] separator = { userSeparator.Text };
@@ -114,22 +114,22 @@ namespace ClearBackground
                 bool xIsNumber = indexOfX.Text.Any(Char.IsNumber);
                 bool yIsNumber = indexOfY.Text.Any(Char.IsNumber);
 
+                errorText.Text = " ";
+
                 if (!xIsNumber || !yIsNumber)
                 {
                     errorText.Text = "Wrong index of cordinates specified, check the entered data";
                     break;
                 }
                 else
-                {
-                    errorText.Text = " ";
-
+                {                   
                     int userIndexOfX = Int32.Parse(indexOfX.Text);
                     int userIndexOfY = Int32.Parse(indexOfY.Text);
                     string[] separator = { userSeparator.Text };
 
                     if (string.IsNullOrEmpty(allPoints[i]))
                     {
-                        Console.WriteLine($"Строка №{i} пустая.");
+                        errorText.Text = $"Line №{i} is empty.";
                         break;
                     }
 
@@ -155,11 +155,6 @@ namespace ClearBackground
                     if (result)
                     {
                         SaveResult(allPoints[i]);
-                    }
-
-                    if (i == allPoints.Length - 1)
-                    {
-                        Console.WriteLine("Все данные обработаны");
                     }
 
                     progressBar1.PerformStep();
