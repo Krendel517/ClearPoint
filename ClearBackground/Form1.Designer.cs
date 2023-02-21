@@ -368,7 +368,7 @@ namespace ClearBackground
             this.Controls.Add(this.txtPointPath);
             this.Controls.Add(this.ReadFile);
             this.Name = "FormWindow";
-            this.Text = "Form1";
+            this.Text = "Clear Point";
             this.Load += new System.EventHandler(this.FormWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
