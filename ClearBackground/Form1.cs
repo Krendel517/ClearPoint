@@ -48,7 +48,7 @@ namespace ClearBackground
                     bool xIsNumber = indexOfX.Text.Any(Char.IsNumber);
                     bool yIsNumber = indexOfY.Text.Any(Char.IsNumber);
 
-                    errorText.Text = " ";
+                    errorText.Text = String.Empty;
 
                     if (!xIsNumber || !yIsNumber)
                     {
@@ -114,7 +114,7 @@ namespace ClearBackground
                 bool xIsNumber = indexOfX.Text.Any(Char.IsNumber);
                 bool yIsNumber = indexOfY.Text.Any(Char.IsNumber);
 
-                errorText.Text = " ";
+                errorText.Text = String.Empty;
 
                 if (!xIsNumber || !yIsNumber)
                 {
@@ -238,7 +238,7 @@ namespace ClearBackground
             {
                 string fileName = "Result.txt";
                 resultPath = Path.Combine(resultPath, fileName);
-                errorText.Text = "";
+                errorText.Text = String.Empty;
                 var resultfile = File.Create(resultPath);
                 resultfile.Close();
             }
