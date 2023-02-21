@@ -367,6 +367,7 @@ namespace ClearBackground
             this.Controls.Add(this.txtPolygonPath);
             this.Controls.Add(this.txtPointPath);
             this.Controls.Add(this.ReadFile);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormWindow";
             this.Text = "Clear Point";
             this.Load += new System.EventHandler(this.FormWindow_Load);
