@@ -37,7 +37,6 @@ namespace ClearBackground
             this.btnOpenPoint = new System.Windows.Forms.Button();
             this.btnOpenPolygon = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnAddPath = new System.Windows.Forms.Button();
             this.checkPath = new System.Windows.Forms.TextBox();
@@ -118,17 +117,6 @@ namespace ClearBackground
             this.label1.Size = new System.Drawing.Size(173, 17);
             this.label1.TabIndex = 5;
             this.label1.Text = "Path to points coordinates";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(12, 200);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(381, 17);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Attention! The coordinates must be in the correct sequence";
             // 
             // label4
             // 
@@ -245,7 +233,7 @@ namespace ClearBackground
             this.errorText.AutoSize = true;
             this.errorText.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.errorText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.errorText.Location = new System.Drawing.Point(12, 220);
+            this.errorText.Location = new System.Drawing.Point(12, 203);
             this.errorText.Name = "errorText";
             this.errorText.Size = new System.Drawing.Size(13, 20);
             this.errorText.TabIndex = 15;
@@ -319,9 +307,9 @@ namespace ClearBackground
             this.polygonsStatusLbl.ForeColor = System.Drawing.Color.Green;
             this.polygonsStatusLbl.Location = new System.Drawing.Point(12, 140);
             this.polygonsStatusLbl.Name = "polygonsStatusLbl";
-            this.polygonsStatusLbl.Size = new System.Drawing.Size(10, 13);
+            this.polygonsStatusLbl.Size = new System.Drawing.Size(290, 13);
             this.polygonsStatusLbl.TabIndex = 27;
-            this.polygonsStatusLbl.Text = " ";
+            this.polygonsStatusLbl.Text = " Attention! The coordinates must be in the correct sequence";
             this.polygonsStatusLbl.Click += new System.EventHandler(this.polygonsStatusLbl_Click);
             // 
             // resultLbl
@@ -360,7 +348,6 @@ namespace ClearBackground
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnAddPath);
             this.Controls.Add(this.checkPath);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOpenPolygon);
             this.Controls.Add(this.btnOpenPoint);
@@ -386,7 +373,6 @@ namespace ClearBackground
         private System.Windows.Forms.Button btnOpenPoint;
         private System.Windows.Forms.Button btnOpenPolygon;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnAddPath;
         private System.Windows.Forms.TextBox checkPath;
