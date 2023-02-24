@@ -263,9 +263,9 @@ namespace ClearBackground
             // generatePolygon
             // 
             this.generatePolygon.AllowDrop = true;
-            this.generatePolygon.Location = new System.Drawing.Point(441, 322);
+            this.generatePolygon.Location = new System.Drawing.Point(430, 325);
             this.generatePolygon.Name = "generatePolygon";
-            this.generatePolygon.Size = new System.Drawing.Size(93, 34);
+            this.generatePolygon.Size = new System.Drawing.Size(92, 34);
             this.generatePolygon.TabIndex = 22;
             this.generatePolygon.Text = "Generate new polygon";
             this.generatePolygon.UseVisualStyleBackColor = true;
@@ -273,14 +273,14 @@ namespace ClearBackground
             // 
             // continueAfterDrawing
             // 
-            this.continueAfterDrawing.Location = new System.Drawing.Point(441, 276);
+            this.continueAfterDrawing.Location = new System.Drawing.Point(430, 290);
             this.continueAfterDrawing.Name = "continueAfterDrawing";
-            this.continueAfterDrawing.Size = new System.Drawing.Size(93, 29);
+            this.continueAfterDrawing.Size = new System.Drawing.Size(92, 29);
             this.continueAfterDrawing.TabIndex = 23;
             this.continueAfterDrawing.Text = "Continue";
             this.continueAfterDrawing.UseVisualStyleBackColor = true;
             this.continueAfterDrawing.Click += new System.EventHandler(this.continueAfterDrawing_Click);
-            //
+            // 
             // indexXLbl
             // 
             this.indexXLbl.AutoSize = true;
