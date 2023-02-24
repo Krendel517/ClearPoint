@@ -40,7 +40,7 @@ namespace ClearBackground
 
             if (lines.Length < 3)
             {
-                Console.WriteLine("Введите минимум 3 точки полигона.");
+                errorText.Text = "Enter at least 3 polygon points";
             }
             else
             {
@@ -49,6 +49,8 @@ namespace ClearBackground
                     bool xIsNumber = indexOfX.Text.Any(Char.IsNumber);
                     bool yIsNumber = indexOfY.Text.Any(Char.IsNumber);
 
+                    errorText.Text = String.Empty;
+
                     if (!xIsNumber || !yIsNumber)
                     {
                         errorText.Text = "Wrong index of cordinates specified, check the entered data";
@@ -56,8 +58,6 @@ namespace ClearBackground
                     }
                     else
                     {
-                        errorText.Text = " ";
-
                         int userIndexOfX = Int32.Parse(indexOfX.Text);
                         int userIndexOfY = Int32.Parse(indexOfY.Text);
                         string[] separator = { userSeparator.Text };
@@ -80,6 +80,8 @@ namespace ClearBackground
 
                         polygon[i].X = coordinateX;
                         polygon[i].Y = coordinateY;
+
+                        coordinatesStatusLbl.Text = $"Polygon coordinates from {lines.Length} points are read";
                     }
                 }
 
@@ -115,10 +117,14 @@ namespace ClearBackground
 
             InitializeProgressBar(allPoints);
 
+            polygonsStatusLbl.Text = $"Coordinates of {allPoints.Length} test points are read";
+
             for (int i = 0; i < allPoints.Length; i++)
             {
                 bool xIsNumber = indexOfX.Text.Any(Char.IsNumber);
                 bool yIsNumber = indexOfY.Text.Any(Char.IsNumber);
+
+                errorText.Text = String.Empty;
 
                 if (!xIsNumber || !yIsNumber)
                 {
@@ -126,16 +132,14 @@ namespace ClearBackground
                     break;
                 }
                 else
-                {
-                    errorText.Text = " ";
-
+                {                   
                     int userIndexOfX = Int32.Parse(indexOfX.Text);
                     int userIndexOfY = Int32.Parse(indexOfY.Text);
                     string[] separator = { userSeparator.Text };
 
                     if (string.IsNullOrEmpty(allPoints[i]))
                     {
-                        Console.WriteLine($"Строка №{i} пустая.");
+                        errorText.Text = $"Line №{i} is empty.";
                         break;
                     }
 
@@ -163,12 +167,8 @@ namespace ClearBackground
                         SaveResult(allPoints[i]);
                     }
 
-                    if (i == allPoints.Length - 1)
-                    {
-                        Console.WriteLine("Все данные обработаны");
-                    }
-
                     progressBar1.PerformStep();
+                    resultLbl.Text = "Result is saved!";
                 }
             }
         }
@@ -248,7 +248,7 @@ namespace ClearBackground
             {
                 string fileName = "Result.txt";
                 resultPath = Path.Combine(resultPath, fileName);
-                errorText.Text = "";
+                errorText.Text = String.Empty;
                 var resultfile = File.Create(resultPath);
                 resultfile.Close();
             }
@@ -313,6 +313,21 @@ namespace ClearBackground
         private void continueAfterDrawing_Click(object sender, EventArgs e)
         {
             CheсkAllPoints();
+        }
+
+        private void resultLbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void coordinatesStatusLbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void polygonsStatusLbl_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
