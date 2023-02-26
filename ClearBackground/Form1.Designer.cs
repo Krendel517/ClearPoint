@@ -66,7 +66,7 @@ namespace ClearBackground
             // 
             this.ReadFile.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ReadFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ReadFile.Location = new System.Drawing.Point(430, 430);
+            this.ReadFile.Location = new System.Drawing.Point(430, 290);
             this.ReadFile.Name = "ReadFile";
             this.ReadFile.Size = new System.Drawing.Size(92, 50);
             this.ReadFile.TabIndex = 0;
@@ -263,7 +263,7 @@ namespace ClearBackground
             // generatePolygon
             // 
             this.generatePolygon.AllowDrop = true;
-            this.generatePolygon.Location = new System.Drawing.Point(430, 325);
+            this.generatePolygon.Location = new System.Drawing.Point(430, 386);
             this.generatePolygon.Name = "generatePolygon";
             this.generatePolygon.Size = new System.Drawing.Size(92, 34);
             this.generatePolygon.TabIndex = 22;
@@ -273,9 +273,9 @@ namespace ClearBackground
             // 
             // continueAfterDrawing
             // 
-            this.continueAfterDrawing.Location = new System.Drawing.Point(430, 290);
+            this.continueAfterDrawing.Location = new System.Drawing.Point(430, 346);
             this.continueAfterDrawing.Name = "continueAfterDrawing";
-            this.continueAfterDrawing.Size = new System.Drawing.Size(92, 29);
+            this.continueAfterDrawing.Size = new System.Drawing.Size(92, 34);
             this.continueAfterDrawing.TabIndex = 23;
             this.continueAfterDrawing.Text = "Continue";
             this.continueAfterDrawing.UseVisualStyleBackColor = true;
