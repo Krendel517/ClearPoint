@@ -22,7 +22,6 @@ namespace ClearBackground
         private void button1_Click(object sender, EventArgs e)
         {
             SetPolygon();
-            //CheсkAllPoints();
         }
 
         private string[] GetUserData(string path)
