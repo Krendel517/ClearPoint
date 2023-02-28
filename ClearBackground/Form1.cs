@@ -80,7 +80,7 @@ namespace ClearBackground
                         polygon[i].X = coordinateX;
                         polygon[i].Y = coordinateY;
 
-                        coordinatesStatusLbl.Text = $"Polygon coordinates from {lines.Length} points are read";
+                        polygonsStatusLbl.Text = $"Polygon coordinates from {lines.Length} points are read";
                     }
                 }
 
@@ -116,7 +116,7 @@ namespace ClearBackground
 
             InitializeProgressBar(allPoints);
 
-            polygonsStatusLbl.Text = $"Coordinates of {allPoints.Length} test points are read";
+            coordinatesStatusLbl.Text = $"Coordinates of {allPoints.Length} test points are read";
 
             for (int i = 0; i < allPoints.Length; i++)
             {
