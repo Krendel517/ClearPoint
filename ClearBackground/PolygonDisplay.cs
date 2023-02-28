@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 
 namespace ClearBackground
 {
@@ -174,6 +175,52 @@ namespace ClearBackground
                     vectorCoordinateY = polygonPoints[i].Y - centerOfPicturebox.Y;
                     polygonPoints[i].X = polygonPoints[i].X + vectorCoordinateX * (halfSizeDifferenceY - preventingOverscale);
                     polygonPoints[i].Y = polygonPoints[i].Y + vectorCoordinateY * (halfSizeDifferenceY - preventingOverscale);
+                }
+            }
+        }
+
+        public void ArrangementOfPoints(PointD[] polygon)
+        {
+            double[] angleFromCentre = new double[polygonPoints.Length];
+            double angleForSorting;
+            double lineDistance;
+            PointD pointDForSorting;
+            PointF pointFForSorting;
+
+            for (int i = 0; i < polygonPoints.Length; i++)
+            {
+                double xOfLine = polygonPoints[i].X - centerOfPicturebox.X;
+                double squareDegreeOfX = xOfLine * xOfLine;
+                double yOfLine = polygonPoints[i].Y - centerOfPicturebox.Y;
+                double squareDegreeOfY = yOfLine * yOfLine;
+                lineDistance = Math.Sqrt(squareDegreeOfX + squareDegreeOfY);
+                angleFromCentre[i] = Math.Acos((polygonPoints[i].X - centerOfPicturebox.X) / lineDistance);
+
+                if (polygonPoints[i].Y < centerOfPicturebox.Y)
+                {
+                    angleFromCentre[i] = 2 * Math.PI - angleFromCentre[i];
+                }
+            }
+
+            for (int i = 0; i < polygonPoints.Length - 1; i++)
+            {
+                for (int j = i + 1; j < polygonPoints.Length; j++)
+                {
+                    if (angleFromCentre[i] > angleFromCentre[j])
+                    {
+                        angleForSorting = angleFromCentre[i];
+                        angleFromCentre[i] = angleFromCentre[j];
+                        angleFromCentre[j] = angleForSorting;
+
+                        pointFForSorting = polygonPoints[i];
+                        polygonPoints[i] = polygonPoints[j];
+                        polygonPoints[j] = pointFForSorting;
+
+                        pointDForSorting = polygon[i];
+                        polygon[i] = polygon[j];
+                        polygon[j] = pointDForSorting;
+                        
+                    }
                 }
             }
         }

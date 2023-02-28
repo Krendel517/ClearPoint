@@ -11,7 +11,8 @@ namespace ClearBackground
     public partial class FormWindow : Form
     {
         private string resultPath;
-        PointD[] polygon;
+        public PointD[] polygon;
+        PolygonDisplay polygonDisplay = new PolygonDisplay();
 
         public FormWindow()
         {
@@ -21,7 +22,6 @@ namespace ClearBackground
         private void button1_Click(object sender, EventArgs e)
         {
             SetPolygon();
-            CheсkAllPoints();
         }
 
         private string[] GetUserData(string path)
@@ -55,7 +55,7 @@ namespace ClearBackground
                         errorText.Text = "Wrong index of cordinates specified, check the entered data";
                         break;
                     }
-                    else 
+                    else
                     {
                         int userIndexOfX = Int32.Parse(indexOfX.Text);
                         int userIndexOfY = Int32.Parse(indexOfY.Text);
@@ -84,9 +84,10 @@ namespace ClearBackground
                     }
                 }
 
-                PolygonDisplay polygonDisplay = new PolygonDisplay();
                 polygonDisplay.ScalingPolygon(polygon);
                 Draw(polygonDisplay.PolygonPoints);
+                errorText.Text = "If displayed polygon matches the expected one, click <Continue>\nIf it doesn't then click <Generate new polygon>." +
+                    "\nAttention: the function allows the construction of only a convex polygon";
             }
         }
 
@@ -95,9 +96,17 @@ namespace ClearBackground
             Graphics graphics = pictureBox1.CreateGraphics();
             Pen pen = new Pen(Color.White, 1);
             Brush brush = new SolidBrush(Color.White);
+            Brush redbrush = new SolidBrush(Color.OrangeRed);
             graphics.Clear(Color.DimGray);
             graphics.DrawPolygon(pen, polygonAfterScale);
+            Font font = new Font("Arial", 9, FontStyle.Bold);
             graphics.FillPolygon(brush, polygonAfterScale);
+
+            for (int i = 0; i < polygonAfterScale.Length; i++)
+            {
+                int numberOfPoint = i + 1;
+                graphics.DrawString(numberOfPoint.ToString(), font, redbrush, polygonAfterScale[i]);
+            }
         }
 
         private void CheсkAllPoints()
@@ -160,7 +169,7 @@ namespace ClearBackground
                     progressBar1.PerformStep();
                     resultLbl.Text = "Result is saved!";
                 }
-            } 
+            }
         }
 
         private void SaveResult(string line)
@@ -227,7 +236,7 @@ namespace ClearBackground
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 checkPath.Text = folderBrowserDialog.SelectedPath;
-                resultPath = folderBrowserDialog.SelectedPath; 
+                resultPath = folderBrowserDialog.SelectedPath;
             }
 
             if (string.IsNullOrEmpty(resultPath))
@@ -292,6 +301,17 @@ namespace ClearBackground
         private void progressBar1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void generatePolygon_Click(object sender, EventArgs e)
+        {
+            polygonDisplay.ArrangementOfPoints(polygon);
+            Draw(polygonDisplay.PolygonPoints);
+        }
+
+        private void continueAfterDrawing_Click(object sender, EventArgs e)
+        {
+            CheсkAllPoints();
         }
 
         private void resultLbl_Click(object sender, EventArgs e)

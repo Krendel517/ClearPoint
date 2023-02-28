@@ -50,6 +50,8 @@ namespace ClearBackground
             this.errorText = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.generatePolygon = new System.Windows.Forms.Button();
+            this.continueAfterDrawing = new System.Windows.Forms.Button();
             this.indexXLbl = new System.Windows.Forms.Label();
             this.indexYbl = new System.Windows.Forms.Label();
             this.separatorLbl = new System.Windows.Forms.Label();
@@ -64,7 +66,7 @@ namespace ClearBackground
             // 
             this.ReadFile.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ReadFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ReadFile.Location = new System.Drawing.Point(430, 430);
+            this.ReadFile.Location = new System.Drawing.Point(430, 290);
             this.ReadFile.Name = "ReadFile";
             this.ReadFile.Size = new System.Drawing.Size(92, 50);
             this.ReadFile.TabIndex = 0;
@@ -258,6 +260,27 @@ namespace ClearBackground
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // generatePolygon
+            // 
+            this.generatePolygon.AllowDrop = true;
+            this.generatePolygon.Location = new System.Drawing.Point(430, 386);
+            this.generatePolygon.Name = "generatePolygon";
+            this.generatePolygon.Size = new System.Drawing.Size(92, 34);
+            this.generatePolygon.TabIndex = 22;
+            this.generatePolygon.Text = "Generate new polygon";
+            this.generatePolygon.UseVisualStyleBackColor = true;
+            this.generatePolygon.Click += new System.EventHandler(this.generatePolygon_Click);
+            // 
+            // continueAfterDrawing
+            // 
+            this.continueAfterDrawing.Location = new System.Drawing.Point(430, 346);
+            this.continueAfterDrawing.Name = "continueAfterDrawing";
+            this.continueAfterDrawing.Size = new System.Drawing.Size(92, 34);
+            this.continueAfterDrawing.TabIndex = 23;
+            this.continueAfterDrawing.Text = "Continue";
+            this.continueAfterDrawing.UseVisualStyleBackColor = true;
+            this.continueAfterDrawing.Click += new System.EventHandler(this.continueAfterDrawing_Click);
+            // 
             // indexXLbl
             // 
             this.indexXLbl.AutoSize = true;
@@ -330,6 +353,8 @@ namespace ClearBackground
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(529, 521);
+            this.Controls.Add(this.continueAfterDrawing);
+            this.Controls.Add(this.generatePolygon);
             this.Controls.Add(this.resultLbl);
             this.Controls.Add(this.polygonsStatusLbl);
             this.Controls.Add(this.coordinatesStatusLbl);
@@ -385,6 +410,8 @@ namespace ClearBackground
         private System.Windows.Forms.Label errorText;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button generatePolygon;
+        private System.Windows.Forms.Button continueAfterDrawing;
         public System.Windows.Forms.Label indexXLbl;
         public System.Windows.Forms.Label indexYbl;
         public System.Windows.Forms.Label separatorLbl;
